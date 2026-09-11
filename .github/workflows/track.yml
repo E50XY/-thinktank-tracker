@@ -36,8 +36,10 @@ jobs:
             python tracker.py discover || true
           fi
 
-      - name: 抓取新条目并生成网页
-        run: python tracker.py fetch --hours 6
+      - name: 抓取新条目、翻译成中文并生成网页
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python tracker.py fetch --hours 6 --translate auto
 
       - name: 保存结果回仓库
         run: |
