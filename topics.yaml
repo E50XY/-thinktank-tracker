@@ -1,0 +1,63 @@
+# 条目级领域判定规则。命中关键词最多的领域胜出;全部未命中则回退到机构的 default_domain。
+# 关键词不区分大小写,支持多语种。可自行增删。
+
+domains:
+  macro_finance:
+    label: "宏观经济与金融"
+    keywords: [inflation, monetary policy, interest rate, central bank, gdp, recession, fiscal,
+               debt, banking, credit, exchange rate, currency, bond, capital flow, liquidity,
+               financial stability, tax, budget, macroeconomic, forecast, growth outlook,
+               Geldpolitik, Inflation, Konjunktur, politique monétaire, 金融, 金利, 物価, 景気,
+               통화, 금리, инфляция, ставка]
+  dev_trade:
+    label: "国际贸易与发展"
+    keywords: [trade, tariff, export, import, supply chain, wto, fdi, investment treaty,
+               development finance, aid, oda, poverty, developing countries, global south,
+               industrial policy, value chain, sanctions, Handel, Zölle, commerce, comercio,
+               貿易, 関税, 開発, 무역, 통상, торговля]
+  labor_social:
+    label: "劳动、就业与社会政策"
+    keywords: [labour, labor, employment, unemployment, wage, worker, job, pension, welfare,
+               social protection, housing, education, skills, migration, informal economy,
+               union, childcare, Arbeitsmarkt, Rente, emploi, salaire, 雇用, 賃金, 年金,
+               고용, 임금, занятость]
+  health:
+    label: "公共卫生与健康"
+    keywords: [health, disease, vaccine, pandemic, outbreak, epidemic, mortality, hospital,
+               medicaid, medicare, mental health, nutrition security, who, antimicrobial,
+               Gesundheit, santé, salud, 健康, 医療, 보건, здоровье]
+  agri_food:
+    label: "农业与粮食"
+    keywords: [agriculture, food security, crop, farming, harvest, fisheries, livestock,
+               fertilizer, famine, rural, land use, food price, Landwirtschaft, agriculture,
+               agricultura, 農業, 食料, 농업, 식량, сельское хозяйство]
+  energy_climate:
+    label: "能源、气候与环境"
+    keywords: [energy, climate, emission, carbon, renewable, solar, wind, oil, gas, coal,
+               electricity, grid, net zero, decarbon, biodiversity, pollution, cop29, cop30,
+               adaptation, transition, hydrogen, nuclear power, Energiewende, Klima, climat,
+               エネルギー, 気候, 脱炭素, 에너지, 기후, энергетика, климат]
+  governance:
+    label: "治理、民主与制度"
+    keywords: [democracy, election, governance, corruption, rule of law, civil society,
+               authoritarian, parliament, judiciary, human rights, press freedom, regulation,
+               public administration, referendum, constitution, accountability, transparency,
+               Demokratie, démocratie, democracia, 民主, 選挙, 민주, 선거, демократия, выборы]
+  geopolitics:
+    label: "地缘政治与国际关系"
+    keywords: [geopolitic, security, defence, defense, military, nato, war, conflict, ukraine,
+               russia, china, taiwan, indo-pacific, middle east, gaza, iran, alliance, deterrence,
+               foreign policy, diplomacy, sanction regime, arms, strategic, Sicherheit,
+               Außenpolitik, sécurité, seguridad, 安全保障, 外交, 안보, 외교, безопасность]
+  sci_tech:
+    label: "科技、数字与产业"
+    keywords: [artificial intelligence, ai, semiconductor, chip, digital, data governance,
+               platform, cyber, innovation, r&d, technology, automation, robot, quantum,
+               telecom, space, biotech, Digitalisierung, numérique, 半導体, 人工知能, デジタル,
+               반도체, 인공지능, цифров]
+  inequality_data:
+    label: "不平等、人口与数据"
+    keywords: [inequality, income distribution, wealth, gini, poverty rate, demographic,
+               population, survey, public opinion, polling, statistics, dataset, census,
+               social mobility, Ungleichheit, inégalité, desigualdad, 格差, 人口, 불평등,
+               неравенство]

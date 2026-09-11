@@ -1,0 +1,160 @@
+# 机构清单。homepage 用于自动发现 RSS/Atom 源;feed 字段可手工填写并锁定。
+# default_domain: 当条目无法按关键词判定领域时的兜底领域。
+# 领域代码见 topics.yaml
+
+sources:
+  # ── 国际组织 / 多边机构 ──────────────────────────────
+  - {name: "World Bank – DEC", homepage: "https://www.worldbank.org/en/research", region: "国际组织", default_domain: "dev_trade"}
+  - {name: "IMF – Research Department", homepage: "https://www.imf.org/en/Publications/Research", region: "国际组织", default_domain: "macro_finance"}
+  - {name: "Bank for International Settlements (BIS)", homepage: "https://www.bis.org", region: "国际组织", default_domain: "macro_finance"}
+  - {name: "OECD", homepage: "https://www.oecd.org", region: "国际组织", default_domain: "macro_finance"}
+  - {name: "WTO – ERSD", homepage: "https://www.wto.org", region: "国际组织", default_domain: "dev_trade"}
+  - {name: "UNCTAD", homepage: "https://unctad.org", region: "国际组织", default_domain: "dev_trade"}
+  - {name: "AMRO", homepage: "https://amro-asia.org", region: "国际组织", default_domain: "macro_finance"}
+  - {name: "ADB Institute (ADBI)", homepage: "https://www.adb.org/adbi", region: "国际组织", default_domain: "dev_trade"}
+  - {name: "European Commission – JRC", homepage: "https://joint-research-centre.ec.europa.eu", region: "欧盟", default_domain: "sci_tech"}
+  - {name: "UNDP", homepage: "https://www.undp.org", region: "国际组织", default_domain: "dev_trade"}
+  - {name: "UNU-WIDER", homepage: "https://www.wider.unu.edu", region: "国际组织", default_domain: "dev_trade"}
+  - {name: "ILO", homepage: "https://www.ilo.org", region: "国际组织", default_domain: "labor_social"}
+  - {name: "WHO", homepage: "https://www.who.int", region: "国际组织", default_domain: "health"}
+  - {name: "FAO", homepage: "https://www.fao.org", region: "国际组织", default_domain: "agri_food"}
+  - {name: "IFPRI", homepage: "https://www.ifpri.org", region: "国际组织", default_domain: "agri_food"}
+  - {name: "IEA", homepage: "https://www.iea.org", region: "国际组织", default_domain: "energy_climate"}
+  - {name: "IRENA", homepage: "https://www.irena.org", region: "国际组织", default_domain: "energy_climate"}
+  - {name: "IPCC", homepage: "https://www.ipcc.ch", region: "国际组织", default_domain: "energy_climate"}
+  - {name: "UNEP", homepage: "https://www.unep.org", region: "国际组织", default_domain: "energy_climate"}
+  - {name: "World Economic Forum (WEF)", homepage: "https://www.weforum.org", region: "国际组织", default_domain: "macro_finance"}
+  - {name: "Center for Global Development (CGD)", homepage: "https://www.cgdev.org", region: "美国", default_domain: "dev_trade"}
+  - {name: "IISD", homepage: "https://www.iisd.org", region: "加拿大", default_domain: "energy_climate"}
+  - {name: "Climate Policy Initiative (CPI)", homepage: "https://www.climatepolicyinitiative.org", region: "国际组织", default_domain: "energy_climate"}
+  - {name: "RMI", homepage: "https://rmi.org", region: "美国", default_domain: "energy_climate"}
+  - {name: "Transparency International", homepage: "https://www.transparency.org", region: "国际组织", default_domain: "governance"}
+  - {name: "International IDEA", homepage: "https://www.idea.int", region: "国际组织", default_domain: "governance"}
+  - {name: "V-Dem Institute", homepage: "https://www.v-dem.net", region: "瑞典", default_domain: "governance"}
+  - {name: "Freedom House", homepage: "https://freedomhouse.org", region: "美国", default_domain: "governance"}
+  - {name: "World Inequality Lab", homepage: "https://wid.world", region: "法国", default_domain: "inequality_data"}
+  - {name: "Our World in Data", homepage: "https://ourworldindata.org", region: "英国", default_domain: "inequality_data"}
+  - {name: "INET", homepage: "https://www.ineteconomics.org", region: "美国", default_domain: "macro_finance"}
+  - {name: "Oxford Martin School", homepage: "https://www.oxfordmartin.ox.ac.uk", region: "英国", default_domain: "sci_tech"}
+  - {name: "Club of Rome", homepage: "https://www.clubofrome.org", region: "国际组织", default_domain: "energy_climate"}
+  - {name: "Trilateral Commission", homepage: "https://www.trilateral.org", region: "国际组织", default_domain: "geopolitics"}
+  - {name: "Think 20 (T20)", homepage: "https://t20.org", region: "国际组织", default_domain: "geopolitics", note: "主办权每年轮换,域名常变,需人工核对当届官网"}
+  - {name: "Global Solutions Initiative", homepage: "https://www.global-solutions-initiative.org", region: "德国", default_domain: "geopolitics"}
+
+  # ── 美国 ────────────────────────────────────────────
+  - {name: "Brookings Institution", homepage: "https://www.brookings.edu", region: "美国", default_domain: "geopolitics"}
+  - {name: "Council on Foreign Relations (CFR)", homepage: "https://www.cfr.org", region: "美国", default_domain: "geopolitics"}
+  - {name: "Carnegie Endowment", homepage: "https://carnegieendowment.org", region: "美国", default_domain: "geopolitics"}
+  - {name: "PIIE", homepage: "https://www.piie.com", region: "美国", default_domain: "dev_trade"}
+  - {name: "NBER", homepage: "https://www.nber.org", region: "美国", default_domain: "macro_finance"}
+  - {name: "Urban Institute", homepage: "https://www.urban.org", region: "美国", default_domain: "labor_social"}
+  - {name: "Pew Research Center", homepage: "https://www.pewresearch.org", region: "美国", default_domain: "inequality_data"}
+  - {name: "Heritage Foundation", homepage: "https://www.heritage.org", region: "美国", default_domain: "governance"}
+  - {name: "American Enterprise Institute (AEI)", homepage: "https://www.aei.org", region: "美国", default_domain: "governance"}
+  - {name: "Cato Institute", homepage: "https://www.cato.org", region: "美国", default_domain: "governance"}
+  - {name: "Center for American Progress (CAP)", homepage: "https://www.americanprogress.org", region: "美国", default_domain: "labor_social"}
+  - {name: "Hoover Institution", homepage: "https://www.hoover.org", region: "美国", default_domain: "governance"}
+  - {name: "Atlantic Council", homepage: "https://www.atlanticcouncil.org", region: "美国", default_domain: "geopolitics"}
+  - {name: "Resources for the Future (RFF)", homepage: "https://www.rff.org", region: "美国", default_domain: "energy_climate"}
+  - {name: "World Resources Institute (WRI)", homepage: "https://www.wri.org", region: "美国", default_domain: "energy_climate"}
+  - {name: "New America", homepage: "https://www.newamerica.org", region: "美国", default_domain: "sci_tech"}
+  - {name: "Milken Institute", homepage: "https://milkeninstitute.org", region: "美国", default_domain: "macro_finance"}
+  - {name: "Manhattan Institute", homepage: "https://manhattan.institute", region: "美国", default_domain: "governance"}
+  - {name: "KFF", homepage: "https://www.kff.org", region: "美国", default_domain: "health"}
+
+  # ── 英国 ────────────────────────────────────────────
+  - {name: "Chatham House", homepage: "https://www.chathamhouse.org", region: "英国", default_domain: "geopolitics"}
+  - {name: "Institute for Fiscal Studies (IFS)", homepage: "https://ifs.org.uk", region: "英国", default_domain: "macro_finance"}
+  - {name: "Resolution Foundation", homepage: "https://www.resolutionfoundation.org", region: "英国", default_domain: "labor_social"}
+  - {name: "Institute for Government", homepage: "https://www.instituteforgovernment.org.uk", region: "英国", default_domain: "governance"}
+  - {name: "ODI Global", homepage: "https://odi.org", region: "英国", default_domain: "dev_trade"}
+  - {name: "IPPR", homepage: "https://www.ippr.org", region: "英国", default_domain: "labor_social"}
+  - {name: "Policy Exchange", homepage: "https://policyexchange.org.uk", region: "英国", default_domain: "governance"}
+  - {name: "Adam Smith Institute", homepage: "https://www.adamsmith.org", region: "英国", default_domain: "governance"}
+  - {name: "CEPR", homepage: "https://cepr.org", region: "英国", default_domain: "macro_finance"}
+  - {name: "Institute of Development Studies (IDS)", homepage: "https://www.ids.ac.uk", region: "英国", default_domain: "dev_trade"}
+
+  # ── 欧洲大陆 ────────────────────────────────────────
+  - {name: "SWP", homepage: "https://www.swp-berlin.org", region: "德国", default_domain: "geopolitics"}
+  - {name: "DGAP", homepage: "https://dgap.org", region: "德国", default_domain: "geopolitics"}
+  - {name: "MERICS", homepage: "https://merics.org", region: "德国", default_domain: "geopolitics"}
+  - {name: "IfW Kiel", homepage: "https://www.ifw-kiel.de", region: "德国", default_domain: "macro_finance"}
+  - {name: "ifo Institut", homepage: "https://www.ifo.de", region: "德国", default_domain: "macro_finance"}
+  - {name: "DIW Berlin", homepage: "https://www.diw.de", region: "德国", default_domain: "macro_finance"}
+  - {name: "ZEW", homepage: "https://www.zew.de", region: "德国", default_domain: "macro_finance"}
+  - {name: "Agora Energiewende", homepage: "https://www.agora-energiewende.de", region: "德国", default_domain: "energy_climate"}
+  - {name: "Bruegel", homepage: "https://www.bruegel.org", region: "欧盟", default_domain: "macro_finance"}
+  - {name: "CEPS", homepage: "https://www.ceps.eu", region: "欧盟", default_domain: "governance"}
+  - {name: "ECFR", homepage: "https://ecfr.eu", region: "欧盟", default_domain: "geopolitics"}
+  - {name: "Institut Montaigne", homepage: "https://www.institutmontaigne.org", region: "法国", default_domain: "governance"}
+  - {name: "CEPII", homepage: "https://www.cepii.fr", region: "法国", default_domain: "dev_trade"}
+  - {name: "Institut Jacques Delors", homepage: "https://institutdelors.eu", region: "法国", default_domain: "governance"}
+  - {name: "OFCE", homepage: "https://www.ofce.sciences-po.fr", region: "法国", default_domain: "macro_finance"}
+  - {name: "Clingendael", homepage: "https://www.clingendael.org", region: "荷兰", default_domain: "geopolitics"}
+  - {name: "CPB Netherlands", homepage: "https://www.cpb.nl", region: "荷兰", default_domain: "macro_finance"}
+  - {name: "Real Instituto Elcano", homepage: "https://www.realinstitutoelcano.org", region: "西班牙", default_domain: "geopolitics"}
+  - {name: "IAI", homepage: "https://www.iai.it", region: "意大利", default_domain: "geopolitics"}
+  - {name: "ISPI", homepage: "https://www.ispionline.it", region: "意大利", default_domain: "geopolitics"}
+  - {name: "OSW", homepage: "https://www.osw.waw.pl", region: "波兰", default_domain: "geopolitics"}
+  - {name: "FIIA", homepage: "https://www.fiia.fi", region: "芬兰", default_domain: "geopolitics"}
+  - {name: "IHEID (Graduate Institute Geneva)", homepage: "https://www.graduateinstitute.ch", region: "瑞士", default_domain: "dev_trade"}
+
+  # ── 俄罗斯 ──────────────────────────────────────────
+  - {name: "ИМЭМО РАН (IMEMO)", homepage: "https://www.imemo.ru", region: "俄罗斯", default_domain: "geopolitics"}
+  - {name: "РСМД (RIAC)", homepage: "https://russiancouncil.ru", region: "俄罗斯", default_domain: "geopolitics"}
+  - {name: "Валдайский клуб (Valdai Club)", homepage: "https://valdaiclub.com", region: "俄罗斯", default_domain: "geopolitics"}
+  - {name: "ЦСР (CSR)", homepage: "https://www.csr.ru", region: "俄罗斯", default_domain: "macro_finance"}
+
+  # ── 日本 ────────────────────────────────────────────
+  - {name: "日本国際問題研究所 (JIIA)", homepage: "https://www.jiia.or.jp", region: "日本", default_domain: "geopolitics"}
+  - {name: "アジア経済研究所 (IDE-JETRO)", homepage: "https://www.ide.go.jp", region: "日本", default_domain: "dev_trade"}
+  - {name: "日本経済研究センター (JCER)", homepage: "https://www.jcer.or.jp", region: "日本", default_domain: "macro_finance"}
+  - {name: "東京財団政策研究所", homepage: "https://www.tkfd.or.jp", region: "日本", default_domain: "governance"}
+  - {name: "キヤノングローバル戦略研究所 (CIGS)", homepage: "https://cigs.canon", region: "日本", default_domain: "macro_finance"}
+  - {name: "総合研究開発機構 (NIRA)", homepage: "https://www.nira.or.jp", region: "日本", default_domain: "governance"}
+  - {name: "野村総合研究所 (NRI)", homepage: "https://www.nri.com", region: "日本", default_domain: "sci_tech"}
+  - {name: "三菱総合研究所 (MRI)", homepage: "https://www.mri.co.jp", region: "日本", default_domain: "sci_tech"}
+
+  # ── 韩国 ────────────────────────────────────────────
+  - {name: "한국개발연구원 (KDI)", homepage: "https://www.kdi.re.kr", region: "韩国", default_domain: "macro_finance"}
+  - {name: "대외경제정책연구원 (KIEP)", homepage: "https://www.kiep.go.kr", region: "韩国", default_domain: "dev_trade"}
+  - {name: "산업연구원 (KIET)", homepage: "https://www.kiet.re.kr", region: "韩国", default_domain: "sci_tech"}
+  - {name: "아산정책연구원 (Asan Institute)", homepage: "https://www.asaninst.org", region: "韩国", default_domain: "geopolitics"}
+  - {name: "여시재 (Yeosijae)", homepage: "https://www.yeosijae.org", region: "韩国", default_domain: "governance"}
+
+  # ── 南亚 ────────────────────────────────────────────
+  - {name: "Observer Research Foundation (ORF)", homepage: "https://www.orfonline.org", region: "印度", default_domain: "geopolitics"}
+  - {name: "ICRIER", homepage: "https://icrier.org", region: "印度", default_domain: "dev_trade"}
+  - {name: "NCAER", homepage: "https://www.ncaer.org", region: "印度", default_domain: "macro_finance"}
+  - {name: "CSEP", homepage: "https://csep.org", region: "印度", default_domain: "macro_finance"}
+  - {name: "Takshashila Institution", homepage: "https://takshashila.org.in", region: "印度", default_domain: "geopolitics"}
+  - {name: "SDPI", homepage: "https://sdpi.org", region: "巴基斯坦", default_domain: "dev_trade"}
+
+  # ── 东南亚 / 大洋洲 ─────────────────────────────────
+  - {name: "ISEAS – Yusof Ishak Institute", homepage: "https://www.iseas.edu.sg", region: "新加坡", default_domain: "geopolitics"}
+  - {name: "CSIS Indonesia", homepage: "https://www.csis.or.id", region: "印尼", default_domain: "geopolitics"}
+  - {name: "TDRI", homepage: "https://tdri.or.th", region: "泰国", default_domain: "macro_finance"}
+  - {name: "ERIA", homepage: "https://www.eria.org", region: "东盟", default_domain: "dev_trade"}
+  - {name: "Lowy Institute", homepage: "https://www.lowyinstitute.org", region: "澳大利亚", default_domain: "geopolitics"}
+  - {name: "Grattan Institute", homepage: "https://grattan.edu.au", region: "澳大利亚", default_domain: "labor_social"}
+  - {name: "NZIER", homepage: "https://www.nzier.org.nz", region: "新西兰", default_domain: "macro_finance"}
+
+  # ── 中东 / 土耳其 / 以色列 ──────────────────────────
+  - {name: "مركز الجزيرة للدراسات (AJ Centre for Studies)", homepage: "https://studies.aljazeera.net", region: "中东", default_domain: "geopolitics"}
+  - {name: "Gulf Research Center", homepage: "https://www.grc.net", region: "中东", default_domain: "geopolitics"}
+  - {name: "King Faisal Center (KFCRIS)", homepage: "https://kfcris.com", region: "中东", default_domain: "geopolitics"}
+  - {name: "SETA", homepage: "https://www.setav.org", region: "土耳其", default_domain: "geopolitics"}
+  - {name: "TEPAV", homepage: "https://www.tepav.org.tr", region: "土耳其", default_domain: "macro_finance"}
+  - {name: "Israel Democracy Institute", homepage: "https://en.idi.org.il", region: "以色列", default_domain: "governance"}
+  - {name: "Taub Center", homepage: "https://www.taubcenter.org.il", region: "以色列", default_domain: "labor_social"}
+
+  # ── 美洲(加拿大 / 拉美) ────────────────────────────
+  - {name: "CIGI", homepage: "https://www.cigionline.org", region: "加拿大", default_domain: "governance"}
+  - {name: "C.D. Howe Institute", homepage: "https://www.cdhowe.org", region: "加拿大", default_domain: "macro_finance"}
+  - {name: "IRPP", homepage: "https://irpp.org", region: "加拿大", default_domain: "governance"}
+  - {name: "Fraser Institute", homepage: "https://www.fraserinstitute.org", region: "加拿大", default_domain: "governance"}
+  - {name: "Fundação Getulio Vargas (FGV)", homepage: "https://portal.fgv.br", region: "巴西", default_domain: "macro_finance"}
+  - {name: "CEBRI", homepage: "https://cebri.org", region: "巴西", default_domain: "geopolitics"}
+  - {name: "IPEA", homepage: "https://www.ipea.gov.br", region: "巴西", default_domain: "macro_finance"}
+  - {name: "CIPPEC", homepage: "https://www.cippec.org", region: "阿根廷", default_domain: "governance"}
+  - {name: "CARI", homepage: "https://www.cari.org.ar", region: "阿根廷", default_domain: "geopolitics"}
