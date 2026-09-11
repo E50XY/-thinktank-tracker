@@ -1,0 +1,1112 @@
+feeds:
+  AMRO:
+    name: AMRO
+    homepage: https://amro-asia.org
+    region: 国际组织
+    default_domain: macro_finance
+    feeds: []
+    status: no_feed_found
+    note: ''
+  OECD:
+    name: OECD
+    homepage: https://www.oecd.org
+    region: 国际组织
+    default_domain: macro_finance
+    feeds: []
+    status: no_feed_found
+    note: ''
+  ADB Institute (ADBI):
+    name: ADB Institute (ADBI)
+    homepage: https://www.adb.org/adbi
+    region: 国际组织
+    default_domain: dev_trade
+    feeds: []
+    status: no_feed_found
+    note: ''
+  World Bank – DEC:
+    name: World Bank – DEC
+    homepage: https://www.worldbank.org/en/research
+    region: 国际组织
+    default_domain: dev_trade
+    feeds: []
+    status: no_feed_found
+    note: ''
+  Bank for International Settlements (BIS):
+    name: Bank for International Settlements (BIS)
+    homepage: https://www.bis.org
+    region: 国际组织
+    default_domain: macro_finance
+    feeds:
+    - https://www.bis.org/rss.xml
+    status: ok
+    note: ''
+  IMF – Research Department:
+    name: IMF – Research Department
+    homepage: https://www.imf.org/en/Publications/Research
+    region: 国际组织
+    default_domain: macro_finance
+    feeds: []
+    status: no_feed_found
+    note: ''
+  UNU-WIDER:
+    name: UNU-WIDER
+    homepage: https://www.wider.unu.edu
+    region: 国际组织
+    default_domain: dev_trade
+    feeds: []
+    status: no_feed_found
+    note: ''
+  IFPRI:
+    name: IFPRI
+    homepage: https://www.ifpri.org
+    region: 国际组织
+    default_domain: agri_food
+    feeds:
+    - https://www.ifpri.org/feed/
+    status: ok
+    note: ''
+  IEA:
+    name: IEA
+    homepage: https://www.iea.org
+    region: 国际组织
+    default_domain: energy_climate
+    feeds: []
+    status: no_feed_found
+    note: ''
+  WTO – ERSD:
+    name: WTO – ERSD
+    homepage: https://www.wto.org
+    region: 国际组织
+    default_domain: dev_trade
+    feeds: []
+    status: no_feed_found
+    note: ''
+  IPCC:
+    name: IPCC
+    homepage: https://www.ipcc.ch
+    region: 国际组织
+    default_domain: energy_climate
+    feeds: []
+    status: no_feed_found
+    note: ''
+  UNDP:
+    name: UNDP
+    homepage: https://www.undp.org
+    region: 国际组织
+    default_domain: dev_trade
+    feeds: []
+    status: no_feed_found
+    note: ''
+  UNEP:
+    name: UNEP
+    homepage: https://www.unep.org
+    region: 国际组织
+    default_domain: energy_climate
+    feeds:
+    - https://www.unep.org/rss.xml
+    status: ok
+    note: ''
+  FAO:
+    name: FAO
+    homepage: https://www.fao.org
+    region: 国际组织
+    default_domain: agri_food
+    feeds: []
+    status: no_feed_found
+    note: ''
+  Climate Policy Initiative (CPI):
+    name: Climate Policy Initiative (CPI)
+    homepage: https://www.climatepolicyinitiative.org
+    region: 国际组织
+    default_domain: energy_climate
+    feeds: []
+    status: no_feed_found
+    note: ''
+  RMI:
+    name: RMI
+    homepage: https://rmi.org
+    region: 美国
+    default_domain: energy_climate
+    feeds:
+    - https://rmi.org/feed
+    status: ok
+    note: ''
+  IISD:
+    name: IISD
+    homepage: https://www.iisd.org
+    region: 加拿大
+    default_domain: energy_climate
+    feeds: []
+    status: no_feed_found
+    note: ''
+  Center for Global Development (CGD):
+    name: Center for Global Development (CGD)
+    homepage: https://www.cgdev.org
+    region: 美国
+    default_domain: dev_trade
+    feeds: []
+    status: no_feed_found
+    note: ''
+  Freedom House:
+    name: Freedom House
+    homepage: https://freedomhouse.org
+    region: 美国
+    default_domain: governance
+    feeds:
+    - https://freedomhouse.org/rss.xml
+    status: ok
+    note: ''
+  Transparency International:
+    name: Transparency International
+    homepage: https://www.transparency.org
+    region: 国际组织
+    default_domain: governance
+    feeds: []
+    status: no_feed_found
+    note: ''
+  World Economic Forum (WEF):
+    name: World Economic Forum (WEF)
+    homepage: https://www.weforum.org
+    region: 国际组织
+    default_domain: macro_finance
+    feeds: []
+    status: no_feed_found
+    note: ''
+  Our World in Data:
+    name: Our World in Data
+    homepage: https://ourworldindata.org
+    region: 英国
+    default_domain: inequality_data
+    feeds:
+    - https://ourworldindata.org/atom.xml
+    status: ok
+    note: ''
+  European Commission – JRC:
+    name: European Commission – JRC
+    homepage: https://joint-research-centre.ec.europa.eu
+    region: 欧盟
+    default_domain: sci_tech
+    feeds: []
+    status: no_feed_found
+    note: ''
+  IRENA:
+    name: IRENA
+    homepage: https://www.irena.org
+    region: 国际组织
+    default_domain: energy_climate
+    feeds: []
+    status: no_feed_found
+    note: ''
+  International IDEA:
+    name: International IDEA
+    homepage: https://www.idea.int
+    region: 国际组织
+    default_domain: governance
+    feeds:
+    - https://www.idea.int/rss.xml
+    status: ok
+    note: ''
+  Trilateral Commission:
+    name: Trilateral Commission
+    homepage: https://www.trilateral.org
+    region: 国际组织
+    default_domain: geopolitics
+    feeds: []
+    status: no_feed_found
+    note: ''
+  World Inequality Lab:
+    name: World Inequality Lab
+    homepage: https://wid.world
+    region: 法国
+    default_domain: inequality_data
+    feeds: []
+    status: no_feed_found
+    note: ''
+  Think 20 (T20):
+    name: Think 20 (T20)
+    homepage: https://t20.org
+    region: 国际组织
+    default_domain: geopolitics
+    feeds: []
+    status: no_feed_found
+    note: 主办权每年轮换,域名常变,需人工核对当届官网
+  Council on Foreign Relations (CFR):
+    name: Council on Foreign Relations (CFR)
+    homepage: https://www.cfr.org
+    region: 美国
+    default_domain: geopolitics
+    feeds:
+    - https://www.cfr.org/feed
+    status: ok
+    note: ''
+  Global Solutions Initiative:
+    name: Global Solutions Initiative
+    homepage: https://www.global-solutions-initiative.org
+    region: 德国
+    default_domain: geopolitics
+    feeds: []
+    status: no_feed_found
+    note: ''
+  Club of Rome:
+    name: Club of Rome
+    homepage: https://www.clubofrome.org
+    region: 国际组织
+    default_domain: energy_climate
+    feeds:
+    - https://www.clubofrome.org/feed/
+    status: ok
+    note: ''
+  Brookings Institution:
+    name: Brookings Institution
+    homepage: https://www.brookings.edu
+    region: 美国
+    default_domain: geopolitics
+    feeds: []
+    status: no_feed_found
+    note: ''
+  Carnegie Endowment:
+    name: Carnegie Endowment
+    homepage: https://carnegieendowment.org
+    region: 美国
+    default_domain: geopolitics
+    feeds: []
+    status: no_feed_found
+    note: ''
+  ILO:
+    name: ILO
+    homepage: https://www.ilo.org
+    region: 国际组织
+    default_domain: labor_social
+    feeds: []
+    status: no_feed_found
+    note: ''
+  PIIE:
+    name: PIIE
+    homepage: https://www.piie.com
+    region: 美国
+    default_domain: dev_trade
+    feeds: []
+    status: no_feed_found
+    note: ''
+  Heritage Foundation:
+    name: Heritage Foundation
+    homepage: https://www.heritage.org
+    region: 美国
+    default_domain: governance
+    feeds:
+    - https://www.heritage.org/rss
+    status: ok
+    note: ''
+  Pew Research Center:
+    name: Pew Research Center
+    homepage: https://www.pewresearch.org
+    region: 美国
+    default_domain: inequality_data
+    feeds:
+    - https://www.pewresearch.org/feed/
+    status: ok
+    note: ''
+  INET:
+    name: INET
+    homepage: https://www.ineteconomics.org
+    region: 美国
+    default_domain: macro_finance
+    feeds: []
+    status: no_feed_found
+    note: ''
+  V-Dem Institute:
+    name: V-Dem Institute
+    homepage: https://www.v-dem.net
+    region: 瑞典
+    default_domain: governance
+    feeds: []
+    status: no_feed_found
+    note: ''
+  Cato Institute:
+    name: Cato Institute
+    homepage: https://www.cato.org
+    region: 美国
+    default_domain: governance
+    feeds: []
+    status: no_feed_found
+    note: ''
+  NBER:
+    name: NBER
+    homepage: https://www.nber.org
+    region: 美国
+    default_domain: macro_finance
+    feeds: []
+    status: no_feed_found
+    note: ''
+  Hoover Institution:
+    name: Hoover Institution
+    homepage: https://www.hoover.org
+    region: 美国
+    default_domain: governance
+    feeds:
+    - https://www.hoover.org/feed
+    status: ok
+    note: ''
+  Atlantic Council:
+    name: Atlantic Council
+    homepage: https://www.atlanticcouncil.org
+    region: 美国
+    default_domain: geopolitics
+    feeds:
+    - https://www.atlanticcouncil.org/feed/
+    status: ok
+    note: ''
+  Center for American Progress (CAP):
+    name: Center for American Progress (CAP)
+    homepage: https://www.americanprogress.org
+    region: 美国
+    default_domain: labor_social
+    feeds: []
+    status: no_feed_found
+    note: ''
+  American Enterprise Institute (AEI):
+    name: American Enterprise Institute (AEI)
+    homepage: https://www.aei.org
+    region: 美国
+    default_domain: governance
+    feeds: []
+    status: no_feed_found
+    note: ''
+  Milken Institute:
+    name: Milken Institute
+    homepage: https://milkeninstitute.org
+    region: 美国
+    default_domain: macro_finance
+    feeds:
+    - https://milkeninstitute.org/rss.xml
+    status: ok
+    note: ''
+  Oxford Martin School:
+    name: Oxford Martin School
+    homepage: https://www.oxfordmartin.ox.ac.uk
+    region: 英国
+    default_domain: sci_tech
+    feeds: []
+    status: no_feed_found
+    note: ''
+  Manhattan Institute:
+    name: Manhattan Institute
+    homepage: https://manhattan.institute
+    region: 美国
+    default_domain: governance
+    feeds: []
+    status: no_feed_found
+    note: ''
+  New America:
+    name: New America
+    homepage: https://www.newamerica.org
+    region: 美国
+    default_domain: sci_tech
+    feeds: []
+    status: no_feed_found
+    note: ''
+  Institute for Fiscal Studies (IFS):
+    name: Institute for Fiscal Studies (IFS)
+    homepage: https://ifs.org.uk
+    region: 英国
+    default_domain: macro_finance
+    feeds: []
+    status: no_feed_found
+    note: ''
+  KFF:
+    name: KFF
+    homepage: https://www.kff.org
+    region: 美国
+    default_domain: health
+    feeds:
+    - https://www.kff.org/feed/
+    status: ok
+    note: ''
+  Institute for Government:
+    name: Institute for Government
+    homepage: https://www.instituteforgovernment.org.uk
+    region: 英国
+    default_domain: governance
+    feeds:
+    - https://www.instituteforgovernment.org.uk/rss
+    status: ok
+    note: ''
+  IPPR:
+    name: IPPR
+    homepage: https://www.ippr.org
+    region: 英国
+    default_domain: labor_social
+    feeds:
+    - https://www.ippr.org/feed.rss
+    status: ok
+    note: ''
+  Resolution Foundation:
+    name: Resolution Foundation
+    homepage: https://www.resolutionfoundation.org
+    region: 英国
+    default_domain: labor_social
+    feeds:
+    - https://www.resolutionfoundation.org/feed/
+    status: ok
+    note: ''
+  Resources for the Future (RFF):
+    name: Resources for the Future (RFF)
+    homepage: https://www.rff.org
+    region: 美国
+    default_domain: energy_climate
+    feeds: []
+    status: no_feed_found
+    note: ''
+  Chatham House:
+    name: Chatham House
+    homepage: https://www.chathamhouse.org
+    region: 英国
+    default_domain: geopolitics
+    feeds: []
+    status: no_feed_found
+    note: ''
+  Urban Institute:
+    name: Urban Institute
+    homepage: https://www.urban.org
+    region: 美国
+    default_domain: labor_social
+    feeds: []
+    status: no_feed_found
+    note: ''
+  Institute of Development Studies (IDS):
+    name: Institute of Development Studies (IDS)
+    homepage: https://www.ids.ac.uk
+    region: 英国
+    default_domain: dev_trade
+    feeds: []
+    status: no_feed_found
+    note: ''
+  Policy Exchange:
+    name: Policy Exchange
+    homepage: https://policyexchange.org.uk
+    region: 英国
+    default_domain: governance
+    feeds: []
+    status: no_feed_found
+    note: ''
+  Adam Smith Institute:
+    name: Adam Smith Institute
+    homepage: https://www.adamsmith.org
+    region: 英国
+    default_domain: governance
+    feeds: []
+    status: no_feed_found
+    note: ''
+  WHO:
+    name: WHO
+    homepage: https://www.who.int
+    region: 国际组织
+    default_domain: health
+    feeds: []
+    status: no_feed_found
+    note: ''
+  ifo Institut:
+    name: ifo Institut
+    homepage: https://www.ifo.de
+    region: 德国
+    default_domain: macro_finance
+    feeds: []
+    status: no_feed_found
+    note: ''
+  MERICS:
+    name: MERICS
+    homepage: https://merics.org
+    region: 德国
+    default_domain: geopolitics
+    feeds:
+    - https://merics.org/en/rss
+    status: ok
+    note: ''
+  CEPR:
+    name: CEPR
+    homepage: https://cepr.org
+    region: 英国
+    default_domain: macro_finance
+    feeds:
+    - https://cepr.org/rss.xml
+    status: ok
+    note: ''
+  World Resources Institute (WRI):
+    name: World Resources Institute (WRI)
+    homepage: https://www.wri.org
+    region: 美国
+    default_domain: energy_climate
+    feeds: []
+    status: no_feed_found
+    note: ''
+  DGAP:
+    name: DGAP
+    homepage: https://dgap.org
+    region: 德国
+    default_domain: geopolitics
+    feeds: []
+    status: no_feed_found
+    note: ''
+  Bruegel:
+    name: Bruegel
+    homepage: https://www.bruegel.org
+    region: 欧盟
+    default_domain: macro_finance
+    feeds: []
+    status: no_feed_found
+    note: ''
+  CEPS:
+    name: CEPS
+    homepage: https://www.ceps.eu
+    region: 欧盟
+    default_domain: governance
+    feeds: []
+    status: no_feed_found
+    note: ''
+  Institut Montaigne:
+    name: Institut Montaigne
+    homepage: https://www.institutmontaigne.org
+    region: 法国
+    default_domain: governance
+    feeds:
+    - https://www.institutmontaigne.org/rss.xml
+    status: ok
+    note: ''
+  SWP:
+    name: SWP
+    homepage: https://www.swp-berlin.org
+    region: 德国
+    default_domain: geopolitics
+    feeds:
+    - https://www.swp-berlin.org/rss.xml
+    status: ok
+    note: ''
+  DIW Berlin:
+    name: DIW Berlin
+    homepage: https://www.diw.de
+    region: 德国
+    default_domain: macro_finance
+    feeds: []
+    status: no_feed_found
+    note: ''
+  ZEW:
+    name: ZEW
+    homepage: https://www.zew.de
+    region: 德国
+    default_domain: macro_finance
+    feeds: []
+    status: no_feed_found
+    note: ''
+  ECFR:
+    name: ECFR
+    homepage: https://ecfr.eu
+    region: 欧盟
+    default_domain: geopolitics
+    feeds:
+    - https://ecfr.eu/feed/
+    status: ok
+    note: ''
+  UNCTAD:
+    name: UNCTAD
+    homepage: https://unctad.org
+    region: 国际组织
+    default_domain: dev_trade
+    feeds: []
+    status: no_feed_found
+    note: ''
+  Clingendael:
+    name: Clingendael
+    homepage: https://www.clingendael.org
+    region: 荷兰
+    default_domain: geopolitics
+    feeds: []
+    status: no_feed_found
+    note: ''
+  IfW Kiel:
+    name: IfW Kiel
+    homepage: https://www.ifw-kiel.de
+    region: 德国
+    default_domain: macro_finance
+    feeds: []
+    status: no_feed_found
+    note: ''
+  Agora Energiewende:
+    name: Agora Energiewende
+    homepage: https://www.agora-energiewende.de
+    region: 德国
+    default_domain: energy_climate
+    feeds: []
+    status: no_feed_found
+    note: ''
+  Institut Jacques Delors:
+    name: Institut Jacques Delors
+    homepage: https://institutdelors.eu
+    region: 法国
+    default_domain: governance
+    feeds:
+    - https://institutdelors.eu/feed/
+    status: ok
+    note: ''
+  OFCE:
+    name: OFCE
+    homepage: https://www.ofce.sciences-po.fr
+    region: 法国
+    default_domain: macro_finance
+    feeds: []
+    status: no_feed_found
+    note: ''
+  CEPII:
+    name: CEPII
+    homepage: https://www.cepii.fr
+    region: 法国
+    default_domain: dev_trade
+    feeds: []
+    status: no_feed_found
+    note: ''
+  Real Instituto Elcano:
+    name: Real Instituto Elcano
+    homepage: https://www.realinstitutoelcano.org
+    region: 西班牙
+    default_domain: geopolitics
+    feeds: []
+    status: no_feed_found
+    note: ''
+  IAI:
+    name: IAI
+    homepage: https://www.iai.it
+    region: 意大利
+    default_domain: geopolitics
+    feeds: []
+    status: no_feed_found
+    note: ''
+  OSW:
+    name: OSW
+    homepage: https://www.osw.waw.pl
+    region: 波兰
+    default_domain: geopolitics
+    feeds:
+    - https://www.osw.waw.pl/pl/rss.xml
+    status: ok
+    note: ''
+  ISPI:
+    name: ISPI
+    homepage: https://www.ispionline.it
+    region: 意大利
+    default_domain: geopolitics
+    feeds:
+    - https://www.ispionline.it/it/feed
+    status: ok
+    note: ''
+  IHEID (Graduate Institute Geneva):
+    name: IHEID (Graduate Institute Geneva)
+    homepage: https://www.graduateinstitute.ch
+    region: 瑞士
+    default_domain: dev_trade
+    feeds:
+    - https://www.graduateinstitute.ch/rss.xml
+    status: ok
+    note: ''
+  FIIA:
+    name: FIIA
+    homepage: https://www.fiia.fi
+    region: 芬兰
+    default_domain: geopolitics
+    feeds:
+    - https://fiia.fi/feed
+    status: ok
+    note: ''
+  Валдайский клуб (Valdai Club):
+    name: Валдайский клуб (Valdai Club)
+    homepage: https://valdaiclub.com
+    region: 俄罗斯
+    default_domain: geopolitics
+    feeds:
+    - https://valdaiclub.com/feed
+    status: ok
+    note: ''
+  CPB Netherlands:
+    name: CPB Netherlands
+    homepage: https://www.cpb.nl
+    region: 荷兰
+    default_domain: macro_finance
+    feeds: []
+    status: no_feed_found
+    note: ''
+  ODI Global:
+    name: ODI Global
+    homepage: https://odi.org
+    region: 英国
+    default_domain: dev_trade
+    feeds: []
+    status: no_feed_found
+    note: ''
+  ИМЭМО РАН (IMEMO):
+    name: ИМЭМО РАН (IMEMO)
+    homepage: https://www.imemo.ru
+    region: 俄罗斯
+    default_domain: geopolitics
+    feeds: []
+    status: no_feed_found
+    note: ''
+  三菱総合研究所 (MRI):
+    name: 三菱総合研究所 (MRI)
+    homepage: https://www.mri.co.jp
+    region: 日本
+    default_domain: sci_tech
+    feeds: []
+    status: no_feed_found
+    note: ''
+  ЦСР (CSR):
+    name: ЦСР (CSR)
+    homepage: https://www.csr.ru
+    region: 俄罗斯
+    default_domain: macro_finance
+    feeds: []
+    status: no_feed_found
+    note: ''
+  日本国際問題研究所 (JIIA):
+    name: 日本国際問題研究所 (JIIA)
+    homepage: https://www.jiia.or.jp
+    region: 日本
+    default_domain: geopolitics
+    feeds: []
+    status: no_feed_found
+    note: ''
+  キヤノングローバル戦略研究所 (CIGS):
+    name: キヤノングローバル戦略研究所 (CIGS)
+    homepage: https://cigs.canon
+    region: 日本
+    default_domain: macro_finance
+    feeds: []
+    status: no_feed_found
+    note: ''
+  아산정책연구원 (Asan Institute):
+    name: 아산정책연구원 (Asan Institute)
+    homepage: https://www.asaninst.org
+    region: 韩国
+    default_domain: geopolitics
+    feeds: []
+    status: no_feed_found
+    note: ''
+  산업연구원 (KIET):
+    name: 산업연구원 (KIET)
+    homepage: https://www.kiet.re.kr
+    region: 韩国
+    default_domain: sci_tech
+    feeds: []
+    status: no_feed_found
+    note: ''
+  РСМД (RIAC):
+    name: РСМД (RIAC)
+    homepage: https://russiancouncil.ru
+    region: 俄罗斯
+    default_domain: geopolitics
+    feeds:
+    - https://russiancouncil.ru/news/rss
+    status: ok
+    note: ''
+  여시재 (Yeosijae):
+    name: 여시재 (Yeosijae)
+    homepage: https://www.yeosijae.org
+    region: 韩国
+    default_domain: governance
+    feeds:
+    - https://www.taejaefci.org/rss
+    status: ok
+    note: ''
+  東京財団政策研究所:
+    name: 東京財団政策研究所
+    homepage: https://www.tkfd.or.jp
+    region: 日本
+    default_domain: governance
+    feeds: []
+    status: no_feed_found
+    note: ''
+  日本経済研究センター (JCER):
+    name: 日本経済研究センター (JCER)
+    homepage: https://www.jcer.or.jp
+    region: 日本
+    default_domain: macro_finance
+    feeds:
+    - https://www.jcer.or.jp/feed
+    - https://www.jcer.or.jp/comments/feed
+    status: ok
+    note: ''
+  総合研究開発機構 (NIRA):
+    name: 総合研究開発機構 (NIRA)
+    homepage: https://www.nira.or.jp
+    region: 日本
+    default_domain: governance
+    feeds: []
+    status: no_feed_found
+    note: ''
+  Observer Research Foundation (ORF):
+    name: Observer Research Foundation (ORF)
+    homepage: https://www.orfonline.org
+    region: 印度
+    default_domain: geopolitics
+    feeds: []
+    status: no_feed_found
+    note: ''
+  野村総合研究所 (NRI):
+    name: 野村総合研究所 (NRI)
+    homepage: https://www.nri.com
+    region: 日本
+    default_domain: sci_tech
+    feeds: []
+    status: no_feed_found
+    note: ''
+  CSEP:
+    name: CSEP
+    homepage: https://csep.org
+    region: 印度
+    default_domain: macro_finance
+    feeds: []
+    status: no_feed_found
+    note: ''
+  Takshashila Institution:
+    name: Takshashila Institution
+    homepage: https://takshashila.org.in
+    region: 印度
+    default_domain: geopolitics
+    feeds: []
+    status: no_feed_found
+    note: ''
+  NCAER:
+    name: NCAER
+    homepage: https://www.ncaer.org
+    region: 印度
+    default_domain: macro_finance
+    feeds:
+    - https://ncaer.org/feed/
+    status: ok
+    note: ''
+  ISEAS – Yusof Ishak Institute:
+    name: ISEAS – Yusof Ishak Institute
+    homepage: https://www.iseas.edu.sg
+    region: 新加坡
+    default_domain: geopolitics
+    feeds: []
+    status: no_feed_found
+    note: ''
+  Lowy Institute:
+    name: Lowy Institute
+    homepage: https://www.lowyinstitute.org
+    region: 澳大利亚
+    default_domain: geopolitics
+    feeds:
+    - https://www.lowyinstitute.org/feed
+    status: ok
+    note: ''
+  한국개발연구원 (KDI):
+    name: 한국개발연구원 (KDI)
+    homepage: https://www.kdi.re.kr
+    region: 韩国
+    default_domain: macro_finance
+    feeds: []
+    status: no_feed_found
+    note: ''
+  مركز الجزيرة للدراسات (AJ Centre for Studies):
+    name: مركز الجزيرة للدراسات (AJ Centre for Studies)
+    homepage: https://studies.aljazeera.net
+    region: 中东
+    default_domain: geopolitics
+    feeds:
+    - http://studies.aljazeera.net/en/rss.xml
+    status: ok
+    note: ''
+  ICRIER:
+    name: ICRIER
+    homepage: https://icrier.org
+    region: 印度
+    default_domain: dev_trade
+    feeds:
+    - https://icrier.org/feed
+    status: ok
+    note: ''
+  CSIS Indonesia:
+    name: CSIS Indonesia
+    homepage: https://www.csis.or.id
+    region: 印尼
+    default_domain: geopolitics
+    feeds: []
+    status: no_feed_found
+    note: ''
+  King Faisal Center (KFCRIS):
+    name: King Faisal Center (KFCRIS)
+    homepage: https://kfcris.com
+    region: 中东
+    default_domain: geopolitics
+    feeds: []
+    status: no_feed_found
+    note: ''
+  TDRI:
+    name: TDRI
+    homepage: https://tdri.or.th
+    region: 泰国
+    default_domain: macro_finance
+    feeds:
+    - https://tdri.or.th/feed/
+    status: ok
+    note: ''
+  ERIA:
+    name: ERIA
+    homepage: https://www.eria.org
+    region: 东盟
+    default_domain: dev_trade
+    feeds: []
+    status: no_feed_found
+    note: ''
+  SDPI:
+    name: SDPI
+    homepage: https://sdpi.org
+    region: 巴基斯坦
+    default_domain: dev_trade
+    feeds: []
+    status: no_feed_found
+    note: ''
+  SETA:
+    name: SETA
+    homepage: https://www.setav.org
+    region: 土耳其
+    default_domain: geopolitics
+    feeds: []
+    status: no_feed_found
+    note: ''
+  Grattan Institute:
+    name: Grattan Institute
+    homepage: https://grattan.edu.au
+    region: 澳大利亚
+    default_domain: labor_social
+    feeds: []
+    status: no_feed_found
+    note: ''
+  C.D. Howe Institute:
+    name: C.D. Howe Institute
+    homepage: https://www.cdhowe.org
+    region: 加拿大
+    default_domain: macro_finance
+    feeds:
+    - https://cdhowe.org/feed/
+    status: ok
+    note: ''
+  CIGI:
+    name: CIGI
+    homepage: https://www.cigionline.org
+    region: 加拿大
+    default_domain: governance
+    feeds: []
+    status: no_feed_found
+    note: ''
+  TEPAV:
+    name: TEPAV
+    homepage: https://www.tepav.org.tr
+    region: 土耳其
+    default_domain: macro_finance
+    feeds: []
+    status: no_feed_found
+    note: ''
+  Fraser Institute:
+    name: Fraser Institute
+    homepage: https://www.fraserinstitute.org
+    region: 加拿大
+    default_domain: governance
+    feeds: []
+    status: no_feed_found
+    note: ''
+  IRPP:
+    name: IRPP
+    homepage: https://irpp.org
+    region: 加拿大
+    default_domain: governance
+    feeds: []
+    status: no_feed_found
+    note: ''
+  Taub Center:
+    name: Taub Center
+    homepage: https://www.taubcenter.org.il
+    region: 以色列
+    default_domain: labor_social
+    feeds: []
+    status: no_feed_found
+    note: ''
+  CIPPEC:
+    name: CIPPEC
+    homepage: https://www.cippec.org
+    region: 阿根廷
+    default_domain: governance
+    feeds: []
+    status: no_feed_found
+    note: ''
+  CEBRI:
+    name: CEBRI
+    homepage: https://cebri.org
+    region: 巴西
+    default_domain: geopolitics
+    feeds: []
+    status: no_feed_found
+    note: ''
+  アジア経済研究所 (IDE-JETRO):
+    name: アジア経済研究所 (IDE-JETRO)
+    homepage: https://www.ide.go.jp
+    region: 日本
+    default_domain: dev_trade
+    feeds: []
+    status: no_feed_found
+    note: ''
+  IPEA:
+    name: IPEA
+    homepage: https://www.ipea.gov.br
+    region: 巴西
+    default_domain: macro_finance
+    feeds: []
+    status: no_feed_found
+    note: ''
+  CARI:
+    name: CARI
+    homepage: https://www.cari.org.ar
+    region: 阿根廷
+    default_domain: geopolitics
+    feeds: []
+    status: no_feed_found
+    note: ''
+  Israel Democracy Institute:
+    name: Israel Democracy Institute
+    homepage: https://en.idi.org.il
+    region: 以色列
+    default_domain: governance
+    feeds: []
+    status: no_feed_found
+    note: ''
+  Fundação Getulio Vargas (FGV):
+    name: Fundação Getulio Vargas (FGV)
+    homepage: https://portal.fgv.br
+    region: 巴西
+    default_domain: macro_finance
+    feeds: []
+    status: no_feed_found
+    note: ''
+  NZIER:
+    name: NZIER
+    homepage: https://www.nzier.org.nz
+    region: 新西兰
+    default_domain: macro_finance
+    feeds: []
+    status: no_feed_found
+    note: ''
+  대외경제정책연구원 (KIEP):
+    name: 대외경제정책연구원 (KIEP)
+    homepage: https://www.kiep.go.kr
+    region: 韩国
+    default_domain: dev_trade
+    feeds: []
+    status: no_feed_found
+    note: ''
+  Gulf Research Center:
+    name: Gulf Research Center
+    homepage: https://www.grc.net
+    region: 中东
+    default_domain: geopolitics
+    feeds: []
+    status: no_feed_found
+    note: ''
