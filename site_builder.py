@@ -83,6 +83,7 @@ nav .reset{margin-top:12px;color:var(--link);border:0;padding:0}
 .row>div:last-child{min-width:0}
 .row h3{font-family:var(--serif);font-weight:400;font-size:18px;line-height:1.35;margin:0 0 5px}
 .row h3 a{text-decoration:none} .row h3 a:hover{text-decoration:underline}
+.orig{font-size:12.5px;color:#8a8f95;margin:0 0 5px;line-height:1.4;max-width:72ch}
 .who{font-size:13px;color:var(--muted);margin:0 0 6px}
 .who .inst{color:var(--ink);font-weight:600}
 .sum{margin:0;font-size:14px;color:#3a3e44;max-width:72ch}
@@ -120,6 +121,8 @@ function fmtWhen(it){
     ? `<span class="d">${day}</span><span class="t">${p(d.getHours())}:${p(d.getMinutes())}</span>`
     : `<span class="d">${day}</span><span class="t approx">无时分</span>`;
 }
+const zhTitle=it=>it.title_zh||it.title;
+const zhSum=it=>it.summary_zh||it.summary||"";
 const esc=s=>(s||"").replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
 function pass(it){
@@ -130,7 +133,8 @@ function pass(it){
     if(Date.now()-new Date(it.published_utc) > fRange*3600e3) return false;
   }
   if(fQuery){
-    const hay=(it.title+" "+it.summary+" "+it.institution).toLowerCase();
+    const hay=(it.title+" "+(it.title_zh||"")+" "+it.summary+" "+
+               (it.summary_zh||"")+" "+it.institution).toLowerCase();
     if(!fQuery.split(/\\s+/).every(w=>hay.includes(w))) return false;
   }
   return true;
@@ -151,9 +155,10 @@ function render(){
       <div class="key"></div>
       <div class="when">${fmtWhen(it)}</div>
       <div>
-        <h3><a href="${esc(it.link)}" target="_blank" rel="noopener">${esc(it.title)}</a></h3>
+        <h3><a href="${esc(it.link)}" target="_blank" rel="noopener">${esc(zhTitle(it))}</a></h3>
+        ${zhTitle(it)!==it.title?`<p class="orig">${esc(it.title)}</p>`:''}
         <p class="who"><span class="inst">${esc(it.institution)}</span>${it.region?'，'+esc(it.region):''}　${esc(DLABELS[it.domain]||'')}</p>
-        <p class="sum">${esc(it.summary)||'源站未提供摘要，点标题看原文。'}</p>
+        <p class="sum">${esc(zhSum(it))||'源站未提供摘要，点标题看原文。'}</p>
       </div>
     </article>`).join('') :
     `<div class="empty"><b>这个范围内没有条目</b>放宽时间范围，或清除筛选再看一次。</div>`;

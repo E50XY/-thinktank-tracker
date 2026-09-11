@@ -28,6 +28,7 @@ import yaml
 from bs4 import BeautifulSoup
 
 from site_builder import build_site
+from translate import Translator
 
 ROOT = Path(__file__).resolve().parent
 OUT = ROOT / "reports"
@@ -338,6 +339,18 @@ def cmd_fetch(args) -> None:
         written.append(p)
 
     archive = load_archive() + fresh
+    if args.translate != "off":
+        tr = Translator(backend=args.translate, model=args.model)
+        # 本轮新条目 + 历史上还没翻过的条目,一起补齐
+        pending = [it for it in archive
+                   if not it.get("summary_zh") and not it.get("title_zh")]
+        if pending:
+            if len(pending) > len(fresh):
+                print(f"发现 {len(pending) - len(fresh)} 条历史条目还没有中文,一并补翻。")
+            tr.apply(pending, titles=not args.keep_original_titles)
+    for it in archive:
+        it.setdefault("summary_zh", it.get("summary", ""))
+        it.setdefault("title_zh", it.get("title", ""))
     save_archive(archive)
     if not args.no_site:
         page = build_site(load_archive(), topics, SITE, state["last_run"])
@@ -346,6 +359,24 @@ def cmd_fetch(args) -> None:
     print(f"\n本轮新增 {len(fresh)} 条,库内累计 {len(load_archive())} 条。输出:")
     for p in written:
         print("  ", p)
+
+
+def cmd_translate(args) -> None:
+    """把库里所有还没有中文的条目补翻一遍,然后重建网页。"""
+    topics = load_yaml(ROOT / "topics.yaml")["domains"]
+    archive = load_archive()
+    pending = [it for it in archive if not it.get("summary_zh") and not it.get("title_zh")]
+    if args.all:
+        pending = archive
+    if not pending:
+        print("库里所有条目都已有中文,无需补翻。")
+    else:
+        print(f"待补翻 {len(pending)} 条。")
+        Translator(backend=args.translate, model=args.model).apply(
+            pending, titles=not args.keep_original_titles)
+        save_archive(archive)
+    page = build_site(load_archive(), topics, SITE, load_state().get("last_run"))
+    print("已生成", page)
 
 
 def cmd_build(args) -> None:
@@ -388,12 +419,16 @@ def render_md(items: list[dict], topics: dict, now: datetime, hours: int) -> str
         lines.append(f"## {topics[code]['label']}")
         lines.append("")
         for it in by_domain[code]:
-            lines.append(f"### {it['title']}")
+            zh_title = it.get("title_zh") or it["title"]
+            lines.append(f"### {zh_title}")
+            if zh_title != it["title"]:
+                lines.append(f"原标题:{it['title']}")
+                lines.append("")
             lines.append(f"- **发布机构**:{it['institution']}"
                          + (f"（{it['region']}）" if it["region"] else ""))
             lines.append(f"- **发布时间**:{fmt_time(it)}")
             lines.append(f"- **原文链接**:{it['link']}")
-            lines.append(f"- **简介**:{it['summary'] or '(源站未提供摘要)'}")
+            lines.append(f"- **简介**:{it.get('summary_zh') or it['summary'] or '源站未提供摘要'}")
             lines.append("")
     return "\n".join(lines)
 
@@ -413,14 +448,19 @@ def render_html(items: list[dict], topics: dict, now: datetime, hours: int) -> s
         body.append(f'<h2>{esc(topics[code]["label"])} '
                     f'<span class="count">{len(by_domain[code])}</span></h2>')
         for it in by_domain[code]:
+            zh_title = it.get("title_zh") or it["title"]
+            orig = (f'<p class="orig">{esc(it["title"])}</p>'
+                    if zh_title != it["title"] else "")
             body.append(
                 '<article>'
                 f'<h3><a href="{esc(it["link"])}" target="_blank" rel="noopener">'
-                f'{esc(it["title"])}</a></h3>'
-                f'<p class="meta">{esc(it["institution"])}'
-                + (f' · {esc(it["region"])}' if it["region"] else "")
-                + f' · {esc(fmt_time(it))}</p>'
-                f'<p class="sum">{esc(it["summary"]) or "(源站未提供摘要)"}</p>'
+                f'{esc(zh_title)}</a></h3>'
+                + orig
+                + f'<p class="meta">{esc(it["institution"])}'
+                + (f'，{esc(it["region"])}' if it["region"] else "")
+                + f'　{esc(fmt_time(it))}</p>'
+                f'<p class="sum">'
+                f'{esc(it.get("summary_zh") or it["summary"]) or "源站未提供摘要"}</p>'
                 '</article>')
     inner = "\n".join(body) or "<p>本轮窗口内没有抓到新发布。</p>"
     return f"""<!doctype html><html lang="zh"><meta charset="utf-8">
@@ -435,6 +475,7 @@ def render_html(items: list[dict], topics: dict, now: datetime, hours: int) -> s
  article{{padding:.9rem 0;border-bottom:1px solid #f0f0f0}}
  h3{{font-size:1rem;margin:0 0 .35rem}}
  a{{color:#1a4fa0;text-decoration:none}} a:hover{{text-decoration:underline}}
+ .orig{{color:#8a8f95;font-size:.82rem;margin:0 0 .25rem}}
  .meta{{color:#777;font-size:.82rem;margin:0 0 .4rem}}
  .sum{{margin:0;color:#333;font-size:.92rem}}
 </style>
@@ -473,8 +514,21 @@ def main() -> None:
     f.add_argument("--workers", type=int, default=16)
     f.add_argument("--include-undated", action="store_true",
                    help="把没有时间戳的条目也算作新条目(靠去重判断)")
+    f.add_argument("--translate", default="auto", choices=["auto", "claude", "google", "off"],
+                   help="简介翻译后端,默认 auto(有 ANTHROPIC_API_KEY 用 claude,否则用 google)")
+    f.add_argument("--model", default="claude-haiku-4-5-20251001", help="claude 后端使用的模型")
+    f.add_argument("--keep-original-titles", action="store_true",
+                   help="只翻简介,标题保留原文")
     f.add_argument("--no-site", action="store_true", help="本轮不重建网页")
     f.set_defaults(func=cmd_fetch)
+
+    tl = sub.add_parser("translate", help="给库里缺中文的条目补翻并重建网页")
+    tl.add_argument("--translate", default="auto",
+                    choices=["auto", "claude", "google", "off"])
+    tl.add_argument("--model", default="claude-haiku-4-5-20251001")
+    tl.add_argument("--keep-original-titles", action="store_true")
+    tl.add_argument("--all", action="store_true", help="不管有没有中文,全部重翻")
+    tl.set_defaults(func=cmd_translate)
 
     b = sub.add_parser("build", help="只用已有数据重建网页")
     b.set_defaults(func=cmd_build)
