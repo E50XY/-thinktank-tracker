@@ -1,0 +1,55 @@
+name: 智库动态追踪
+
+on:
+  schedule:
+    - cron: "0 */6 * * *"     # 每 6 小时自动运行(UTC 时间)
+  workflow_dispatch:           # 允许在网页上手动点运行
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  track:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 安装依赖
+        run: pip install -r requirements.txt
+
+      - name: 探测订阅源(首次运行,或每周一自动复查)
+        run: |
+          if [ ! -f feeds.yaml ] || [ "$(date -u +%u-%H)" = "1-00" ]; then
+            python tracker.py discover || true
+          fi
+
+      - name: 抓取新条目并生成网页
+        run: python tracker.py fetch --hours 6
+
+      - name: 保存结果回仓库
+        run: |
+          git config user.name  "tracker-bot"
+          git config user.email "tracker-bot@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet || git commit -m "更新 $(date -u +%Y-%m-%d\ %H:%MZ)"
+          git push
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - id: deployment
+        uses: actions/deploy-pages@v4
