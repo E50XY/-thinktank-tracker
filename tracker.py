@@ -316,6 +316,21 @@ def cmd_fetch(args) -> None:
         fresh.append(it)
 
     fresh.sort(key=lambda x: (x["published_utc"] or "", x["institution"]), reverse=True)
+
+    archive = load_archive() + fresh
+    if args.translate != "off":
+        tr = Translator(backend=args.translate, model=args.model)
+        pending = [it for it in archive
+                   if not it.get("summary_zh") and not it.get("title_zh")]
+        if pending:
+            if len(pending) > len(fresh):
+                print(f"发现 {len(pending) - len(fresh)} 条历史条目还没有中文,一并补翻。")
+            tr.apply(pending, titles=not args.keep_original_titles)
+    for it in archive:
+        it.setdefault("summary_zh", it.get("summary", ""))
+        it.setdefault("title_zh", it.get("title", ""))
+    save_archive(archive)
+
     for it in fresh:
         state["seen"][it["fp"]] = now.timestamp()
     state["last_run"] = now.isoformat()
@@ -338,20 +353,6 @@ def cmd_fetch(args) -> None:
         p.write_text(render_html(fresh, topics, now, args.hours), encoding="utf-8")
         written.append(p)
 
-    archive = load_archive() + fresh
-    if args.translate != "off":
-        tr = Translator(backend=args.translate, model=args.model)
-        # 本轮新条目 + 历史上还没翻过的条目,一起补齐
-        pending = [it for it in archive
-                   if not it.get("summary_zh") and not it.get("title_zh")]
-        if pending:
-            if len(pending) > len(fresh):
-                print(f"发现 {len(pending) - len(fresh)} 条历史条目还没有中文,一并补翻。")
-            tr.apply(pending, titles=not args.keep_original_titles)
-    for it in archive:
-        it.setdefault("summary_zh", it.get("summary", ""))
-        it.setdefault("title_zh", it.get("title", ""))
-    save_archive(archive)
     if not args.no_site:
         page = build_site(load_archive(), topics, SITE, state["last_run"])
         written.append(page)
