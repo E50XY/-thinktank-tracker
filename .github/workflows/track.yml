@@ -17,6 +17,7 @@ concurrency:
 jobs:
   track:
     runs-on: ubuntu-latest
+    timeout-minutes: 60
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -30,10 +31,12 @@ jobs:
       - name: 安装依赖
         run: pip install -r requirements.txt
 
-      - name: 探测订阅源(首次运行,或每周一自动复查)
+      - name: 探测订阅源（首次运行，或每周一自动复查）
         run: |
           if [ ! -f feeds.yaml ] || [ "$(date -u +%u-%H)" = "1-00" ]; then
-            python tracker.py discover || true
+            python tracker.py discover || echo "探测过程有报错，用已有结果继续"
+          else
+            echo "feeds.yaml 已存在，跳过探测"
           fi
 
       - name: 抓取新条目、翻译成中文并生成网页
@@ -41,17 +44,55 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: python tracker.py fetch --hours 6 --translate auto
 
-      - name: 保存结果回仓库
+      - name: 确认网页已生成
         run: |
-          git config user.name  "tracker-bot"
-          git config user.email "tracker-bot@users.noreply.github.com"
-          git add -A
-          git diff --cached --quiet || git commit -m "更新 $(date -u +%Y-%m-%d\ %H:%MZ)"
-          git push
+          if [ ! -f site/index.html ]; then
+            echo "::error::site/index.html 没有生成，抓取那一步可能失败了"
+            exit 1
+          fi
+          ls -la site
 
+      # 先部署网页，再写回数据。即使写回失败，网页也已经更新。
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site
       - id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: 保存结果回仓库
+        run: |
+          git config user.name  "tracker-bot"
+          git config user.email "tracker-bot@users.noreply.github.com"
+
+          # 只提交脚本生成的东西，不碰你手工上传的文件
+          git rm -r --cached __pycache__ --ignore-unmatch -q || true
+          for p in data state.json feeds.yaml reports site; do
+            [ -e "$p" ] && git add -A "$p"
+          done
+
+          if git diff --cached --quiet; then
+            echo "没有需要保存的变化"
+            exit 0
+          fi
+          git commit -q -m "更新 $(date -u '+%Y-%m-%d %H:%MZ')"
+
+          # 运行期间仓库可能被你改过，冲突就把本次提交重新叠到最新版上再推
+          for i in 1 2 3; do
+            git fetch -q origin "${{ github.ref_name }}"
+            if git rebase -q "origin/${{ github.ref_name }}"; then
+              if git push -q; then
+                echo "结果已保存"
+                exit 0
+              fi
+            else
+              git rebase --abort || true
+            fi
+            echo "第 $i 次写回未成功，5 秒后重试"
+            sleep 5
+          done
+
+          echo "::error::连续三次写回仓库失败。网页已经部署成功，但这一轮的数据没存下来。"
+          echo "::error::请检查 Settings → Actions → General → Workflow permissions"
+          echo "::error::是否设成了 Read and write permissions。"
+          exit 1
