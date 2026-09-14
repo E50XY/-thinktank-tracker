@@ -113,13 +113,21 @@ const $=s=>document.querySelector(s);
 let fDomain=null, fRegion="", fRange=0, fQuery="";
 
 function fmtWhen(it){
-  if(!it.published_utc) return '<span class="t approx">时间未提供</span>';
-  const d=new Date(it.published_utc);
   const p=n=>String(n).padStart(2,'0');
-  const day=`${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())}`;
-  return it.has_clock_time
-    ? `<span class="d">${day}</span><span class="t">${p(d.getHours())}:${p(d.getMinutes())}</span>`
-    : `<span class="d">${day}</span><span class="t approx">无时分</span>`;
+  const fmt=s=>{const d=new Date(s);
+    return [`${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())}`,
+            `${p(d.getHours())}:${p(d.getMinutes())}`];};
+  if(it.published_utc){
+    const [day,clock]=fmt(it.published_utc);
+    return it.has_clock_time
+      ? `<span class="d">${day}</span><span class="t">${clock}</span>`
+      : `<span class="d">${day}</span><span class="t approx">无时分</span>`;
+  }
+  if(it.first_seen){
+    const [day,clock]=fmt(it.first_seen);
+    return `<span class="d">${day}</span><span class="t approx">${clock} 抓到</span>`;
+  }
+  return '<span class="t approx">时间未知</span>';
 }
 const zhTitle=it=>it.title_zh||it.title;
 const zhSum=it=>it.summary_zh||it.summary||"";
@@ -129,8 +137,9 @@ function pass(it){
   if(fDomain && it.domain!==fDomain) return false;
   if(fRegion && it.region!==fRegion) return false;
   if(fRange){
-    if(!it.published_utc) return false;
-    if(Date.now()-new Date(it.published_utc) > fRange*3600e3) return false;
+    const ts=it.published_utc||it.first_seen;
+    if(!ts) return false;
+    if(Date.now()-new Date(ts) > fRange*3600e3) return false;
   }
   if(fQuery){
     const hay=(it.title+" "+(it.title_zh||"")+" "+it.summary+" "+
@@ -185,7 +194,8 @@ document.addEventListener('DOMContentLoaded',()=>{
 def build_site(items: list[dict], topics: dict, out_dir: Path,
                last_run: str | None = None) -> Path:
     out_dir.mkdir(parents=True, exist_ok=True)
-    items = sorted(items, key=lambda x: (x.get("published_utc") or ""), reverse=True)
+    items = sorted(items, key=lambda x: (x.get("published_utc")
+                                         or x.get("first_seen") or ""), reverse=True)
 
     labels = {c: cfg["label"] for c, cfg in topics.items()}
     regions = sorted({i["region"] for i in items if i.get("region")})

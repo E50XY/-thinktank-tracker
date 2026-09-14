@@ -15,6 +15,7 @@ import argparse
 import hashlib
 import json
 import re
+import socket
 import sys
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -29,6 +30,7 @@ from bs4 import BeautifulSoup
 
 from site_builder import build_site
 from translate import Translator
+from keypoints import KeyPointer
 
 ROOT = Path(__file__).resolve().parent
 OUT = ROOT / "reports"
@@ -42,6 +44,7 @@ UA = ("Mozilla/5.0 (compatible; ThinkTankTracker/1.0; "
       "+research aggregation; contact: you@example.com)")
 HEADERS = {"User-Agent": UA, "Accept": "*/*"}
 TIMEOUT = 20
+socket.setdefaulttimeout(25)   # feedparser 内部走 urllib,没有这行会卡死
 
 # 探测不到 <link rel=alternate> 时依次尝试的常见路径
 COMMON_PATHS = [
@@ -91,7 +94,8 @@ def load_archive() -> list[dict]:
 def save_archive(items: list[dict]) -> None:
     cutoff = datetime.now(timezone.utc) - timedelta(days=ARCHIVE_DAYS)
     kept, seen = [], set()
-    for it in sorted(items, key=lambda x: (x.get("published_utc") or ""), reverse=True):
+    for it in sorted(items, key=lambda x: (x.get("published_utc")
+                                          or x.get("first_seen") or ""), reverse=True):
         if it.get("fp") in seen:
             continue
         seen.add(it.get("fp"))
@@ -101,6 +105,28 @@ def save_archive(items: list[dict]) -> None:
         kept.append(it)
     ARCHIVE.parent.mkdir(parents=True, exist_ok=True)
     ARCHIVE.write_text(json.dumps(kept, ensure_ascii=False), encoding="utf-8")
+
+
+def needs_translation(it: dict) -> bool:
+    """判断这条是否还需要翻译。
+
+    除了"字段为空",还要识别旧版本留下的脏数据:那时翻译失败会把英文原文
+    直接写进 summary_zh / title_zh,看起来像翻过了,其实没有。
+    """
+    from translate import is_chinese
+
+    title, title_zh = it.get("title", ""), it.get("title_zh", "")
+    if not title_zh:
+        return True
+    if title_zh == title and not is_chinese(title):
+        return True
+
+    summary, summary_zh = it.get("summary", ""), it.get("summary_zh", "")
+    if summary and not summary_zh:
+        return True
+    if summary and summary_zh == summary and not is_chinese(summary):
+        return True
+    return False
 
 
 def fingerprint(link: str, title: str) -> str:
@@ -122,7 +148,8 @@ def looks_like_feed(content: bytes) -> bool:
 
 # ──────────────────────────── 订阅源发现 ────────────────────────────
 
-def discover_one(src: dict, session: requests.Session) -> dict:
+def discover_one(src: dict, session: requests.Session,
+                 use_news_fallback: bool = True) -> dict:
     """返回 {name, homepage, feeds: [...], status}"""
     name, home = src["name"], src["homepage"]
     found: list[str] = []
@@ -154,7 +181,6 @@ def discover_one(src: dict, session: requests.Session) -> dict:
                 rr = session.get(url, headers=HEADERS, timeout=TIMEOUT)
                 if rr.ok and looks_like_feed(rr.content):
                     found.append(url)
-                    break
             except requests.RequestException:
                 continue
 
@@ -170,8 +196,19 @@ def discover_one(src: dict, session: requests.Session) -> dict:
                 verified.append(url)
         except Exception:
             continue
-        if len(verified) >= 3:
+        if len(verified) >= 5:
             break
+
+    via_news = False
+    if not verified and use_news_fallback:
+        domain = urlparse(base).netloc.replace("www.", "")
+        gn = ("https://news.google.com/rss/search?q=site:"
+              f"{domain}&hl=zh-CN&gl=CN&ceid=CN:zh-Hans")
+        try:
+            if feedparser.parse(gn, request_headers=HEADERS).entries:
+                verified, via_news = [gn], True
+        except Exception:
+            pass
 
     return {
         "name": name,
@@ -179,7 +216,9 @@ def discover_one(src: dict, session: requests.Session) -> dict:
         "region": src.get("region", ""),
         "default_domain": src.get("default_domain", "geopolitics"),
         "feeds": verified,
-        "status": "ok" if verified else "no_feed_found",
+        "via_news_fallback": via_news,
+        "status": ("ok" if verified and not via_news
+                   else "ok_via_news" if via_news else "no_feed_found"),
         "note": src.get("note", ""),
     }
 
@@ -197,7 +236,7 @@ def cmd_discover(args) -> None:
     session = requests.Session()
     print(f"开始探测 {len(sources)} 家机构的订阅源…\n")
     with ThreadPoolExecutor(max_workers=args.workers) as pool:
-        futures = {pool.submit(discover_one, s, session): s for s in sources}
+        futures = {pool.submit(discover_one, s, session, not args.no_news_fallback): s for s in sources}
         for i, fut in enumerate(as_completed(futures), 1):
             src = futures[fut]
             try:
@@ -300,7 +339,7 @@ def cmd_fetch(args) -> None:
             except Exception:
                 continue
 
-    fresh = []
+    fresh, undated = [], {}
     for it in raw:
         fp = fingerprint(it["link"], it["title"])
         if fp in state["seen"]:
@@ -309,26 +348,37 @@ def cmd_fetch(args) -> None:
             pub = datetime.fromisoformat(it["published_utc"])
             if pub < cutoff:
                 continue          # 太旧,不算新消息
-        elif not args.include_undated:
-            continue              # 无时间戳的条目默认跳过(可用 --include-undated 放行)
+        else:
+            # 源站没给发布时间。直接丢掉会漏掉大量条目,所以靠指纹去重收进来,
+            # 只在首轮对每个源设上限,避免把整个历史列表一次性灌进来。
+            if args.skip_undated:
+                continue
+            undated[it["feed"]] = undated.get(it["feed"], 0) + 1
+            if undated[it["feed"]] > args.max_undated:
+                continue
         it["fp"] = fp
+        it["first_seen"] = now.isoformat()
         it["domain"] = classify(it["title"], it["summary"], topics, it["default_domain"])
         fresh.append(it)
 
-    fresh.sort(key=lambda x: (x["published_utc"] or "", x["institution"]), reverse=True)
+    fresh.sort(key=lambda x: (x["published_utc"] or x.get("first_seen") or "",
+                              x["institution"]), reverse=True)
 
     archive = load_archive() + fresh
     if args.translate != "off":
         tr = Translator(backend=args.translate, model=args.model)
-        pending = [it for it in archive
-                   if not it.get("summary_zh") and not it.get("title_zh")]
+        pending = [it for it in archive if needs_translation(it)]
         if pending:
             if len(pending) > len(fresh):
                 print(f"发现 {len(pending) - len(fresh)} 条历史条目还没有中文,一并补翻。")
             tr.apply(pending, titles=not args.keep_original_titles)
+    if args.keypoints != "off":
+        kp = KeyPointer(mode=args.keypoints, model=args.model)
+        if kp.mode == "on":
+            need = [it for it in archive if not it.get("points_zh")]
+            kp.apply(need, limit=args.max_keypoints)
     for it in archive:
-        it.setdefault("summary_zh", it.get("summary", ""))
-        it.setdefault("title_zh", it.get("title", ""))
+        it.setdefault("points_zh", [])
     save_archive(archive)
 
     for it in fresh:
@@ -362,11 +412,16 @@ def cmd_fetch(args) -> None:
         print("  ", p)
 
 
+def cmd_check_translate(args) -> None:
+    from translate import self_test
+    sys.exit(0 if self_test(args.translate, args.model) else 1)
+
+
 def cmd_translate(args) -> None:
     """把库里所有还没有中文的条目补翻一遍,然后重建网页。"""
     topics = load_yaml(ROOT / "topics.yaml")["domains"]
     archive = load_archive()
-    pending = [it for it in archive if not it.get("summary_zh") and not it.get("title_zh")]
+    pending = [it for it in archive if needs_translation(it)]
     if args.all:
         pending = archive
     if not pending:
@@ -380,6 +435,20 @@ def cmd_translate(args) -> None:
     print("已生成", page)
 
 
+def cmd_keypoints(args) -> None:
+    """给库里还没有要点的条目补提炼,然后重建网页。"""
+    topics = load_yaml(ROOT / "topics.yaml")["domains"]
+    archive = load_archive()
+    need = [it for it in archive if not it.get("points_zh")]
+    if not need:
+        print("库里所有条目都已有中文要点。")
+    else:
+        KeyPointer(mode="on", model=args.model).apply(need, limit=args.max_keypoints)
+        save_archive(archive)
+    print("已生成", build_site(load_archive(), topics, SITE,
+                             load_state().get("last_run")))
+
+
 def cmd_build(args) -> None:
     topics = load_yaml(ROOT / "topics.yaml")["domains"]
     state = load_state()
@@ -389,6 +458,9 @@ def cmd_build(args) -> None:
 
 def fmt_time(it: dict) -> str:
     if not it["published_utc"]:
+        if it.get("first_seen"):
+            fs = datetime.fromisoformat(it["first_seen"]).astimezone()
+            return fs.strftime("%Y-%m-%d %H:%M") + "(源站无发布时间,此为首次抓到的时间)"
         return "发布时间未提供"
     dt = datetime.fromisoformat(it["published_utc"]).astimezone()
     if it["has_clock_time"]:
@@ -430,6 +502,10 @@ def render_md(items: list[dict], topics: dict, now: datetime, hours: int) -> str
             lines.append(f"- **发布时间**:{fmt_time(it)}")
             lines.append(f"- **原文链接**:{it['link']}")
             lines.append(f"- **简介**:{it.get('summary_zh') or it['summary'] or '源站未提供摘要'}")
+            if it.get("points_zh"):
+                lines.append("- **主要观点**:")
+                for pt in it["points_zh"]:
+                    lines.append(f"  - {pt}")
             lines.append("")
     return "\n".join(lines)
 
@@ -462,7 +538,10 @@ def render_html(items: list[dict], topics: dict, now: datetime, hours: int) -> s
                 + f'　{esc(fmt_time(it))}</p>'
                 f'<p class="sum">'
                 f'{esc(it.get("summary_zh") or it["summary"]) or "源站未提供摘要"}</p>'
-                '</article>')
+                + ("<ul class='pts'>" +
+                   "".join(f"<li>{esc(pt)}</li>" for pt in it["points_zh"]) + "</ul>"
+                   if it.get("points_zh") else "")
+                + '</article>')
     inner = "\n".join(body) or "<p>本轮窗口内没有抓到新发布。</p>"
     return f"""<!doctype html><html lang="zh"><meta charset="utf-8">
 <title>智库动态简报 {local.strftime('%Y-%m-%d %H:%M')}</title>
@@ -479,6 +558,8 @@ def render_html(items: list[dict], topics: dict, now: datetime, hours: int) -> s
  .orig{{color:#8a8f95;font-size:.82rem;margin:0 0 .25rem}}
  .meta{{color:#777;font-size:.82rem;margin:0 0 .4rem}}
  .sum{{margin:0;color:#333;font-size:.92rem}}
+ .pts{{margin:.5rem 0 0;padding-left:1.15rem;color:#333;font-size:.9rem}}
+ .pts li{{margin:.2rem 0}}
 </style>
 <h1>智库动态简报</h1>
 <p class="top">生成时间 {local.strftime('%Y-%m-%d %H:%M')} · 覆盖窗口 最近 {hours} 小时 · 新增 {len(items)} 条</p>
@@ -490,12 +571,25 @@ def cmd_status(args) -> None:
     if not FEEDS_FILE.exists():
         sys.exit("还没有 feeds.yaml,请先运行 discover。")
     feeds = load_yaml(FEEDS_FILE)["feeds"]
-    ok = {k: v for k, v in feeds.items() if v.get("feeds")}
+    direct = {k: v for k, v in feeds.items()
+              if v.get("feeds") and not v.get("via_news_fallback")}
+    news = [k for k, v in feeds.items() if v.get("via_news_fallback")]
     bad = [k for k, v in feeds.items() if not v.get("feeds")]
-    print(f"有订阅源:{len(ok)} 家 / 共 {len(feeds)} 家")
-    print(f"订阅源总数:{sum(len(v['feeds']) for v in ok.values())}")
+    print(f"官方 RSS:{len(direct)} 家  |  Google News 兜底:{len(news)} 家  "
+          f"|  完全没有源:{len(bad)} 家  |  合计 {len(feeds)} 家")
+    print(f"订阅源总数:{sum(len(v['feeds']) for v in feeds.values() if v.get('feeds'))}")
+
+    archive = load_archive()
+    if archive:
+        covered = {it["institution"] for it in archive}
+        silent = [k for k in feeds if k not in covered]
+        print(f"\n库内条目 {len(archive)} 条,来自 {len(covered)} 家机构。")
+        if silent:
+            print(f"以下 {len(silent)} 家至今一条都没抓到:")
+            for n in silent:
+                print("  -", n, "(无订阅源)" if n in bad else "")
     if bad:
-        print(f"\n以下 {len(bad)} 家需手工补源:")
+        print(f"\n以下 {len(bad)} 家连兜底源都没有,需手工补:")
         for n in bad:
             print("  -", n)
 
@@ -507,21 +601,34 @@ def main() -> None:
     d = sub.add_parser("discover", help="自动探测各机构 RSS/Atom 源")
     d.add_argument("--only", help="只探测名称含该关键词的机构,逗号分隔")
     d.add_argument("--workers", type=int, default=10)
+    d.add_argument("--no-news-fallback", action="store_true",
+                   help="没有 RSS 的机构不使用 Google News 兜底")
     d.set_defaults(func=cmd_discover)
 
     f = sub.add_parser("fetch", help="抓取新条目并生成分类报告")
     f.add_argument("--hours", type=int, default=6, help="时间窗口,默认 6 小时")
     f.add_argument("--format", default="md,html,json")
     f.add_argument("--workers", type=int, default=16)
-    f.add_argument("--include-undated", action="store_true",
-                   help="把没有时间戳的条目也算作新条目(靠去重判断)")
+    f.add_argument("--skip-undated", action="store_true",
+                   help="丢弃源站没给发布时间的条目(默认收录,靠指纹去重)")
+    f.add_argument("--max-undated", type=int, default=15,
+                   help="每个源每轮最多收录多少条无时间戳的条目,默认 15")
     f.add_argument("--translate", default="auto", choices=["auto", "claude", "google", "off"],
                    help="简介翻译后端,默认 auto(有 ANTHROPIC_API_KEY 用 claude,否则用 google)")
     f.add_argument("--model", default="claude-haiku-4-5-20251001", help="claude 后端使用的模型")
     f.add_argument("--keep-original-titles", action="store_true",
                    help="只翻简介,标题保留原文")
+    f.add_argument("--keypoints", default="auto", choices=["auto", "on", "off"],
+                   help="抓原文提炼中文要点,默认 auto(有 ANTHROPIC_API_KEY 才开)")
+    f.add_argument("--max-keypoints", type=int, default=120,
+                   help="每轮最多提炼多少条,默认 120,其余下轮继续")
     f.add_argument("--no-site", action="store_true", help="本轮不重建网页")
     f.set_defaults(func=cmd_fetch)
+
+    ct = sub.add_parser("check-translate", help="翻一句样例,确认翻译链路是通的")
+    ct.add_argument("--translate", default="auto", choices=["auto", "claude", "google"])
+    ct.add_argument("--model", default="claude-haiku-4-5-20251001")
+    ct.set_defaults(func=cmd_check_translate)
 
     tl = sub.add_parser("translate", help="给库里缺中文的条目补翻并重建网页")
     tl.add_argument("--translate", default="auto",
@@ -530,6 +637,11 @@ def main() -> None:
     tl.add_argument("--keep-original-titles", action="store_true")
     tl.add_argument("--all", action="store_true", help="不管有没有中文,全部重翻")
     tl.set_defaults(func=cmd_translate)
+
+    kp = sub.add_parser("keypoints", help="给库里缺要点的条目补提炼并重建网页")
+    kp.add_argument("--model", default="claude-haiku-4-5-20251001")
+    kp.add_argument("--max-keypoints", type=int, default=200)
+    kp.set_defaults(func=cmd_keypoints)
 
     b = sub.add_parser("build", help="只用已有数据重建网页")
     b.set_defaults(func=cmd_build)

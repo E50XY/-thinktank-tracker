@@ -77,7 +77,16 @@ def _post(url: str, **kw):
     return requests.post(url, timeout=90, **kw)
 
 
+GOOGLE_HEADERS = {
+    "User-Agent": ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                   "(KHTML, like Gecko) Chrome/124.0 Safari/537.36"),
+    "Accept": "*/*",
+    "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8",
+}
+
+
 def _get(url: str, **kw):
+    kw.setdefault("headers", GOOGLE_HEADERS)
     return requests.get(url, timeout=30, **kw)
 
 
@@ -105,15 +114,22 @@ def translate_claude(texts: list[str], api_key: str, model: str) -> list[str]:
 
 
 def translate_google(texts: list[str]) -> list[str]:
+    """整批都成功才返回;任何一条失败就抛异常,交给上层重试。"""
     out = []
-    for t in texts:
+    for i, t in enumerate(texts):
+        r = _get(GOOGLE_URL.format(q=quote(t[:4500])))
+        if r.status_code != 200:
+            raise RuntimeError(f"Google 接口返回 {r.status_code}"
+                               f"(可能被限流或封锁了 GitHub 的出口 IP)")
         try:
-            r = _get(GOOGLE_URL.format(q=quote(t[:4500])))
-            r.raise_for_status()
-            out.append("".join(seg[0] for seg in r.json()[0] if seg and seg[0]))
-        except Exception:
-            out.append(t)          # 失败就保留原文,不中断整轮抓取
-        time.sleep(0.25)           # 轻微节流,避免触发限流
+            zh = "".join(seg[0] for seg in r.json()[0] if seg and seg[0])
+        except Exception as e:
+            raise RuntimeError(f"Google 接口返回的内容无法解析:{e}")
+        if not zh.strip():
+            raise RuntimeError("Google 接口返回了空译文")
+        out.append(zh)
+        if i + 1 < len(texts):
+            time.sleep(0.3)        # 轻微节流,避免触发限流
     return out
 
 
@@ -132,7 +148,10 @@ class Translator:
         self.verbose = verbose
         self.cache = load_cache()
         self.calls = 0
+        self.attempted = 0
+        self.ok = 0
         self.failed = 0
+        self.last_error = ""
 
     def _run(self, texts: list[str]) -> list[str]:
         if self.backend == "claude":
@@ -159,6 +178,7 @@ class Translator:
             print(f"翻译 {len(todo)} 段新文本(后端:{self.backend},"
                   f"缓存命中 {len(result)} 段)…")
 
+        self.attempted += len(todo)
         for i in range(0, len(todo), BATCH):
             chunk = todo[i:i + BATCH]
             for attempt in range(3):
@@ -167,16 +187,18 @@ class Translator:
                     for src, dst in zip(chunk, zh):
                         result[src] = dst
                         self.cache[_key(src)] = dst
+                    self.ok += len(chunk)
                     break
                 except Exception as e:
+                    self.last_error = str(e)
                     if attempt == 2:
                         self.failed += len(chunk)
                         if self.verbose:
-                            print(f"  这一批翻译失败,保留原文({e})")
-                        for src in chunk:
-                            result[src] = src
+                            print(f"  这一批 {len(chunk)} 段翻译失败:{e}")
+                        # 关键:失败的不写入 result,也不入缓存。
+                        # 这样条目不会被标记成"已翻译",下一轮会自动重试。
                     else:
-                        time.sleep(2 * (attempt + 1))
+                        time.sleep(3 * (attempt + 1))
             self.calls += 1
 
         save_cache(self.cache)
@@ -189,9 +211,52 @@ class Translator:
             pool += [it["title"] for it in items if it.get("title")]
         mapping = self.translate_many(pool)
         for it in items:
-            it["summary_zh"] = mapping.get(it.get("summary", ""), it.get("summary", ""))
-            it["title_zh"] = (mapping.get(it.get("title", ""), it["title"])
-                              if titles else it["title"])
-        if self.verbose and self.backend != "off":
-            note = f",{self.failed} 段失败保留原文" if self.failed else ""
-            print(f"翻译完成:接口调用 {self.calls} 次{note}。")
+            src_sum, src_title = it.get("summary", ""), it.get("title", "")
+            if src_sum in mapping:
+                it["summary_zh"] = mapping[src_sum]
+            elif not src_sum:
+                it["summary_zh"] = ""
+            if titles and src_title in mapping:
+                it["title_zh"] = mapping[src_title]
+            elif not titles:
+                it["title_zh"] = src_title
+        self.report()
+
+    def report(self) -> None:
+        if not self.verbose or self.backend == "off":
+            return
+        if self.attempted == 0:
+            print("翻译:本轮没有需要新翻的内容(全部命中缓存或本来就是中文)。")
+            return
+        print(f"翻译结果:成功 {self.ok} 段,失败 {self.failed} 段"
+              f"(接口调用 {self.calls} 次,后端 {self.backend})。")
+        if self.failed:
+            print(f"  最后一次的错误:{self.last_error}")
+            print("  失败的条目不会被标记成已翻译,下一轮会自动重试。")
+        if self.ok == 0 and self.failed:
+            print("::warning::翻译全部失败,网页上会显示原文。")
+            if self.backend == "google":
+                print("::warning::Google 免费接口很可能限流或封了 GitHub 的出口 IP。")
+                print("::warning::建议改用 Claude:在仓库 Settings → Secrets and "
+                      "variables → Actions 里加一个名为 ANTHROPIC_API_KEY 的 secret。")
+
+
+def self_test(backend: str = "auto", model: str = DEFAULT_MODEL) -> bool:
+    """翻一句样例,用来确认翻译链路是通的。"""
+    probe = "The central bank left interest rates unchanged, citing persistent inflation."
+    tr = Translator(backend=backend, model=model, verbose=False)
+    print(f"翻译自检(后端:{tr.backend})…")
+    try:
+        zh = tr._run([probe])[0]
+    except Exception as e:
+        print(f"  ✗ 失败:{e}")
+        if tr.backend == "google":
+            print("  → Google 免费接口不可用。请配置 ANTHROPIC_API_KEY 改用 Claude。")
+        else:
+            print("  → 请检查 ANTHROPIC_API_KEY 是否正确。")
+        return False
+    print(f"  原文:{probe}")
+    print(f"  译文:{zh}")
+    ok = is_chinese(zh)
+    print("  ✓ 链路正常" if ok else "  ✗ 返回的不是中文,后端可能有问题")
+    return ok
