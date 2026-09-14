@@ -1,19 +1,19 @@
 name: 智库动态追踪
- 
+
 on:
   schedule:
     - cron: "0 * * * *"       # 每小时整点自动运行(UTC 时间)
   workflow_dispatch:           # 允许在网页上手动点运行
- 
+
 permissions:
   contents: write
   pages: write
   id-token: write
- 
+
 concurrency:
   group: pages
   cancel-in-progress: false
- 
+
 jobs:
   track:
     runs-on: ubuntu-latest
@@ -23,14 +23,14 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
- 
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
- 
+
       - name: 安装依赖
         run: pip install -r requirements.txt
- 
+
       - name: 探测订阅源（首次运行，或每周一自动复查）
         run: |
           if [ ! -f feeds.yaml ] || [ "$(date -u +%u-%H)" = "1-00" ]; then
@@ -38,23 +38,18 @@ jobs:
           else
             echo "feeds.yaml 已存在，跳过探测"
           fi
- 
-      - name: 翻译链路自检
-        continue-on-error: true
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: python tracker.py check-translate
- 
-      - name: 抓取新条目、翻译成中文并生成网页
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+
+      - name: 抓取新条目并生成网页
         # 窗口取 24 小时而不是 1 小时：GitHub 的定时任务在高峰期会延迟甚至跳过，
         # 窗口留足余量才不会漏。重复条目由指纹去重挡掉，不会重复入库。
-        run: python tracker.py fetch --hours 24 --translate auto
- 
+        #
+        # 不做翻译：Google 免费接口封锁了 GitHub 的出口 IP，而 Claude 需要付费 key。
+        # 以后想开翻译，把 off 改成 auto，并加一个 ANTHROPIC_API_KEY secret 即可。
+        run: python tracker.py fetch --hours 24 --translate off --keypoints off
+
       - name: 打印覆盖情况
         run: python tracker.py status
- 
+
       - name: 确认网页已生成
         run: |
           if [ ! -f site/index.html ]; then
@@ -62,7 +57,7 @@ jobs:
             exit 1
           fi
           ls -la site
- 
+
       # 先部署网页，再写回数据。即使写回失败，网页也已经更新。
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
@@ -70,24 +65,24 @@ jobs:
           path: site
       - id: deployment
         uses: actions/deploy-pages@v4
- 
+
       - name: 保存结果回仓库
         run: |
           git config user.name  "tracker-bot"
           git config user.email "tracker-bot@users.noreply.github.com"
- 
+
           # 只提交脚本生成的东西，不碰你手工上传的文件
           git rm -r --cached __pycache__ --ignore-unmatch -q || true
           for p in data state.json feeds.yaml reports site; do
             [ -e "$p" ] && git add -A "$p"
           done
- 
+
           if git diff --cached --quiet; then
             echo "没有需要保存的变化"
             exit 0
           fi
           git commit -q -m "更新 $(date -u '+%Y-%m-%d %H:%MZ')"
- 
+
           # 运行期间仓库可能被你改过，冲突就把本次提交重新叠到最新版上再推
           for i in 1 2 3; do
             git fetch -q origin "${{ github.ref_name }}"
@@ -102,9 +97,8 @@ jobs:
             echo "第 $i 次写回未成功，5 秒后重试"
             sleep 5
           done
- 
+
           echo "::error::连续三次写回仓库失败。网页已经部署成功，但这一轮的数据没存下来。"
           echo "::error::请检查 Settings → Actions → General → Workflow permissions"
           echo "::error::是否设成了 Read and write permissions。"
           exit 1
- 
