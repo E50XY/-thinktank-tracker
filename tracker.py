@@ -51,9 +51,14 @@ socket.setdefaulttimeout(25)   # feedparser 内部走 urllib,没有这行会卡�
 
 # 探测不到 <link rel=alternate> 时依次尝试的常见路径
 COMMON_PATHS = [
-    "/feed", "/feed/", "/rss", "/rss.xml", "/feed.xml", "/atom.xml", "/index.xml",
-    "/rss/feed", "/en/rss.xml", "/en/feed", "/news/rss", "/news/feed",
-    "/?feed=rss2", "/publications/feed", "/blog/feed", "/rss/all.xml",
+    "/feed", "/feed/", "/rss", "/rss/", "/rss.xml", "/feed.xml", "/atom.xml",
+    "/index.xml", "/rss/feed", "/feeds/all.rss.xml", "/rss/all.xml",
+    "/en/feed", "/en/feed/", "/en/rss", "/en/rss.xml", "/en/index.xml",
+    "/news/feed", "/news/rss", "/news/rss.xml", "/news/feed/",
+    "/publications/feed", "/publications/rss", "/research/feed",
+    "/blog/feed", "/blog/feed/", "/blog/rss.xml", "/blog?format=rss",
+    "/?feed=rss2", "/?format=rss", "/rss_en", "/rss/news", "/rss/news.xml",
+    "/de/rss.xml", "/fr/rss.xml", "/es/feed/", "/ja/rss.xml",
 ]
 
 
@@ -151,67 +156,87 @@ def looks_like_feed(content: bytes) -> bool:
 
 # ──────────────────────────── 订阅源发现 ────────────────────────────
 
-def discover_one(src: dict, session: requests.Session,
-                 use_news_fallback: bool = True) -> dict:
-    """返回 {name, homepage, feeds: [...], status}"""
-    name, home = src["name"], src["homepage"]
-    found: list[str] = []
-
+def _verify(url: str, log: list) -> bool:
+    """实际请求并解析,能取到条目才算数。同时把结果记进诊断日志。"""
     try:
-        r = session.get(home, headers=HEADERS, timeout=TIMEOUT, allow_redirects=True)
-        base = str(r.url)
-        if r.ok and r.content:
-            soup = BeautifulSoup(r.content, "html.parser")
-            for tag in soup.find_all("link", rel=lambda v: v and "alternate" in str(v).lower()):
-                t = (tag.get("type") or "").lower()
-                href = tag.get("href")
-                if href and ("rss" in t or "atom" in t or "xml" in t):
-                    found.append(urljoin(base, href))
-            # 有些站点只在 <a> 上挂 feed 链接
-            if not found:
+        parsed = feedparser.parse(url, request_headers=HEADERS)
+    except Exception as e:
+        log.append(f"{url} → 解析异常 {type(e).__name__}")
+        return False
+    status = getattr(parsed, "status", "?")
+    n = len(parsed.entries)
+    if n:
+        log.append(f"{url} → 可用,{n} 条")
+        return True
+    log.append(f"{url} → HTTP {status},0 条")
+    return False
+
+
+def discover_one(src: dict, session: requests.Session,
+                 use_news_fallback: bool = True,
+                 candidates: dict | None = None) -> dict:
+    name, home = src["name"], src["homepage"]
+    log: list[str] = []
+    verified: list[str] = []
+    seen: set[str] = set()
+
+    def take(urls):
+        for u in urls:
+            if u in seen or len(verified) >= 5:
+                continue
+            seen.add(u)
+            if _verify(u, log):
+                verified.append(u)
+
+    # 1) 先试候选清单
+    take((candidates or {}).get(name, []))
+
+    # 2) 读官网首页的 RSS 声明
+    base = home
+    if not verified:
+        try:
+            r = session.get(home, headers=HEADERS, timeout=TIMEOUT, allow_redirects=True)
+            base = str(r.url)
+            log.append(f"首页 {base} → HTTP {r.status_code}")
+            if r.ok and r.content:
+                soup = BeautifulSoup(r.content, "html.parser")
+                declared = []
+                for tag in soup.find_all("link", rel=lambda v: v and "alternate" in str(v).lower()):
+                    ty, href = (tag.get("type") or "").lower(), tag.get("href")
+                    if href and ("rss" in ty or "atom" in ty or "xml" in ty):
+                        declared.append(urljoin(base, href))
                 for a in soup.find_all("a", href=True):
                     h = a["href"].lower()
                     if h.endswith((".rss", "/rss", "/feed", "rss.xml", "atom.xml", "feed.xml")):
-                        found.append(urljoin(base, a["href"]))
-    except requests.RequestException:
-        base = home
+                        declared.append(urljoin(base, a["href"]))
+                log.append(f"首页声明了 {len(declared)} 个候选")
+                take(declared)
+        except requests.RequestException as e:
+            log.append(f"首页 {home} → 请求失败 {type(e).__name__}")
 
-    if not found:
+    # 3) 挨个试常见路径
+    if not verified:
         root = f"{urlparse(base).scheme}://{urlparse(base).netloc}"
+        hits = []
         for path in COMMON_PATHS:
             url = root + path
             try:
                 rr = session.get(url, headers=HEADERS, timeout=TIMEOUT)
                 if rr.ok and looks_like_feed(rr.content):
-                    found.append(url)
+                    hits.append(url)
             except requests.RequestException:
                 continue
+        log.append(f"常见路径命中 {len(hits)} 个")
+        take(hits)
 
-    # 去重 + 校验能否解析出条目
-    verified, seen = [], set()
-    for url in found:
-        if url in seen:
-            continue
-        seen.add(url)
-        try:
-            parsed = feedparser.parse(url, request_headers=HEADERS)
-            if parsed.entries:
-                verified.append(url)
-        except Exception:
-            continue
-        if len(verified) >= 5:
-            break
-
+    # 4) 最后用 Google News 站内检索兜底
     via_news = False
     if not verified and use_news_fallback:
         domain = urlparse(base).netloc.replace("www.", "")
         gn = ("https://news.google.com/rss/search?q=site:"
               f"{domain}&hl=zh-CN&gl=CN&ceid=CN:zh-Hans")
-        try:
-            if feedparser.parse(gn, request_headers=HEADERS).entries:
-                verified, via_news = [gn], True
-        except Exception:
-            pass
+        if _verify(gn, log):
+            verified, via_news = [gn], True
 
     return {
         "name": name,
@@ -222,6 +247,7 @@ def discover_one(src: dict, session: requests.Session,
         "via_news_fallback": via_news,
         "status": ("ok" if verified and not via_news
                    else "ok_via_news" if via_news else "no_feed_found"),
+        "diagnostics": log[-12:],
         "note": src.get("note", ""),
     }
 
@@ -233,13 +259,19 @@ def cmd_discover(args) -> None:
         sources = [s for s in sources
                    if any(w in s["name"].lower() for w in wanted)]
 
+    kf = ROOT / "known_feeds.yaml"
+    candidates = load_yaml(kf).get("candidates", {}) if kf.exists() else {}
+    if candidates:
+        print(f"已加载 {len(candidates)} 家机构的候选地址(会逐个验证,猜错的自动丢弃)\n")
+
     existing = load_yaml(FEEDS_FILE).get("feeds", {}) if FEEDS_FILE.exists() else {}
     results: dict[str, dict] = dict(existing)
 
     session = requests.Session()
     print(f"开始探测 {len(sources)} 家机构的订阅源…\n")
     with ThreadPoolExecutor(max_workers=args.workers) as pool:
-        futures = {pool.submit(discover_one, s, session, not args.no_news_fallback): s for s in sources}
+        futures = {pool.submit(discover_one, s, session,
+                                   not args.no_news_fallback, candidates): s for s in sources}
         for i, fut in enumerate(as_completed(futures), 1):
             src = futures[fut]
             try:
@@ -258,6 +290,9 @@ def cmd_discover(args) -> None:
             mark = "✓" if res["feeds"] else "✗"
             print(f"[{i:3}/{len(sources)}] {mark} {res['name']}"
                   + (f"  →  {res['feeds'][0]}" if res["feeds"] else "  (未找到 RSS)"))
+            if not res["feeds"]:
+                for line in res.get("diagnostics", [])[-4:]:
+                    print(f"          {line}")
 
     save_yaml(FEEDS_FILE, {"feeds": results})
     ok = sum(1 for v in results.values() if v.get("feeds"))
@@ -371,6 +406,10 @@ def cmd_fetch(args) -> None:
     if args.translate != "off":
         tr = Translator(backend=args.translate, model=args.model)
         pending = [it for it in archive if needs_translation(it)]
+        if len(pending) > args.max_translate:
+            print(f"待翻 {len(pending)} 条,本轮先翻 {args.max_translate} 条,"
+                  f"其余下一轮继续(防止一次性产生意外费用)。")
+            pending = pending[:args.max_translate]
         if pending:
             if len(pending) > len(fresh):
                 print(f"发现 {len(pending) - len(fresh)} 条历史条目还没有中文,一并补翻。")
@@ -419,7 +458,9 @@ def cmd_fetch(args) -> None:
 
 def cmd_check_translate(args) -> None:
     from translate import self_test
-    sys.exit(0 if self_test(args.translate, args.model) else 1)
+    if not self_test(args.translate, args.model):
+        print("::warning::翻译链路不通,这一轮会显示原文。任务本身继续。")
+    # 诊断步骤,永远以成功退出,不让整个任务变红
 
 
 def cmd_translate(args) -> None:
@@ -596,9 +637,12 @@ def cmd_status(args) -> None:
             for n in silent:
                 print("  -", n, "(无订阅源)" if n in bad else "")
     if bad:
-        print(f"\n以下 {len(bad)} 家连兜底源都没有,需手工补:")
+        print(f"\n以下 {len(bad)} 家连兜底源都没有。每家附最后几条探测记录,"
+              f"用来判断是网站没有 RSS,还是访问被拦:")
         for n in bad:
-            print("  -", n)
+            print(f"  - {n}")
+            for line in feeds[n].get("diagnostics", [])[-3:]:
+                print(f"      {line}")
 
 
 def main() -> None:
@@ -624,7 +668,9 @@ def main() -> None:
                    help="简介翻译后端,默认 auto(有 ANTHROPIC_API_KEY 用 claude,否则用 google)")
     f.add_argument("--model", default="claude-haiku-4-5-20251001", help="claude 后端使用的模型")
     f.add_argument("--keep-original-titles", action="store_true",
-                   help="只翻简介,标题保留原文")
+                   help="只翻简介,标题保留原文(能省掉约三分之一费用)")
+    f.add_argument("--max-translate", type=int, default=400,
+                   help="每轮最多翻译多少条,默认 400,积压的顺延到下一轮")
     f.add_argument("--keypoints", default="auto", choices=["auto", "on", "off"],
                    help="抓原文提炼中文要点,默认 auto(有 ANTHROPIC_API_KEY 才开)")
     f.add_argument("--max-keypoints", type=int, default=120,

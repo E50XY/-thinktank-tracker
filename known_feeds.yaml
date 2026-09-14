@@ -1,0 +1,240 @@
+# 候选订阅源地址。探测时优先尝试这里的地址。
+#
+# 重要:这些是候选,不是结论。脚本会逐个实际请求并解析,只有真能取到条目的才会
+# 被采用,猜错的地址自动丢弃,不会有任何副作用。所以这里可以大胆多列几个。
+#
+# 想手工锁定某家机构的源,改 feeds.yaml 并加 locked: true,那个优先级最高。
+
+candidates:
+  "Brookings Institution":
+    - https://www.brookings.edu/feed/
+    - https://webfeeds.brookings.edu/brookingsrss/topics/economics?format=xml
+  "NBER":
+    - https://www.nber.org/rss/new.xml
+    - https://back.nber.org/rss/new.xml
+  "Bruegel":
+    - https://www.bruegel.org/rss.xml
+    - https://www.bruegel.org/feed
+  "CEPS":
+    - https://www.ceps.eu/feed/
+    - https://www.ceps.eu/rss.xml
+  "Cato Institute":
+    - https://www.cato.org/rss/recent-content
+    - https://www.cato.org/rss/blog
+  "American Enterprise Institute (AEI)":
+    - https://www.aei.org/feed/
+  "Center for American Progress (CAP)":
+    - https://www.americanprogress.org/feed/
+  "Urban Institute":
+    - https://www.urban.org/rss.xml
+    - https://www.urban.org/feed
+  "Resources for the Future (RFF)":
+    - https://www.rff.org/feed/
+    - https://www.rff.org/rss/
+  "World Resources Institute (WRI)":
+    - https://www.wri.org/rss.xml
+    - https://www.wri.org/feed
+  "New America":
+    - https://www.newamerica.org/feed/
+  "Manhattan Institute":
+    - https://manhattan.institute/feed
+    - https://manhattan.institute/rss.xml
+  "Chatham House":
+    - https://www.chathamhouse.org/rss/publications
+    - https://www.chathamhouse.org/rss.xml
+    - https://www.chathamhouse.org/feed
+  "Institute for Fiscal Studies (IFS)":
+    - https://ifs.org.uk/feed
+    - https://ifs.org.uk/rss.xml
+  "ODI Global":
+    - https://odi.org/en/feed/
+    - https://odi.org/rss.xml
+  "Policy Exchange":
+    - https://policyexchange.org.uk/feed/
+  "Adam Smith Institute":
+    - https://www.adamsmith.org/blog?format=rss
+  "Institute of Development Studies (IDS)":
+    - https://www.ids.ac.uk/feed/
+  "IPPR":
+    - https://www.ippr.org/feed
+  "Institute for Government":
+    - https://www.instituteforgovernment.org.uk/feed
+  "WHO":
+    - https://www.who.int/rss-feeds/news-english.xml
+    - https://www.who.int/feeds/entity/mediacentre/news/en/rss.xml
+  "FAO":
+    - https://www.fao.org/feeds/news/en/rss.xml
+    - https://www.fao.org/news/rss-feed/en/
+  "IMF – Research Department":
+    - https://www.imf.org/en/Publications/RSS?language=eng
+    - https://www.imf.org/external/rss/feeds.aspx?category=Publications
+  "World Bank – DEC":
+    - https://www.worldbank.org/en/news/all.rss
+    - https://blogs.worldbank.org/rss.xml
+  "OECD":
+    - https://www.oecd.org/rss.xml
+    - https://www.oecd.org/en.rss
+    - https://oecdecoscope.blog/feed/
+  "UNCTAD":
+    - https://unctad.org/rss.xml
+    - https://unctad.org/news/rss
+  "IEA":
+    - https://www.iea.org/rss/news
+    - https://www.iea.org/rss/all
+  "IRENA":
+    - https://www.irena.org/rss
+  "UNDP":
+    - https://www.undp.org/rss.xml
+    - https://www.undp.org/feed
+  "UNEP":
+    - https://www.unep.org/rss.xml
+  "ILO":
+    - https://www.ilo.org/rss.xml
+    - https://www.ilo.org/global/about-the-ilo/newsroom/news/lang--en/nextRow--0/rss.xml
+  "IPCC":
+    - https://www.ipcc.ch/feed/
+  "UNU-WIDER":
+    - https://www.wider.unu.edu/rss.xml
+    - https://www.wider.unu.edu/feed
+  "Center for Global Development (CGD)":
+    - https://www.cgdev.org/rss.xml
+    - https://www.cgdev.org/feed
+  "IISD":
+    - https://www.iisd.org/rss.xml
+    - https://www.iisd.org/feed
+  "Transparency International":
+    - https://www.transparency.org/en/rss
+  "World Economic Forum (WEF)":
+    - https://www.weforum.org/publications/rss.xml
+    - https://www.weforum.org/stories/rss.xml
+  "PIIE":
+    - https://www.piie.com/rss/update.xml
+    - https://www.piie.com/rss.xml
+  "Carnegie Endowment":
+    - https://carnegieendowment.org/rss/pubs.xml
+    - https://carnegieendowment.org/feed
+  "ifo Institut":
+    - https://www.ifo.de/rss.xml
+    - https://www.ifo.de/rss/news
+  "ZEW":
+    - https://www.zew.de/rss
+    - https://www.zew.de/rss.xml
+  "DIW Berlin":
+    - https://www.diw.de/rss.xml
+    - https://www.diw.de/de/diw_01.c.402075.de/rss.xml
+  "IfW Kiel":
+    - https://www.ifw-kiel.de/rss/
+    - https://www.ifw-kiel.de/de/rss.xml
+  "DGAP":
+    - https://dgap.org/en/rss.xml
+    - https://dgap.org/de/rss.xml
+  "Agora Energiewende":
+    - https://www.agora-energiewende.de/rss.xml
+  "Clingendael":
+    - https://www.clingendael.org/rss.xml
+    - https://www.clingendael.org/feed
+  "CPB Netherlands":
+    - https://www.cpb.nl/rss.xml
+  "CEPII":
+    - https://www.cepii.fr/rss.xml
+  "OFCE":
+    - https://www.ofce.sciences-po.fr/rss.xml
+    - https://www.ofce.sciences-po.fr/blog/feed.php
+  "Real Instituto Elcano":
+    - https://www.realinstitutoelcano.org/feed/
+  "IAI":
+    - https://www.iai.it/en/rss.xml
+    - https://www.iai.it/it/rss.xml
+  "Observer Research Foundation (ORF)":
+    - https://www.orfonline.org/feed
+    - https://www.orfonline.org/rss.xml
+  "ISEAS – Yusof Ishak Institute":
+    - https://www.iseas.edu.sg/feed/
+  "ERIA":
+    - https://www.eria.org/feed/
+  "V-Dem Institute":
+    - https://www.v-dem.net/feed/
+  "INET":
+    - https://www.ineteconomics.org/rss/all
+    - https://www.ineteconomics.org/feed
+  "Oxford Martin School":
+    - https://www.oxfordmartin.ox.ac.uk/rss/news
+  "Climate Policy Initiative (CPI)":
+    - https://www.climatepolicyinitiative.org/feed/
+  "World Inequality Lab":
+    - https://wid.world/feed/
+  "CIGI":
+    - https://www.cigionline.org/rss/
+    - https://www.cigionline.org/feed/
+  "Fraser Institute":
+    - https://www.fraserinstitute.org/rss.xml
+  "IRPP":
+    - https://irpp.org/feed/
+  "Grattan Institute":
+    - https://grattan.edu.au/feed/
+  "TEPAV":
+    - https://www.tepav.org.tr/rss.xml
+  "SETA":
+    - https://www.setav.org/feed/
+  "Israel Democracy Institute":
+    - https://en.idi.org.il/feed/
+  "Taub Center":
+    - https://www.taubcenter.org.il/feed/
+  "CIPPEC":
+    - https://www.cippec.org/feed/
+  "CEBRI":
+    - https://cebri.org/feed/
+  "IPEA":
+    - https://www.ipea.gov.br/portal/feed
+  "European Commission – JRC":
+    - https://joint-research-centre.ec.europa.eu/rss_en
+  "ADB Institute (ADBI)":
+    - https://www.adb.org/rss/news.xml
+  "AMRO":
+    - https://amro-asia.org/feed/
+  "SDPI":
+    - https://sdpi.org/feed
+  "CSEP":
+    - https://csep.org/feed/
+  "Takshashila Institution":
+    - https://takshashila.org.in/feed
+  "日本国際問題研究所 (JIIA)":
+    - https://www.jiia.or.jp/feed
+  "アジア経済研究所 (IDE-JETRO)":
+    - https://www.ide.go.jp/Japanese/rss.xml
+  "東京財団政策研究所":
+    - https://www.tkfd.or.jp/rss.xml
+  "総合研究開発機構 (NIRA)":
+    - https://www.nira.or.jp/feed
+  "野村総合研究所 (NRI)":
+    - https://www.nri.com/jp/rss/news.xml
+  "三菱総合研究所 (MRI)":
+    - https://www.mri.co.jp/rss/news.xml
+  "한국개발연구원 (KDI)":
+    - https://www.kdi.re.kr/rss/rss.jsp
+  "대외경제정책연구원 (KIEP)":
+    - https://www.kiep.go.kr/rss.do
+  "아산정책연구원 (Asan Institute)":
+    - https://www.asaninst.org/feed/
+  "ИМЭМО РАН (IMEMO)":
+    - https://www.imemo.ru/rss
+  "ЦСР (CSR)":
+    - https://www.csr.ru/rss/
+  "Gulf Research Center":
+    - https://www.grc.net/feed
+  "King Faisal Center (KFCRIS)":
+    - https://kfcris.com/feed
+  "NZIER":
+    - https://www.nzier.org.nz/feed
+  "Fundação Getulio Vargas (FGV)":
+    - https://portal.fgv.br/rss.xml
+  "CARI":
+    - https://www.cari.org.ar/feed/
+  "Think 20 (T20)":
+    - https://t20.org/feed/
+  "Global Solutions Initiative":
+    - https://www.global-solutions-initiative.org/feed/
+  "Trilateral Commission":
+    - https://www.trilateral.org/feed/
+  "Club of Rome":
+    - https://www.clubofrome.org/feed/
