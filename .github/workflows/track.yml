@@ -31,8 +31,12 @@ jobs:
       - name: 安装依赖
         run: pip install -r requirements.txt
 
-      - name: 探测订阅源（首次运行，或每周一自动复查）
+      - name: 探测订阅源（首次运行、每周一复查，或手动触发时强制重探）
         run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "手动运行：强制重新探测全部订阅源"
+            rm -f feeds.yaml
+          fi
           if [ ! -f feeds.yaml ] || [ "$(date -u +%u-%H)" = "1-00" ]; then
             python tracker.py discover || echo "探测过程有报错，用已有结果继续"
           else
