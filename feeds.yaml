@@ -1,60 +1,73 @@
 feeds:
-  AMRO:
-    name: AMRO
-    homepage: https://amro-asia.org
-    region: 国际组织
-    default_domain: macro_finance
-    feeds: []
-    status: no_feed_found
-    note: ''
   OECD:
     name: OECD
     homepage: https://www.oecd.org
     region: 国际组织
     default_domain: macro_finance
-    feeds: []
-    status: no_feed_found
+    feeds:
+    - https://oecdecoscope.blog/feed/
+    via_news_fallback: false
+    status: ok
+    diagnostics:
+    - https://www.oecd.org/rss.xml → HTTP 403,0 条
+    - https://www.oecd.org/en.rss → HTTP 403,0 条
+    - https://oecdecoscope.blog/feed/ → 可用,10 条
+    note: ''
+  AMRO:
+    name: AMRO
+    homepage: https://amro-asia.org
+    region: 国际组织
+    default_domain: macro_finance
+    feeds:
+    - https://amro-asia.org/feed/
+    via_news_fallback: false
+    status: ok
+    diagnostics:
+    - https://amro-asia.org/feed/ → 可用,10 条
     note: ''
   ADB Institute (ADBI):
     name: ADB Institute (ADBI)
     homepage: https://www.adb.org/adbi
     region: 国际组织
     default_domain: dev_trade
-    feeds: []
-    status: no_feed_found
-    note: ''
-  World Bank – DEC:
-    name: World Bank – DEC
-    homepage: https://www.worldbank.org/en/research
-    region: 国际组织
-    default_domain: dev_trade
-    feeds: []
-    status: no_feed_found
-    note: ''
-  Bank for International Settlements (BIS):
-    name: Bank for International Settlements (BIS)
-    homepage: https://www.bis.org
-    region: 国际组织
-    default_domain: macro_finance
     feeds:
-    - https://www.bis.org/rss.xml
-    status: ok
+    - https://news.google.com/rss/search?q=site:adb.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans
+    via_news_fallback: true
+    status: ok_via_news
+    diagnostics:
+    - https://www.adb.org/rss/news.xml → HTTP 403,0 条
+    - 首页 https://www.adb.org/adbi → HTTP 403
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:adb.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,100 条
     note: ''
-  IMF – Research Department:
-    name: IMF – Research Department
-    homepage: https://www.imf.org/en/Publications/Research
-    region: 国际组织
-    default_domain: macro_finance
-    feeds: []
-    status: no_feed_found
-    note: ''
-  UNU-WIDER:
-    name: UNU-WIDER
-    homepage: https://www.wider.unu.edu
+  UNCTAD:
+    name: UNCTAD
+    homepage: https://unctad.org
     region: 国际组织
     default_domain: dev_trade
-    feeds: []
-    status: no_feed_found
+    feeds:
+    - https://news.google.com/rss/search?q=site:unctad.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans
+    via_news_fallback: true
+    status: ok_via_news
+    diagnostics:
+    - https://unctad.org/rss.xml → HTTP 403,0 条
+    - https://unctad.org/news/rss → HTTP 403,0 条
+    - 首页 https://unctad.org/ → HTTP 403
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:unctad.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,100 条
+    note: ''
+  WHO:
+    name: WHO
+    homepage: https://www.who.int
+    region: 国际组织
+    default_domain: health
+    feeds:
+    - https://www.who.int/rss-feeds/news-english.xml
+    via_news_fallback: false
+    status: ok
+    diagnostics:
+    - https://www.who.int/rss-feeds/news-english.xml → 可用,25 条
+    - https://www.who.int/feeds/entity/mediacentre/news/en/rss.xml → HTTP 404,0 条
     note: ''
   IFPRI:
     name: IFPRI
@@ -63,39 +76,73 @@ feeds:
     default_domain: agri_food
     feeds:
     - https://www.ifpri.org/feed/
+    via_news_fallback: false
     status: ok
+    diagnostics:
+    - 首页 https://www.ifpri.org/ → HTTP 200
+    - 首页声明了 2 个候选
+    - https://www.ifpri.org/feed/ → 可用,1 条
+    - https://www.ifpri.org/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.ifpri.org%2F&format=xml → HTTP 200,0 条
     note: ''
-  IEA:
-    name: IEA
-    homepage: https://www.iea.org
+  World Bank – DEC:
+    name: World Bank – DEC
+    homepage: https://www.worldbank.org/en/research
     region: 国际组织
-    default_domain: energy_climate
-    feeds: []
-    status: no_feed_found
+    default_domain: dev_trade
+    feeds:
+    - https://news.google.com/rss/search?q=site:worldbank.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans
+    via_news_fallback: true
+    status: ok_via_news
+    diagnostics:
+    - https://www.worldbank.org/en/news/all.rss → HTTP 404,0 条
+    - https://blogs.worldbank.org/rss.xml → HTTP 404,0 条
+    - 首页 https://www.worldbank.org/en/research → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:worldbank.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,100 条
     note: ''
-  WTO – ERSD:
-    name: WTO – ERSD
-    homepage: https://www.wto.org
+  UNU-WIDER:
+    name: UNU-WIDER
+    homepage: https://www.wider.unu.edu
     region: 国际组织
     default_domain: dev_trade
     feeds: []
+    via_news_fallback: false
     status: no_feed_found
+    diagnostics:
+    - https://www.wider.unu.edu/rss.xml → HTTP 403,0 条
+    - https://www.wider.unu.edu/feed → HTTP 403,0 条
+    - 首页 https://www.wider.unu.edu/ → HTTP 403
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:wider.unu.edu&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → HTTP 200,0 条
     note: ''
   IPCC:
     name: IPCC
     homepage: https://www.ipcc.ch
     region: 国际组织
     default_domain: energy_climate
-    feeds: []
-    status: no_feed_found
+    feeds:
+    - https://www.ipcc.ch/feed/
+    via_news_fallback: false
+    status: ok
+    diagnostics:
+    - https://www.ipcc.ch/feed/ → 可用,10 条
     note: ''
-  UNDP:
-    name: UNDP
-    homepage: https://www.undp.org
+  IEA:
+    name: IEA
+    homepage: https://www.iea.org
     region: 国际组织
-    default_domain: dev_trade
-    feeds: []
-    status: no_feed_found
+    default_domain: energy_climate
+    feeds:
+    - https://news.google.com/rss/search?q=site:iea.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans
+    via_news_fallback: true
+    status: ok_via_news
+    diagnostics:
+    - https://www.iea.org/rss/news → HTTP 403,0 条
+    - https://www.iea.org/rss/all → HTTP 403,0 条
+    - 首页 https://www.iea.org/ → HTTP 403
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:iea.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,6 条
     note: ''
   UNEP:
     name: UNEP
@@ -104,57 +151,118 @@ feeds:
     default_domain: energy_climate
     feeds:
     - https://www.unep.org/rss.xml
+    via_news_fallback: false
     status: ok
+    diagnostics:
+    - https://www.unep.org/rss.xml → 可用,10 条
     note: ''
-  FAO:
-    name: FAO
-    homepage: https://www.fao.org
+  WTO – ERSD:
+    name: WTO – ERSD
+    homepage: https://www.wto.org
     region: 国际组织
-    default_domain: agri_food
-    feeds: []
-    status: no_feed_found
-    note: ''
-  Climate Policy Initiative (CPI):
-    name: Climate Policy Initiative (CPI)
-    homepage: https://www.climatepolicyinitiative.org
-    region: 国际组织
-    default_domain: energy_climate
-    feeds: []
-    status: no_feed_found
-    note: ''
-  RMI:
-    name: RMI
-    homepage: https://rmi.org
-    region: 美国
-    default_domain: energy_climate
+    default_domain: dev_trade
     feeds:
-    - https://rmi.org/feed
-    status: ok
-    note: ''
-  IISD:
-    name: IISD
-    homepage: https://www.iisd.org
-    region: 加拿大
-    default_domain: energy_climate
-    feeds: []
-    status: no_feed_found
+    - https://news.google.com/rss/search?q=site:wto.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans
+    via_news_fallback: true
+    status: ok_via_news
+    diagnostics:
+    - 首页 https://www.wto.org/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:wto.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,14 条
     note: ''
   Center for Global Development (CGD):
     name: Center for Global Development (CGD)
     homepage: https://www.cgdev.org
     region: 美国
     default_domain: dev_trade
-    feeds: []
-    status: no_feed_found
-    note: ''
-  Freedom House:
-    name: Freedom House
-    homepage: https://freedomhouse.org
-    region: 美国
-    default_domain: governance
     feeds:
-    - https://freedomhouse.org/rss.xml
+    - https://news.google.com/rss/search?q=site:cgdev.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans
+    via_news_fallback: true
+    status: ok_via_news
+    diagnostics:
+    - https://www.cgdev.org/rss.xml → HTTP 403,0 条
+    - https://www.cgdev.org/feed → HTTP 403,0 条
+    - 首页 https://www.cgdev.org/ → HTTP 403
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:cgdev.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,2 条
+    note: ''
+  Climate Policy Initiative (CPI):
+    name: Climate Policy Initiative (CPI)
+    homepage: https://www.climatepolicyinitiative.org
+    region: 国际组织
+    default_domain: energy_climate
+    feeds:
+    - https://www.climatepolicyinitiative.org/feed/
+    via_news_fallback: false
     status: ok
+    diagnostics:
+    - https://www.climatepolicyinitiative.org/feed/ → 可用,10 条
+    note: ''
+  World Economic Forum (WEF):
+    name: World Economic Forum (WEF)
+    homepage: https://www.weforum.org
+    region: 国际组织
+    default_domain: macro_finance
+    feeds:
+    - https://news.google.com/rss/search?q=site:weforum.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans
+    via_news_fallback: true
+    status: ok_via_news
+    diagnostics:
+    - https://www.weforum.org/publications/rss.xml → HTTP 403,0 条
+    - https://www.weforum.org/stories/rss.xml → HTTP 403,0 条
+    - 首页 https://www.weforum.org/ → HTTP 403
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:weforum.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,100 条
+    note: ''
+  FAO:
+    name: FAO
+    homepage: https://www.fao.org
+    region: 国际组织
+    default_domain: agri_food
+    feeds:
+    - https://news.google.com/rss/search?q=site:fao.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans
+    via_news_fallback: true
+    status: ok_via_news
+    diagnostics:
+    - https://www.fao.org/feeds/news/en/rss.xml → HTTP 404,0 条
+    - https://www.fao.org/news/rss-feed/en/ → HTTP 404,0 条
+    - 首页 https://www.fao.org/home/en/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:fao.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,100 条
+    note: ''
+  UNDP:
+    name: UNDP
+    homepage: https://www.undp.org
+    region: 国际组织
+    default_domain: dev_trade
+    feeds:
+    - https://news.google.com/rss/search?q=site:undp.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans
+    via_news_fallback: true
+    status: ok_via_news
+    diagnostics:
+    - https://www.undp.org/rss.xml → HTTP 404,0 条
+    - https://www.undp.org/feed → HTTP 404,0 条
+    - 首页 https://www.undp.org/ → HTTP 403
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:undp.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,100 条
+    note: ''
+  IMF – Research Department:
+    name: IMF – Research Department
+    homepage: https://www.imf.org/en/Publications/Research
+    region: 国际组织
+    default_domain: macro_finance
+    feeds:
+    - https://news.google.com/rss/search?q=site:imf.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans
+    via_news_fallback: true
+    status: ok_via_news
+    diagnostics:
+    - https://www.imf.org/en/Publications/RSS?language=eng → HTTP 403,0 条
+    - https://www.imf.org/external/rss/feeds.aspx?category=Publications → HTTP 302,0 条
+    - 首页 https://www.imf.org/en/Publications/Research → HTTP 403
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:imf.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,100 条
     note: ''
   Transparency International:
     name: Transparency International
@@ -162,15 +270,43 @@ feeds:
     region: 国际组织
     default_domain: governance
     feeds: []
+    via_news_fallback: false
     status: no_feed_found
+    diagnostics:
+    - https://www.transparency.org/en/rss → HTTP 403,0 条
+    - 首页 https://www.transparency.org/ → HTTP 403
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:transparency.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → HTTP 200,0 条
     note: ''
-  World Economic Forum (WEF):
-    name: World Economic Forum (WEF)
-    homepage: https://www.weforum.org
+  IRENA:
+    name: IRENA
+    homepage: https://www.irena.org
     region: 国际组织
-    default_domain: macro_finance
+    default_domain: energy_climate
+    feeds:
+    - https://news.google.com/rss/search?q=site:irena.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans
+    via_news_fallback: true
+    status: ok_via_news
+    diagnostics:
+    - https://www.irena.org/rss → HTTP 403,0 条
+    - 首页 https://www.irena.org/ → HTTP 403
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:irena.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,21 条
+    note: ''
+  European Commission – JRC:
+    name: European Commission – JRC
+    homepage: https://joint-research-centre.ec.europa.eu
+    region: 欧盟
+    default_domain: sci_tech
     feeds: []
+    via_news_fallback: false
     status: no_feed_found
+    diagnostics:
+    - https://joint-research-centre.ec.europa.eu/rss_en → HTTP 404,0 条
+    - 首页 https://joint-research-centre.ec.europa.eu/select-language?destination=/node/10050 → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:joint-research-centre.ec.europa.eu&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → HTTP 200,0 条
     note: ''
   Our World in Data:
     name: Our World in Data
@@ -179,23 +315,42 @@ feeds:
     default_domain: inequality_data
     feeds:
     - https://ourworldindata.org/atom.xml
+    via_news_fallback: false
     status: ok
+    diagnostics:
+    - 首页 https://ourworldindata.org/ → HTTP 200
+    - 首页声明了 2 个候选
+    - https://ourworldindata.org/atom.xml → 可用,10 条
     note: ''
-  European Commission – JRC:
-    name: European Commission – JRC
-    homepage: https://joint-research-centre.ec.europa.eu
-    region: 欧盟
-    default_domain: sci_tech
-    feeds: []
-    status: no_feed_found
-    note: ''
-  IRENA:
-    name: IRENA
-    homepage: https://www.irena.org
-    region: 国际组织
+  IISD:
+    name: IISD
+    homepage: https://www.iisd.org
+    region: 加拿大
     default_domain: energy_climate
-    feeds: []
-    status: no_feed_found
+    feeds:
+    - https://news.google.com/rss/search?q=site:iisd.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans
+    via_news_fallback: true
+    status: ok_via_news
+    diagnostics:
+    - https://www.iisd.org/rss.xml → HTTP 200,0 条
+    - https://www.iisd.org/feed → HTTP 403,0 条
+    - 首页 https://www.iisd.org/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 2 个
+    - https://www.iisd.org/fr/rss.xml → HTTP 200,0 条
+    - https://news.google.com/rss/search?q=site:iisd.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,9 条
+    note: ''
+  World Inequality Lab:
+    name: World Inequality Lab
+    homepage: https://wid.world
+    region: 法国
+    default_domain: inequality_data
+    feeds:
+    - https://wid.world/feed/
+    via_news_fallback: false
+    status: ok
+    diagnostics:
+    - https://wid.world/feed/ → 可用,1 条
     note: ''
   International IDEA:
     name: International IDEA
@@ -204,48 +359,12 @@ feeds:
     default_domain: governance
     feeds:
     - https://www.idea.int/rss.xml
+    via_news_fallback: false
     status: ok
-    note: ''
-  Trilateral Commission:
-    name: Trilateral Commission
-    homepage: https://www.trilateral.org
-    region: 国际组织
-    default_domain: geopolitics
-    feeds: []
-    status: no_feed_found
-    note: ''
-  World Inequality Lab:
-    name: World Inequality Lab
-    homepage: https://wid.world
-    region: 法国
-    default_domain: inequality_data
-    feeds: []
-    status: no_feed_found
-    note: ''
-  Think 20 (T20):
-    name: Think 20 (T20)
-    homepage: https://t20.org
-    region: 国际组织
-    default_domain: geopolitics
-    feeds: []
-    status: no_feed_found
-    note: 主办权每年轮换,域名常变,需人工核对当届官网
-  Council on Foreign Relations (CFR):
-    name: Council on Foreign Relations (CFR)
-    homepage: https://www.cfr.org
-    region: 美国
-    default_domain: geopolitics
-    feeds:
-    - https://www.cfr.org/feed
-    status: ok
-    note: ''
-  Global Solutions Initiative:
-    name: Global Solutions Initiative
-    homepage: https://www.global-solutions-initiative.org
-    region: 德国
-    default_domain: geopolitics
-    feeds: []
-    status: no_feed_found
+    diagnostics:
+    - 首页 https://www.idea.int/ → HTTP 200
+    - 首页声明了 1 个候选
+    - https://www.idea.int/rss.xml → 可用,10 条
     note: ''
   Club of Rome:
     name: Club of Rome
@@ -254,48 +373,116 @@ feeds:
     default_domain: energy_climate
     feeds:
     - https://www.clubofrome.org/feed/
+    via_news_fallback: false
     status: ok
+    diagnostics:
+    - https://www.clubofrome.org/feed/ → 可用,10 条
     note: ''
-  Brookings Institution:
-    name: Brookings Institution
-    homepage: https://www.brookings.edu
-    region: 美国
+  Global Solutions Initiative:
+    name: Global Solutions Initiative
+    homepage: https://www.global-solutions-initiative.org
+    region: 德国
     default_domain: geopolitics
-    feeds: []
-    status: no_feed_found
-    note: ''
-  Carnegie Endowment:
-    name: Carnegie Endowment
-    homepage: https://carnegieendowment.org
-    region: 美国
-    default_domain: geopolitics
-    feeds: []
-    status: no_feed_found
+    feeds:
+    - https://www.global-solutions-initiative.org/feed/
+    via_news_fallback: false
+    status: ok
+    diagnostics:
+    - https://www.global-solutions-initiative.org/feed/ → 可用,10 条
     note: ''
   ILO:
     name: ILO
     homepage: https://www.ilo.org
     region: 国际组织
     default_domain: labor_social
+    feeds:
+    - https://news.google.com/rss/search?q=site:ilo.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans
+    via_news_fallback: true
+    status: ok_via_news
+    diagnostics:
+    - https://www.ilo.org/rss.xml → HTTP 404,0 条
+    - https://www.ilo.org/global/about-the-ilo/newsroom/news/lang--en/nextRow--0/rss.xml → HTTP 404,0 条
+    - 首页 https://www.ilo.org/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:ilo.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,100 条
+    note: ''
+  Think 20 (T20):
+    name: Think 20 (T20)
+    homepage: https://t20.org
+    region: 国际组织
+    default_domain: geopolitics
     feeds: []
+    via_news_fallback: false
     status: no_feed_found
+    diagnostics:
+    - https://t20.org/feed/ → HTTP 200,0 条
+    - 首页 https://t20.org/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:t20.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → HTTP 200,0 条
+    note: 主办权每年轮换,域名常变,需人工核对当届官网
+  Carnegie Endowment:
+    name: Carnegie Endowment
+    homepage: https://carnegieendowment.org
+    region: 美国
+    default_domain: geopolitics
+    feeds:
+    - https://news.google.com/rss/search?q=site:carnegieendowment.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans
+    via_news_fallback: true
+    status: ok_via_news
+    diagnostics:
+    - https://carnegieendowment.org/rss/pubs.xml → HTTP 404,0 条
+    - https://carnegieendowment.org/feed → HTTP 200,0 条
+    - 首页 https://carnegieendowment.org/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:carnegieendowment.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,100 条
     note: ''
   PIIE:
     name: PIIE
     homepage: https://www.piie.com
     region: 美国
     default_domain: dev_trade
-    feeds: []
-    status: no_feed_found
-    note: ''
-  Heritage Foundation:
-    name: Heritage Foundation
-    homepage: https://www.heritage.org
-    region: 美国
-    default_domain: governance
     feeds:
-    - https://www.heritage.org/rss
+    - https://www.piie.com/rss/update.xml
+    via_news_fallback: false
     status: ok
+    diagnostics:
+    - https://www.piie.com/rss/update.xml → 可用,10 条
+    - https://www.piie.com/rss.xml → HTTP 404,0 条
+    note: ''
+  Bank for International Settlements (BIS):
+    name: Bank for International Settlements (BIS)
+    homepage: https://www.bis.org
+    region: 国际组织
+    default_domain: macro_finance
+    feeds:
+    - https://www.bis.org/rss.xml
+    - https://www.bis.org/de/rss.xml
+    via_news_fallback: false
+    status: ok
+    diagnostics:
+    - 首页 https://www.bis.org/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 3 个
+    - https://www.bis.org/rss.xml → 可用,5 条
+    - https://www.bis.org/de/rss.xml → 可用,1 条
+    - https://www.bis.org/fr/rss.xml → HTTP 200,0 条
+    note: ''
+  NBER:
+    name: NBER
+    homepage: https://www.nber.org
+    region: 美国
+    default_domain: macro_finance
+    feeds:
+    - https://www.nber.org/rss/new.xml
+    - https://back.nber.org/rss/new.xml
+    via_news_fallback: false
+    status: ok
+    diagnostics:
+    - https://www.nber.org/rss/new.xml → 可用,34 条
+    - https://back.nber.org/rss/new.xml → 可用,34 条
     note: ''
   Pew Research Center:
     name: Pew Research Center
@@ -304,15 +491,37 @@ feeds:
     default_domain: inequality_data
     feeds:
     - https://www.pewresearch.org/feed/
+    via_news_fallback: false
     status: ok
+    diagnostics:
+    - 首页 https://www.pewresearch.org/ → HTTP 200
+    - 首页声明了 3 个候选
+    - https://www.pewresearch.org/feed/ → 可用,100 条
+    - https://www.pewresearch.org/comments/feed/ → HTTP 403,0 条
+    - https://www.pewresearch.org/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.pewresearch.org%2F&format=xml → HTTP 200,0 条
     note: ''
-  INET:
-    name: INET
-    homepage: https://www.ineteconomics.org
-    region: 美国
-    default_domain: macro_finance
-    feeds: []
-    status: no_feed_found
+  Trilateral Commission:
+    name: Trilateral Commission
+    homepage: https://www.trilateral.org
+    region: 国际组织
+    default_domain: geopolitics
+    feeds:
+    - https://www.trilateral.org/publications/feed
+    - https://www.trilateral.org/publications/rss
+    via_news_fallback: false
+    status: ok
+    diagnostics:
+    - https://www.trilateral.org/feed/ → HTTP 200,0 条
+    - 首页 https://www.trilateral.org/ → HTTP 200
+    - 首页声明了 2 个候选
+    - https://www.trilateral.org/comments/feed/ → HTTP 200,0 条
+    - 常见路径命中 7 个
+    - https://www.trilateral.org/feed → HTTP 301,0 条
+    - https://www.trilateral.org/rss → HTTP 301,0 条
+    - https://www.trilateral.org/rss/ → HTTP 301,0 条
+    - https://www.trilateral.org/publications/feed → 可用,10 条
+    - https://www.trilateral.org/publications/rss → 可用,10 条
+    - https://www.trilateral.org/?feed=rss2 → HTTP 301,0 条
     note: ''
   V-Dem Institute:
     name: V-Dem Institute
@@ -320,32 +529,64 @@ feeds:
     region: 瑞典
     default_domain: governance
     feeds: []
+    via_news_fallback: false
     status: no_feed_found
+    diagnostics:
+    - https://www.v-dem.net/feed/ → HTTP 404,0 条
+    - 首页 https://www.v-dem.net/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:v-dem.net&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → HTTP 200,0 条
     note: ''
-  Cato Institute:
-    name: Cato Institute
-    homepage: https://www.cato.org
-    region: 美国
-    default_domain: governance
-    feeds: []
-    status: no_feed_found
-    note: ''
-  NBER:
-    name: NBER
-    homepage: https://www.nber.org
-    region: 美国
-    default_domain: macro_finance
-    feeds: []
-    status: no_feed_found
-    note: ''
-  Hoover Institution:
-    name: Hoover Institution
-    homepage: https://www.hoover.org
+  Freedom House:
+    name: Freedom House
+    homepage: https://freedomhouse.org
     region: 美国
     default_domain: governance
     feeds:
-    - https://www.hoover.org/feed
+    - https://freedomhouse.org/rss.xml
+    - https://freedomhouse.org/de/rss.xml
+    - https://freedomhouse.org/fr/rss.xml
+    via_news_fallback: false
     status: ok
+    diagnostics:
+    - 首页 https://freedomhouse.org/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 3 个
+    - https://freedomhouse.org/rss.xml → 可用,10 条
+    - https://freedomhouse.org/de/rss.xml → 可用,1 条
+    - https://freedomhouse.org/fr/rss.xml → 可用,7 条
+    note: ''
+  Oxford Martin School:
+    name: Oxford Martin School
+    homepage: https://www.oxfordmartin.ox.ac.uk
+    region: 英国
+    default_domain: sci_tech
+    feeds: []
+    via_news_fallback: false
+    status: no_feed_found
+    diagnostics:
+    - https://www.oxfordmartin.ox.ac.uk/rss/news → HTTP 410,0 条
+    - 首页 https://www.oxfordmartin.ox.ac.uk/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:oxfordmartin.ox.ac.uk&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → HTTP 200,0 条
+    note: ''
+  INET:
+    name: INET
+    homepage: https://www.ineteconomics.org
+    region: 美国
+    default_domain: macro_finance
+    feeds: []
+    via_news_fallback: false
+    status: no_feed_found
+    diagnostics:
+    - https://www.ineteconomics.org/rss/all → HTTP 404,0 条
+    - https://www.ineteconomics.org/feed → HTTP 404,0 条
+    - 首页 https://www.ineteconomics.org/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:ineteconomics.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → HTTP 200,0 条
     note: ''
   Atlantic Council:
     name: Atlantic Council
@@ -354,64 +595,108 @@ feeds:
     default_domain: geopolitics
     feeds:
     - https://www.atlanticcouncil.org/feed/
+    via_news_fallback: false
     status: ok
-    note: ''
-  Center for American Progress (CAP):
-    name: Center for American Progress (CAP)
-    homepage: https://www.americanprogress.org
-    region: 美国
-    default_domain: labor_social
-    feeds: []
-    status: no_feed_found
+    diagnostics:
+    - 首页 https://www.atlanticcouncil.org/ → HTTP 200
+    - 首页声明了 3 个候选
+    - https://www.atlanticcouncil.org/feed/ → 可用,100 条
+    - https://www.atlanticcouncil.org/comments/feed/ → HTTP 200,0 条
+    - https://www.atlanticcouncil.org/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.atlanticcouncil.org%2F&format=xml → HTTP 200,0 条
     note: ''
   American Enterprise Institute (AEI):
     name: American Enterprise Institute (AEI)
     homepage: https://www.aei.org
     region: 美国
     default_domain: governance
-    feeds: []
-    status: no_feed_found
-    note: ''
-  Milken Institute:
-    name: Milken Institute
-    homepage: https://milkeninstitute.org
-    region: 美国
-    default_domain: macro_finance
     feeds:
-    - https://milkeninstitute.org/rss.xml
-    status: ok
+    - https://news.google.com/rss/search?q=site:aei.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans
+    via_news_fallback: true
+    status: ok_via_news
+    diagnostics:
+    - https://www.aei.org/feed/ → HTTP 403,0 条
+    - 首页 https://www.aei.org/ → HTTP 403
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:aei.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,7 条
     note: ''
-  Oxford Martin School:
-    name: Oxford Martin School
-    homepage: https://www.oxfordmartin.ox.ac.uk
-    region: 英国
-    default_domain: sci_tech
+  Heritage Foundation:
+    name: Heritage Foundation
+    homepage: https://www.heritage.org
+    region: 美国
+    default_domain: governance
+    feeds:
+    - https://www.heritage.org/rss
+    via_news_fallback: false
+    status: ok
+    diagnostics:
+    - 首页 https://www.heritage.org/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 1 个
+    - https://www.heritage.org/rss → 可用,20 条
+    note: ''
+  Council on Foreign Relations (CFR):
+    name: Council on Foreign Relations (CFR)
+    homepage: https://www.cfr.org
+    region: 美国
+    default_domain: geopolitics
+    feeds:
+    - https://www.cfr.org/feed
+    - https://www.cfr.org/feed/
+    via_news_fallback: false
+    status: ok
+    diagnostics:
+    - 首页 https://www.cfr.org/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 2 个
+    - https://www.cfr.org/feed → 可用,24 条
+    - https://www.cfr.org/feed/ → 可用,24 条
+    note: ''
+  Cato Institute:
+    name: Cato Institute
+    homepage: https://www.cato.org
+    region: 美国
+    default_domain: governance
     feeds: []
+    via_news_fallback: false
     status: no_feed_found
+    diagnostics:
+    - https://www.cato.org/rss/recent-content → HTTP 403,0 条
+    - https://www.cato.org/rss/blog → HTTP 403,0 条
+    - 首页 https://www.cato.org/ → HTTP 403
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:cato.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → HTTP 200,0 条
     note: ''
   Manhattan Institute:
     name: Manhattan Institute
     homepage: https://manhattan.institute
     region: 美国
     default_domain: governance
-    feeds: []
-    status: no_feed_found
+    feeds:
+    - https://manhattan.institute/rss.xml
+    via_news_fallback: false
+    status: ok
+    diagnostics:
+    - https://manhattan.institute/feed → HTTP 404,0 条
+    - https://manhattan.institute/rss.xml → 可用,10 条
     note: ''
-  New America:
-    name: New America
-    homepage: https://www.newamerica.org
+  Brookings Institution:
+    name: Brookings Institution
+    homepage: https://www.brookings.edu
     region: 美国
-    default_domain: sci_tech
-    feeds: []
-    status: no_feed_found
-    note: ''
-  Institute for Fiscal Studies (IFS):
-    name: Institute for Fiscal Studies (IFS)
-    homepage: https://ifs.org.uk
-    region: 英国
-    default_domain: macro_finance
-    feeds: []
-    status: no_feed_found
+    default_domain: geopolitics
+    feeds:
+    - https://news.google.com/rss/search?q=site:brookings.edu&hl=zh-CN&gl=CN&ceid=CN:zh-Hans
+    via_news_fallback: true
+    status: ok_via_news
+    diagnostics:
+    - https://www.brookings.edu/feed/ → HTTP 302,0 条
+    - https://webfeeds.brookings.edu/brookingsrss/topics/economics?format=xml → HTTP ?,0 条
+    - 首页 https://www.brookings.edu/ → HTTP 200
+    - 首页声明了 3 个候选
+    - https://www.brookings.edu/comments/feed/ → HTTP 302,0 条
+    - https://www.brookings.edu/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.brookings.edu%2F&format=xml → HTTP 200,0 条
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:brookings.edu&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,100 条
     note: ''
   KFF:
     name: KFF
@@ -420,25 +705,64 @@ feeds:
     default_domain: health
     feeds:
     - https://www.kff.org/feed/
+    via_news_fallback: false
     status: ok
+    diagnostics:
+    - 首页 https://www.kff.org/ → HTTP 200
+    - 首页声明了 3 个候选
+    - https://www.kff.org/feed/ → 可用,20 条
+    - https://www.kff.org/comments/feed/ → HTTP 200,0 条
+    - https://www.kff.org/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.kff.org%2F&format=xml → HTTP 200,0 条
     note: ''
-  Institute for Government:
-    name: Institute for Government
-    homepage: https://www.instituteforgovernment.org.uk
-    region: 英国
-    default_domain: governance
-    feeds:
-    - https://www.instituteforgovernment.org.uk/rss
-    status: ok
+  Resources for the Future (RFF):
+    name: Resources for the Future (RFF)
+    homepage: https://www.rff.org
+    region: 美国
+    default_domain: energy_climate
+    feeds: []
+    via_news_fallback: false
+    status: no_feed_found
+    diagnostics:
+    - https://www.rff.org/feed/ → HTTP 404,0 条
+    - https://www.rff.org/rss/ → HTTP 404,0 条
+    - 首页 https://www.rff.org/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:rff.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → HTTP 200,0 条
     note: ''
-  IPPR:
-    name: IPPR
-    homepage: https://www.ippr.org
+  Institute for Fiscal Studies (IFS):
+    name: Institute for Fiscal Studies (IFS)
+    homepage: https://ifs.org.uk
     region: 英国
-    default_domain: labor_social
+    default_domain: macro_finance
+    feeds: []
+    via_news_fallback: false
+    status: no_feed_found
+    diagnostics:
+    - https://ifs.org.uk/feed → HTTP 403,0 条
+    - https://ifs.org.uk/rss.xml → HTTP 403,0 条
+    - 首页 https://ifs.org.uk/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:ifs.org.uk&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → HTTP 200,0 条
+    note: ''
+  Chatham House:
+    name: Chatham House
+    homepage: https://www.chathamhouse.org
+    region: 英国
+    default_domain: geopolitics
     feeds:
-    - https://www.ippr.org/feed.rss
-    status: ok
+    - https://news.google.com/rss/search?q=site:chathamhouse.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans
+    via_news_fallback: true
+    status: ok_via_news
+    diagnostics:
+    - https://www.chathamhouse.org/rss/publications → HTTP 403,0 条
+    - https://www.chathamhouse.org/rss.xml → HTTP 403,0 条
+    - https://www.chathamhouse.org/feed → HTTP 403,0 条
+    - 首页 https://www.chathamhouse.org/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:chathamhouse.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,5 条
     note: ''
   Resolution Foundation:
     name: Resolution Foundation
@@ -447,39 +771,88 @@ feeds:
     default_domain: labor_social
     feeds:
     - https://www.resolutionfoundation.org/feed/
+    via_news_fallback: false
     status: ok
+    diagnostics:
+    - 首页 https://www.resolutionfoundation.org/ → HTTP 200
+    - 首页声明了 2 个候选
+    - https://www.resolutionfoundation.org/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.resolutionfoundation.org%2F&format=xml → HTTP 200,0 条
+    - https://www.resolutionfoundation.org/feed/ → 可用,10 条
     note: ''
-  Resources for the Future (RFF):
-    name: Resources for the Future (RFF)
-    homepage: https://www.rff.org
-    region: 美国
-    default_domain: energy_climate
-    feeds: []
-    status: no_feed_found
-    note: ''
-  Chatham House:
-    name: Chatham House
-    homepage: https://www.chathamhouse.org
+  IPPR:
+    name: IPPR
+    homepage: https://www.ippr.org
     region: 英国
-    default_domain: geopolitics
-    feeds: []
-    status: no_feed_found
+    default_domain: labor_social
+    feeds:
+    - https://www.ippr.org/feed.rss
+    via_news_fallback: false
+    status: ok
+    diagnostics:
+    - https://www.ippr.org/feed → HTTP 404,0 条
+    - 首页 https://www.ippr.org/ → HTTP 200
+    - 首页声明了 1 个候选
+    - https://www.ippr.org/feed.rss → 可用,49 条
     note: ''
   Urban Institute:
     name: Urban Institute
     homepage: https://www.urban.org
     region: 美国
     default_domain: labor_social
-    feeds: []
-    status: no_feed_found
+    feeds:
+    - https://news.google.com/rss/search?q=site:urban.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans
+    via_news_fallback: true
+    status: ok_via_news
+    diagnostics:
+    - https://www.urban.org/rss.xml → HTTP 404,0 条
+    - https://www.urban.org/feed → HTTP 404,0 条
+    - 首页 https://www.urban.org/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:urban.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,5 条
+    note: ''
+  Adam Smith Institute:
+    name: Adam Smith Institute
+    homepage: https://www.adamsmith.org
+    region: 英国
+    default_domain: governance
+    feeds:
+    - https://www.adamsmith.org/blog?format=rss
+    via_news_fallback: false
+    status: ok
+    diagnostics:
+    - https://www.adamsmith.org/blog?format=rss → 可用,20 条
+    note: ''
+  Hoover Institution:
+    name: Hoover Institution
+    homepage: https://www.hoover.org
+    region: 美国
+    default_domain: governance
+    feeds:
+    - https://www.hoover.org/feed
+    - https://www.hoover.org/feed/
+    - https://www.hoover.org/rss.xml
+    via_news_fallback: false
+    status: ok
+    diagnostics:
+    - 首页 https://www.hoover.org/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 3 个
+    - https://www.hoover.org/feed → 可用,10 条
+    - https://www.hoover.org/feed/ → 可用,10 条
+    - https://www.hoover.org/rss.xml → 可用,10 条
     note: ''
   Institute of Development Studies (IDS):
     name: Institute of Development Studies (IDS)
     homepage: https://www.ids.ac.uk
     region: 英国
     default_domain: dev_trade
-    feeds: []
-    status: no_feed_found
+    feeds:
+    - https://www.ids.ac.uk/feed/
+    via_news_fallback: false
+    status: ok
+    diagnostics:
+    - https://www.ids.ac.uk/feed/ → 可用,10 条
     note: ''
   Policy Exchange:
     name: Policy Exchange
@@ -487,40 +860,56 @@ feeds:
     region: 英国
     default_domain: governance
     feeds: []
+    via_news_fallback: false
     status: no_feed_found
+    diagnostics:
+    - https://policyexchange.org.uk/feed/ → HTTP 403,0 条
+    - 首页 https://policyexchange.org.uk/ → HTTP 403
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:policyexchange.org.uk&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → HTTP 200,0 条
     note: ''
-  Adam Smith Institute:
-    name: Adam Smith Institute
-    homepage: https://www.adamsmith.org
+  RMI:
+    name: RMI
+    homepage: https://rmi.org
+    region: 美国
+    default_domain: energy_climate
+    feeds:
+    - https://rmi.org/feed
+    - https://rmi.org/feed/
+    - https://rmi.org/rss
+    - https://rmi.org/rss/
+    - https://rmi.org/?feed=rss2
+    via_news_fallback: false
+    status: ok
+    diagnostics:
+    - 首页 https://rmi.org/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 5 个
+    - https://rmi.org/feed → 可用,1 条
+    - https://rmi.org/feed/ → 可用,1 条
+    - https://rmi.org/rss → 可用,1 条
+    - https://rmi.org/rss/ → 可用,1 条
+    - https://rmi.org/?feed=rss2 → 可用,1 条
+    note: ''
+  Institute for Government:
+    name: Institute for Government
+    homepage: https://www.instituteforgovernment.org.uk
     region: 英国
     default_domain: governance
-    feeds: []
-    status: no_feed_found
-    note: ''
-  WHO:
-    name: WHO
-    homepage: https://www.who.int
-    region: 国际组织
-    default_domain: health
-    feeds: []
-    status: no_feed_found
-    note: ''
-  ifo Institut:
-    name: ifo Institut
-    homepage: https://www.ifo.de
-    region: 德国
-    default_domain: macro_finance
-    feeds: []
-    status: no_feed_found
-    note: ''
-  MERICS:
-    name: MERICS
-    homepage: https://merics.org
-    region: 德国
-    default_domain: geopolitics
     feeds:
-    - https://merics.org/en/rss
+    - https://www.instituteforgovernment.org.uk/rss
+    - https://www.instituteforgovernment.org.uk/rss/
+    - https://www.instituteforgovernment.org.uk/rss.xml
+    via_news_fallback: false
     status: ok
+    diagnostics:
+    - https://www.instituteforgovernment.org.uk/feed → HTTP 404,0 条
+    - 首页 https://www.instituteforgovernment.org.uk/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 3 个
+    - https://www.instituteforgovernment.org.uk/rss → 可用,10 条
+    - https://www.instituteforgovernment.org.uk/rss/ → 可用,10 条
+    - https://www.instituteforgovernment.org.uk/rss.xml → 可用,10 条
     note: ''
   CEPR:
     name: CEPR
@@ -529,73 +918,125 @@ feeds:
     default_domain: macro_finance
     feeds:
     - https://cepr.org/rss.xml
+    - https://cepr.org/rss/news
+    via_news_fallback: false
     status: ok
+    diagnostics:
+    - 首页 https://cepr.org/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 2 个
+    - https://cepr.org/rss.xml → 可用,10 条
+    - https://cepr.org/rss/news → 可用,10 条
+    note: ''
+  MERICS:
+    name: MERICS
+    homepage: https://merics.org
+    region: 德国
+    default_domain: geopolitics
+    feeds:
+    - https://merics.org/en/rss
+    via_news_fallback: false
+    status: ok
+    diagnostics:
+    - 首页 https://merics.org/en → HTTP 200
+    - 首页声明了 2 个候选
+    - https://merics.org/en/rss → 可用,20 条
+    note: ''
+  ifo Institut:
+    name: ifo Institut
+    homepage: https://www.ifo.de
+    region: 德国
+    default_domain: macro_finance
+    feeds:
+    - https://www.ifo.de/rss.xml
+    via_news_fallback: false
+    status: ok
+    diagnostics:
+    - https://www.ifo.de/rss.xml → 可用,50 条
+    - https://www.ifo.de/rss/news → HTTP 200,0 条
+    note: ''
+  Center for American Progress (CAP):
+    name: Center for American Progress (CAP)
+    homepage: https://www.americanprogress.org
+    region: 美国
+    default_domain: labor_social
+    feeds:
+    - https://news.google.com/rss/search?q=site:americanprogress.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans
+    via_news_fallback: true
+    status: ok_via_news
+    diagnostics:
+    - https://www.americanprogress.org/feed/ → HTTP 301,0 条
+    - 首页 https://www.americanprogress.org/ → HTTP 200
+    - 首页声明了 3 个候选
+    - https://www.americanprogress.org/comments/feed/ → HTTP 301,0 条
+    - https://www.americanprogress.org/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.americanprogress.org%2F&format=xml&lang=en → HTTP 200,0 条
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:americanprogress.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,1 条
+    note: ''
+  Milken Institute:
+    name: Milken Institute
+    homepage: https://milkeninstitute.org
+    region: 美国
+    default_domain: macro_finance
+    feeds:
+    - https://milkeninstitute.org/rss.xml
+    via_news_fallback: false
+    status: ok
+    diagnostics:
+    - 首页 https://milkeninstitute.org/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 1 个
+    - https://milkeninstitute.org/rss.xml → 可用,10 条
     note: ''
   World Resources Institute (WRI):
     name: World Resources Institute (WRI)
     homepage: https://www.wri.org
     region: 美国
     default_domain: energy_climate
-    feeds: []
-    status: no_feed_found
-    note: ''
-  DGAP:
-    name: DGAP
-    homepage: https://dgap.org
-    region: 德国
-    default_domain: geopolitics
-    feeds: []
-    status: no_feed_found
+    feeds:
+    - https://www.wri.org/blog/rss.xml
+    via_news_fallback: false
+    status: ok
+    diagnostics:
+    - https://www.wri.org/rss.xml → HTTP 403,0 条
+    - https://www.wri.org/feed → HTTP 404,0 条
+    - 首页 https://www.wri.org/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 1 个
+    - https://www.wri.org/blog/rss.xml → 可用,10 条
     note: ''
   Bruegel:
     name: Bruegel
     homepage: https://www.bruegel.org
     region: 欧盟
     default_domain: macro_finance
-    feeds: []
-    status: no_feed_found
-    note: ''
-  CEPS:
-    name: CEPS
-    homepage: https://www.ceps.eu
-    region: 欧盟
-    default_domain: governance
-    feeds: []
-    status: no_feed_found
-    note: ''
-  Institut Montaigne:
-    name: Institut Montaigne
-    homepage: https://www.institutmontaigne.org
-    region: 法国
-    default_domain: governance
     feeds:
-    - https://www.institutmontaigne.org/rss.xml
-    status: ok
-    note: ''
-  SWP:
-    name: SWP
-    homepage: https://www.swp-berlin.org
-    region: 德国
-    default_domain: geopolitics
-    feeds:
-    - https://www.swp-berlin.org/rss.xml
-    status: ok
-    note: ''
-  DIW Berlin:
-    name: DIW Berlin
-    homepage: https://www.diw.de
-    region: 德国
-    default_domain: macro_finance
-    feeds: []
-    status: no_feed_found
+    - https://news.google.com/rss/search?q=site:bruegel.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans
+    via_news_fallback: true
+    status: ok_via_news
+    diagnostics:
+    - https://www.bruegel.org/rss.xml → HTTP 403,0 条
+    - https://www.bruegel.org/feed → HTTP 403,0 条
+    - 首页 https://www.bruegel.org/ → HTTP 403
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:bruegel.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,15 条
     note: ''
   ZEW:
     name: ZEW
     homepage: https://www.zew.de
     region: 德国
     default_domain: macro_finance
-    feeds: []
-    status: no_feed_found
+    feeds:
+    - https://news.google.com/rss/search?q=site:zew.de&hl=zh-CN&gl=CN&ceid=CN:zh-Hans
+    via_news_fallback: true
+    status: ok_via_news
+    diagnostics:
+    - https://www.zew.de/rss → HTTP 404,0 条
+    - https://www.zew.de/rss.xml → HTTP 404,0 条
+    - 首页 https://www.zew.de/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:zew.de&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,1 条
     note: ''
   ECFR:
     name: ECFR
@@ -604,23 +1045,43 @@ feeds:
     default_domain: geopolitics
     feeds:
     - https://ecfr.eu/feed/
+    via_news_fallback: false
     status: ok
+    diagnostics:
+    - 首页 https://ecfr.eu/ → HTTP 200
+    - 首页声明了 1 个候选
+    - https://ecfr.eu/feed/ → 可用,25 条
     note: ''
-  UNCTAD:
-    name: UNCTAD
-    homepage: https://unctad.org
-    region: 国际组织
-    default_domain: dev_trade
-    feeds: []
-    status: no_feed_found
+  DIW Berlin:
+    name: DIW Berlin
+    homepage: https://www.diw.de
+    region: 德国
+    default_domain: macro_finance
+    feeds:
+    - https://news.google.com/rss/search?q=site:diw.de&hl=zh-CN&gl=CN&ceid=CN:zh-Hans
+    via_news_fallback: true
+    status: ok_via_news
+    diagnostics:
+    - https://www.diw.de/rss.xml → HTTP 404,0 条
+    - https://www.diw.de/de/diw_01.c.402075.de/rss.xml → HTTP 200,0 条
+    - 首页 https://www.diw.de/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:diw.de&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,1 条
     note: ''
-  Clingendael:
-    name: Clingendael
-    homepage: https://www.clingendael.org
-    region: 荷兰
-    default_domain: geopolitics
-    feeds: []
-    status: no_feed_found
+  Institut Montaigne:
+    name: Institut Montaigne
+    homepage: https://www.institutmontaigne.org
+    region: 法国
+    default_domain: governance
+    feeds:
+    - https://www.institutmontaigne.org/rss.xml
+    via_news_fallback: false
+    status: ok
+    diagnostics:
+    - 首页 https://www.institutmontaigne.org/ → HTTP 200
+    - 首页声明了 3 个候选
+    - https://www.institutmontaigne.org/rss.xml → 可用,30 条
     note: ''
   IfW Kiel:
     name: IfW Kiel
@@ -628,15 +1089,48 @@ feeds:
     region: 德国
     default_domain: macro_finance
     feeds: []
+    via_news_fallback: false
     status: no_feed_found
+    diagnostics:
+    - https://www.ifw-kiel.de/rss/ → HTTP 301,0 条
+    - https://www.ifw-kiel.de/de/rss.xml → HTTP 301,0 条
+    - 首页 https://www.kielinstitut.de/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:kielinstitut.de&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → HTTP 200,0 条
+    note: ''
+  SWP:
+    name: SWP
+    homepage: https://www.swp-berlin.org
+    region: 德国
+    default_domain: geopolitics
+    feeds:
+    - https://www.swp-berlin.org/rss.xml
+    - https://www.swp-berlin.org/en/rss.xml
+    via_news_fallback: false
+    status: ok
+    diagnostics:
+    - 首页 https://www.swp-berlin.org/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 2 个
+    - https://www.swp-berlin.org/rss.xml → 可用,100 条
+    - https://www.swp-berlin.org/en/rss.xml → 可用,100 条
     note: ''
   Agora Energiewende:
     name: Agora Energiewende
     homepage: https://www.agora-energiewende.de
     region: 德国
     default_domain: energy_climate
-    feeds: []
-    status: no_feed_found
+    feeds:
+    - https://news.google.com/rss/search?q=site:agora-energiewende.de&hl=zh-CN&gl=CN&ceid=CN:zh-Hans
+    via_news_fallback: true
+    status: ok_via_news
+    diagnostics:
+    - https://www.agora-energiewende.de/rss.xml → HTTP 404,0 条
+    - 首页 https://www.agora-energiewende.de/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:agora-energiewende.de&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,1 条
     note: ''
   Institut Jacques Delors:
     name: Institut Jacques Delors
@@ -645,15 +1139,44 @@ feeds:
     default_domain: governance
     feeds:
     - https://institutdelors.eu/feed/
+    via_news_fallback: false
     status: ok
+    diagnostics:
+    - 首页 https://institutdelors.eu/ → HTTP 200
+    - 首页声明了 1 个候选
+    - https://institutdelors.eu/feed/ → 可用,50 条
     note: ''
-  OFCE:
-    name: OFCE
-    homepage: https://www.ofce.sciences-po.fr
-    region: 法国
-    default_domain: macro_finance
+  Clingendael:
+    name: Clingendael
+    homepage: https://www.clingendael.org
+    region: 荷兰
+    default_domain: geopolitics
     feeds: []
+    via_news_fallback: false
     status: no_feed_found
+    diagnostics:
+    - https://www.clingendael.org/rss.xml → HTTP 403,0 条
+    - https://www.clingendael.org/feed → HTTP 403,0 条
+    - 首页 https://www.clingendael.org/ → HTTP 403
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:clingendael.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → HTTP 200,0 条
+    note: ''
+  DGAP:
+    name: DGAP
+    homepage: https://dgap.org
+    region: 德国
+    default_domain: geopolitics
+    feeds: []
+    via_news_fallback: false
+    status: no_feed_found
+    diagnostics:
+    - https://dgap.org/en/rss.xml → HTTP 200,0 条
+    - https://dgap.org/de/rss.xml → HTTP 200,0 条
+    - 首页 https://dgap.org/en → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 3 个
+    - https://dgap.org/rss.xml → HTTP 301,0 条
+    - https://news.google.com/rss/search?q=site:dgap.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → HTTP 200,0 条
     note: ''
   CEPII:
     name: CEPII
@@ -661,23 +1184,13 @@ feeds:
     region: 法国
     default_domain: dev_trade
     feeds: []
+    via_news_fallback: false
     status: no_feed_found
-    note: ''
-  Real Instituto Elcano:
-    name: Real Instituto Elcano
-    homepage: https://www.realinstitutoelcano.org
-    region: 西班牙
-    default_domain: geopolitics
-    feeds: []
-    status: no_feed_found
-    note: ''
-  IAI:
-    name: IAI
-    homepage: https://www.iai.it
-    region: 意大利
-    default_domain: geopolitics
-    feeds: []
-    status: no_feed_found
+    diagnostics:
+    - https://www.cepii.fr/rss.xml → HTTP 403,0 条
+    - 首页 https://www.cepii.fr/ → HTTP 403
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:cepii.fr&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → HTTP 200,0 条
     note: ''
   OSW:
     name: OSW
@@ -686,7 +1199,42 @@ feeds:
     default_domain: geopolitics
     feeds:
     - https://www.osw.waw.pl/pl/rss.xml
+    via_news_fallback: false
     status: ok
+    diagnostics:
+    - 首页 https://www.osw.waw.pl/pl → HTTP 200
+    - 首页声明了 1 个候选
+    - https://www.osw.waw.pl/pl/rss.xml → 可用,10 条
+    note: ''
+  OFCE:
+    name: OFCE
+    homepage: https://www.ofce.sciences-po.fr
+    region: 法国
+    default_domain: macro_finance
+    feeds: []
+    via_news_fallback: false
+    status: no_feed_found
+    diagnostics:
+    - https://www.ofce.sciences-po.fr/rss.xml → HTTP 301,0 条
+    - https://www.ofce.sciences-po.fr/blog/feed.php → HTTP 301,0 条
+    - 首页 https://www.ofce.fr/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:ofce.fr&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → HTTP 200,0 条
+    note: ''
+  Real Instituto Elcano:
+    name: Real Instituto Elcano
+    homepage: https://www.realinstitutoelcano.org
+    region: 西班牙
+    default_domain: geopolitics
+    feeds: []
+    via_news_fallback: false
+    status: no_feed_found
+    diagnostics:
+    - https://www.realinstitutoelcano.org/feed/ → HTTP 403,0 条
+    - 首页 https://www.realinstitutoelcano.org/ → HTTP 403
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:realinstitutoelcano.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → HTTP 200,0 条
     note: ''
   ISPI:
     name: ISPI
@@ -695,16 +1243,14 @@ feeds:
     default_domain: geopolitics
     feeds:
     - https://www.ispionline.it/it/feed
+    via_news_fallback: false
     status: ok
-    note: ''
-  IHEID (Graduate Institute Geneva):
-    name: IHEID (Graduate Institute Geneva)
-    homepage: https://www.graduateinstitute.ch
-    region: 瑞士
-    default_domain: dev_trade
-    feeds:
-    - https://www.graduateinstitute.ch/rss.xml
-    status: ok
+    diagnostics:
+    - 首页 https://www.ispionline.it/it → HTTP 200
+    - 首页声明了 3 个候选
+    - https://www.ispionline.it/it/feed → 可用,2 条
+    - https://www.ispionline.it/it/comments/feed → HTTP 200,0 条
+    - https://www.ispionline.it/it/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.ispionline.it%2Fit&format=xml → HTTP 200,0 条
     note: ''
   FIIA:
     name: FIIA
@@ -713,24 +1259,14 @@ feeds:
     default_domain: geopolitics
     feeds:
     - https://fiia.fi/feed
+    via_news_fallback: false
     status: ok
-    note: ''
-  Валдайский клуб (Valdai Club):
-    name: Валдайский клуб (Valdai Club)
-    homepage: https://valdaiclub.com
-    region: 俄罗斯
-    default_domain: geopolitics
-    feeds:
-    - https://valdaiclub.com/feed
-    status: ok
-    note: ''
-  CPB Netherlands:
-    name: CPB Netherlands
-    homepage: https://www.cpb.nl
-    region: 荷兰
-    default_domain: macro_finance
-    feeds: []
-    status: no_feed_found
+    diagnostics:
+    - 首页 https://fiia.fi/ → HTTP 200
+    - 首页声明了 3 个候选
+    - https://fiia.fi/feed → 可用,10 条
+    - https://fiia.fi/comments/feed → HTTP 200,0 条
+    - https://fiia.fi/wp-json/oembed/1.0/embed?url=https%3A%2F%2Ffiia.fi%2F&format=xml&lang=fi → HTTP 200,0 条
     note: ''
   ODI Global:
     name: ODI Global
@@ -738,63 +1274,118 @@ feeds:
     region: 英国
     default_domain: dev_trade
     feeds: []
+    via_news_fallback: false
     status: no_feed_found
+    diagnostics:
+    - https://odi.org/en/feed/ → HTTP 404,0 条
+    - https://odi.org/rss.xml → HTTP 404,0 条
+    - 首页 https://odi.org/en/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:odi.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → HTTP 200,0 条
+    note: ''
+  CPB Netherlands:
+    name: CPB Netherlands
+    homepage: https://www.cpb.nl
+    region: 荷兰
+    default_domain: macro_finance
+    feeds: []
+    via_news_fallback: false
+    status: no_feed_found
+    diagnostics:
+    - https://www.cpb.nl/rss.xml → HTTP 404,0 条
+    - 首页 https://www.cpb.nl/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:cpb.nl&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → HTTP 200,0 条
     note: ''
   ИМЭМО РАН (IMEMO):
     name: ИМЭМО РАН (IMEMO)
     homepage: https://www.imemo.ru
     region: 俄罗斯
     default_domain: geopolitics
-    feeds: []
-    status: no_feed_found
+    feeds:
+    - https://news.google.com/rss/search?q=site:imemo.ru&hl=zh-CN&gl=CN&ceid=CN:zh-Hans
+    via_news_fallback: true
+    status: ok_via_news
+    diagnostics:
+    - https://www.imemo.ru/rss → HTTP 200,0 条
+    - 首页 https://www.imemo.ru/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:imemo.ru&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,1 条
     note: ''
-  三菱総合研究所 (MRI):
-    name: 三菱総合研究所 (MRI)
-    homepage: https://www.mri.co.jp
-    region: 日本
-    default_domain: sci_tech
+  IAI:
+    name: IAI
+    homepage: https://www.iai.it
+    region: 意大利
+    default_domain: geopolitics
     feeds: []
+    via_news_fallback: false
     status: no_feed_found
+    diagnostics:
+    - https://www.iai.it/en/rss.xml → HTTP 301,0 条
+    - https://www.iai.it/it/rss.xml → HTTP 301,0 条
+    - 首页 https://www.iai.it/it → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 2 个
+    - https://www.iai.it/rss.xml → HTTP 301,0 条
+    - https://news.google.com/rss/search?q=site:iai.it&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → HTTP 200,0 条
     note: ''
-  ЦСР (CSR):
-    name: ЦСР (CSR)
-    homepage: https://www.csr.ru
-    region: 俄罗斯
-    default_domain: macro_finance
-    feeds: []
-    status: no_feed_found
+  IHEID (Graduate Institute Geneva):
+    name: IHEID (Graduate Institute Geneva)
+    homepage: https://www.graduateinstitute.ch
+    region: 瑞士
+    default_domain: dev_trade
+    feeds:
+    - https://www.graduateinstitute.ch/rss.xml
+    via_news_fallback: false
+    status: ok
+    diagnostics:
+    - 首页 https://www.graduateinstitute.ch/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 3 个
+    - https://www.graduateinstitute.ch/rss.xml → 可用,10 条
+    - https://www.graduateinstitute.ch/de/rss.xml → HTTP 200,0 条
+    - https://www.graduateinstitute.ch/fr/rss.xml → HTTP 200,0 条
     note: ''
   日本国際問題研究所 (JIIA):
     name: 日本国際問題研究所 (JIIA)
     homepage: https://www.jiia.or.jp
     region: 日本
     default_domain: geopolitics
-    feeds: []
-    status: no_feed_found
+    feeds:
+    - https://news.google.com/rss/search?q=site:jiia.or.jp&hl=zh-CN&gl=CN&ceid=CN:zh-Hans
+    via_news_fallback: true
+    status: ok_via_news
+    diagnostics:
+    - https://www.jiia.or.jp/feed → HTTP 404,0 条
+    - 首页 https://www.jiia.or.jp/jpn/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:jiia.or.jp&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,1 条
     note: ''
-  キヤノングローバル戦略研究所 (CIGS):
-    name: キヤノングローバル戦略研究所 (CIGS)
-    homepage: https://cigs.canon
-    region: 日本
-    default_domain: macro_finance
-    feeds: []
-    status: no_feed_found
-    note: ''
-  아산정책연구원 (Asan Institute):
-    name: 아산정책연구원 (Asan Institute)
-    homepage: https://www.asaninst.org
-    region: 韩国
-    default_domain: geopolitics
-    feeds: []
-    status: no_feed_found
-    note: ''
-  산업연구원 (KIET):
-    name: 산업연구원 (KIET)
-    homepage: https://www.kiet.re.kr
-    region: 韩国
+  New America:
+    name: New America
+    homepage: https://www.newamerica.org
+    region: 美国
     default_domain: sci_tech
-    feeds: []
-    status: no_feed_found
+    feeds:
+    - https://news.google.com/rss/search?q=site:newamerica.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans
+    via_news_fallback: true
+    status: ok_via_news
+    diagnostics:
+    - https://www.newamerica.org/feed/ → HTTP 200,0 条
+    - 首页 https://www.newamerica.org/ → HTTP 200
+    - 首页声明了 3 个候选
+    - https://www.newamerica.org/comments/feed/ → HTTP 200,0 条
+    - https://www.newamerica.org/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.newamerica.org%2F&format=xml → HTTP 200,0 条
+    - 常见路径命中 5 个
+    - https://www.newamerica.org/feed → HTTP 301,0 条
+    - https://www.newamerica.org/rss → HTTP 301,0 条
+    - https://www.newamerica.org/rss/ → HTTP 301,0 条
+    - https://www.newamerica.org/?feed=rss2 → HTTP 301,0 条
+    - https://news.google.com/rss/search?q=site:newamerica.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,2 条
     note: ''
   РСМД (RIAC):
     name: РСМД (RIAC)
@@ -803,24 +1394,67 @@ feeds:
     default_domain: geopolitics
     feeds:
     - https://russiancouncil.ru/news/rss
+    - https://russiancouncil.ru/rss/news
+    via_news_fallback: false
     status: ok
+    diagnostics:
+    - 首页 https://russiancouncil.ru/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 2 个
+    - https://russiancouncil.ru/news/rss → 可用,20 条
+    - https://russiancouncil.ru/rss/news → 可用,20 条
     note: ''
-  여시재 (Yeosijae):
-    name: 여시재 (Yeosijae)
-    homepage: https://www.yeosijae.org
-    region: 韩国
-    default_domain: governance
+  Валдайский клуб (Valdai Club):
+    name: Валдайский клуб (Valdai Club)
+    homepage: https://valdaiclub.com
+    region: 俄罗斯
+    default_domain: geopolitics
     feeds:
-    - https://www.taejaefci.org/rss
+    - https://valdaiclub.com/feed
+    - https://valdaiclub.com/feed/
+    - https://valdaiclub.com/rss.xml
+    - https://valdaiclub.com/feed.xml
+    - https://valdaiclub.com/atom.xml
+    via_news_fallback: false
     status: ok
+    diagnostics:
+    - 首页 https://valdaiclub.com/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 5 个
+    - https://valdaiclub.com/feed → 可用,10 条
+    - https://valdaiclub.com/feed/ → 可用,10 条
+    - https://valdaiclub.com/rss.xml → 可用,10 条
+    - https://valdaiclub.com/feed.xml → 可用,10 条
+    - https://valdaiclub.com/atom.xml → 可用,10 条
     note: ''
-  東京財団政策研究所:
-    name: 東京財団政策研究所
-    homepage: https://www.tkfd.or.jp
+  三菱総合研究所 (MRI):
+    name: 三菱総合研究所 (MRI)
+    homepage: https://www.mri.co.jp
     region: 日本
-    default_domain: governance
+    default_domain: sci_tech
     feeds: []
+    via_news_fallback: false
     status: no_feed_found
+    diagnostics:
+    - https://www.mri.co.jp/rss/news.xml → HTTP 404,0 条
+    - 首页 https://www.mri.co.jp/ → HTTP 404
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:mri.co.jp&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → HTTP 200,0 条
+    note: ''
+  キヤノングローバル戦略研究所 (CIGS):
+    name: キヤノングローバル戦略研究所 (CIGS)
+    homepage: https://cigs.canon
+    region: 日本
+    default_domain: macro_finance
+    feeds:
+    - https://news.google.com/rss/search?q=site:cigs.canon&hl=zh-CN&gl=CN&ceid=CN:zh-Hans
+    via_news_fallback: true
+    status: ok_via_news
+    diagnostics:
+    - 首页 https://cigs.canon/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:cigs.canon&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,1 条
     note: ''
   日本経済研究センター (JCER):
     name: 日本経済研究センター (JCER)
@@ -830,7 +1464,29 @@ feeds:
     feeds:
     - https://www.jcer.or.jp/feed
     - https://www.jcer.or.jp/comments/feed
+    via_news_fallback: false
     status: ok
+    diagnostics:
+    - 首页 https://www.jcer.or.jp/ → HTTP 200
+    - 首页声明了 3 个候选
+    - https://www.jcer.or.jp/feed → 可用,10 条
+    - https://www.jcer.or.jp/comments/feed → 可用,10 条
+    - https://www.jcer.or.jp/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.jcer.or.jp%2F&format=xml → HTTP 200,0 条
+    note: ''
+  아산정책연구원 (Asan Institute):
+    name: 아산정책연구원 (Asan Institute)
+    homepage: https://www.asaninst.org
+    region: 韩国
+    default_domain: geopolitics
+    feeds:
+    - https://news.google.com/rss/search?q=site:asaninst.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans
+    via_news_fallback: true
+    status: ok_via_news
+    diagnostics:
+    - https://www.asaninst.org/feed/ → HTTP 403,0 条
+    - 首页 https://www.asaninst.org/ → HTTP 403
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:asaninst.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,1 条
     note: ''
   総合研究開発機構 (NIRA):
     name: 総合研究開発機構 (NIRA)
@@ -838,39 +1494,46 @@ feeds:
     region: 日本
     default_domain: governance
     feeds: []
+    via_news_fallback: false
     status: no_feed_found
+    diagnostics:
+    - https://www.nira.or.jp/feed → HTTP 404,0 条
+    - 首页 https://www.nira.or.jp/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:nira.or.jp&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → HTTP 200,0 条
+    note: ''
+  산업연구원 (KIET):
+    name: 산업연구원 (KIET)
+    homepage: https://www.kiet.re.kr
+    region: 韩国
+    default_domain: sci_tech
+    feeds:
+    - https://news.google.com/rss/search?q=site:kiet.re.kr&hl=zh-CN&gl=CN&ceid=CN:zh-Hans
+    via_news_fallback: true
+    status: ok_via_news
+    diagnostics:
+    - 首页 https://www.kiet.re.kr/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:kiet.re.kr&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,1 条
     note: ''
   Observer Research Foundation (ORF):
     name: Observer Research Foundation (ORF)
     homepage: https://www.orfonline.org
     region: 印度
     default_domain: geopolitics
-    feeds: []
-    status: no_feed_found
-    note: ''
-  野村総合研究所 (NRI):
-    name: 野村総合研究所 (NRI)
-    homepage: https://www.nri.com
-    region: 日本
-    default_domain: sci_tech
-    feeds: []
-    status: no_feed_found
-    note: ''
-  CSEP:
-    name: CSEP
-    homepage: https://csep.org
-    region: 印度
-    default_domain: macro_finance
-    feeds: []
-    status: no_feed_found
-    note: ''
-  Takshashila Institution:
-    name: Takshashila Institution
-    homepage: https://takshashila.org.in
-    region: 印度
-    default_domain: geopolitics
-    feeds: []
-    status: no_feed_found
+    feeds:
+    - https://news.google.com/rss/search?q=site:orfonline.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans
+    via_news_fallback: true
+    status: ok_via_news
+    diagnostics:
+    - https://www.orfonline.org/feed → HTTP 404,0 条
+    - https://www.orfonline.org/rss.xml → HTTP 404,0 条
+    - 首页 https://www.orfonline.org/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:orfonline.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,6 条
     note: ''
   NCAER:
     name: NCAER
@@ -879,50 +1542,78 @@ feeds:
     default_domain: macro_finance
     feeds:
     - https://ncaer.org/feed/
+    via_news_fallback: false
     status: ok
+    diagnostics:
+    - 首页 https://ncaer.org/ → HTTP 200
+    - 首页声明了 3 个候选
+    - https://ncaer.org/feed/ → 可用,2 条
+    - https://ncaer.org/comments/feed/ → HTTP 200,0 条
+    - https://ncaer.org/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fncaer.org%2F&format=xml → HTTP 200,0 条
     note: ''
-  ISEAS – Yusof Ishak Institute:
-    name: ISEAS – Yusof Ishak Institute
-    homepage: https://www.iseas.edu.sg
-    region: 新加坡
-    default_domain: geopolitics
-    feeds: []
-    status: no_feed_found
-    note: ''
-  Lowy Institute:
-    name: Lowy Institute
-    homepage: https://www.lowyinstitute.org
-    region: 澳大利亚
-    default_domain: geopolitics
+  여시재 (Yeosijae):
+    name: 여시재 (Yeosijae)
+    homepage: https://www.yeosijae.org
+    region: 韩国
+    default_domain: governance
     feeds:
-    - https://www.lowyinstitute.org/feed
+    - https://www.taejaefci.org/rss
+    - https://www.taejaefci.org/rss/
+    via_news_fallback: false
     status: ok
+    diagnostics:
+    - 首页 https://www.taejaefci.org/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 2 个
+    - https://www.taejaefci.org/rss → 可用,50 条
+    - https://www.taejaefci.org/rss/ → 可用,50 条
     note: ''
   한국개발연구원 (KDI):
     name: 한국개발연구원 (KDI)
     homepage: https://www.kdi.re.kr
     region: 韩国
     default_domain: macro_finance
-    feeds: []
-    status: no_feed_found
-    note: ''
-  مركز الجزيرة للدراسات (AJ Centre for Studies):
-    name: مركز الجزيرة للدراسات (AJ Centre for Studies)
-    homepage: https://studies.aljazeera.net
-    region: 中东
-    default_domain: geopolitics
     feeds:
-    - http://studies.aljazeera.net/en/rss.xml
-    status: ok
+    - https://news.google.com/rss/search?q=site:kdi.re.kr&hl=zh-CN&gl=CN&ceid=CN:zh-Hans
+    via_news_fallback: true
+    status: ok_via_news
+    diagnostics:
+    - https://www.kdi.re.kr/rss/rss.jsp → HTTP 200,0 条
+    - 首页 https://www.kdi.re.kr/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:kdi.re.kr&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,1 条
     note: ''
-  ICRIER:
-    name: ICRIER
-    homepage: https://icrier.org
+  野村総合研究所 (NRI):
+    name: 野村総合研究所 (NRI)
+    homepage: https://www.nri.com
+    region: 日本
+    default_domain: sci_tech
+    feeds:
+    - https://news.google.com/rss/search?q=site:nri.com&hl=zh-CN&gl=CN&ceid=CN:zh-Hans
+    via_news_fallback: true
+    status: ok_via_news
+    diagnostics:
+    - https://www.nri.com/jp/rss/news.xml → HTTP 302,0 条
+    - 首页 https://www.nri.com/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:nri.com&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,28 条
+    note: ''
+  Takshashila Institution:
+    name: Takshashila Institution
+    homepage: https://takshashila.org.in
     region: 印度
-    default_domain: dev_trade
-    feeds:
-    - https://icrier.org/feed
-    status: ok
+    default_domain: geopolitics
+    feeds: []
+    via_news_fallback: false
+    status: no_feed_found
+    diagnostics:
+    - https://takshashila.org.in/feed → HTTP 404,0 条
+    - 首页 https://takshashila.org.in/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:takshashila.org.in&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → HTTP 200,0 条
     note: ''
   CSIS Indonesia:
     name: CSIS Indonesia
@@ -930,15 +1621,29 @@ feeds:
     region: 印尼
     default_domain: geopolitics
     feeds: []
+    via_news_fallback: false
     status: no_feed_found
+    diagnostics:
+    - 首页 https://www.csis.or.id/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:csis.or.id&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → HTTP 200,0 条
     note: ''
-  King Faisal Center (KFCRIS):
-    name: King Faisal Center (KFCRIS)
-    homepage: https://kfcris.com
-    region: 中东
-    default_domain: geopolitics
-    feeds: []
-    status: no_feed_found
+  SDPI:
+    name: SDPI
+    homepage: https://sdpi.org
+    region: 巴基斯坦
+    default_domain: dev_trade
+    feeds:
+    - https://news.google.com/rss/search?q=site:sdpi.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans
+    via_news_fallback: true
+    status: ok_via_news
+    diagnostics:
+    - https://sdpi.org/feed → HTTP 200,0 条
+    - 首页 https://sdpi.org/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:sdpi.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,1 条
     note: ''
   TDRI:
     name: TDRI
@@ -947,7 +1652,118 @@ feeds:
     default_domain: macro_finance
     feeds:
     - https://tdri.or.th/feed/
+    via_news_fallback: false
     status: ok
+    diagnostics:
+    - 首页 https://tdri.or.th/ → HTTP 200
+    - 首页声明了 3 个候选
+    - https://tdri.or.th/feed/ → 可用,12 条
+    - https://tdri.or.th/comments/feed/ → HTTP 404,0 条
+    - https://tdri.or.th/wp-json/oembed/1.0/embed?url=https%3A%2F%2Ftdri.or.th%2F&format=xml → HTTP 200,0 条
+    note: ''
+  CEPS:
+    name: CEPS
+    homepage: https://www.ceps.eu
+    region: 欧盟
+    default_domain: governance
+    feeds: []
+    via_news_fallback: false
+    status: no_feed_found
+    diagnostics:
+    - https://www.ceps.eu/feed/ → HTTP 500,0 条
+    - https://www.ceps.eu/rss.xml → HTTP 404,0 条
+    - 首页 https://www.ceps.eu/ → HTTP 200
+    - 首页声明了 1 个候选
+    - https://www.ceps.eu/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.ceps.eu%2F&format=xml → HTTP 200,0 条
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:ceps.eu&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → HTTP 200,0 条
+    note: ''
+  ISEAS – Yusof Ishak Institute:
+    name: ISEAS – Yusof Ishak Institute
+    homepage: https://www.iseas.edu.sg
+    region: 新加坡
+    default_domain: geopolitics
+    feeds:
+    - https://www.iseas.edu.sg/?feed=rss2
+    via_news_fallback: false
+    status: ok
+    diagnostics:
+    - https://www.iseas.edu.sg/feed/ → HTTP 301,0 条
+    - 首页 https://www.iseas.edu.sg/ → HTTP 200
+    - 首页声明了 2 个候选
+    - https://www.iseas.edu.sg/comments/feed/ → HTTP 301,0 条
+    - 常见路径命中 1 个
+    - https://www.iseas.edu.sg/?feed=rss2 → 可用,10 条
+    note: ''
+  アジア経済研究所 (IDE-JETRO):
+    name: アジア経済研究所 (IDE-JETRO)
+    homepage: https://www.ide.go.jp
+    region: 日本
+    default_domain: dev_trade
+    feeds:
+    - https://news.google.com/rss/search?q=site:ide.go.jp&hl=zh-CN&gl=CN&ceid=CN:zh-Hans
+    via_news_fallback: true
+    status: ok_via_news
+    diagnostics:
+    - https://www.ide.go.jp/Japanese/rss.xml → HTTP 404,0 条
+    - 首页 https://www.ide.go.jp/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:ide.go.jp&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,30 条
+    note: ''
+  مركز الجزيرة للدراسات (AJ Centre for Studies):
+    name: مركز الجزيرة للدراسات (AJ Centre for Studies)
+    homepage: https://studies.aljazeera.net
+    region: 中东
+    default_domain: geopolitics
+    feeds:
+    - http://studies.aljazeera.net/en/rss.xml?1j=m1%27u&1o=m1%27u&8x=m1%27u&9c=m1%27u&CAVV=m1%27u&CV2Result=m1%27u&adlr=m1%27u&albumname=m1%27u&allow_group=m1%27u&audiobitrates=m1%27u&browser=m1%27u&cardtype=m1%27u&comments=m1%27u&css_value=m1%27u&ctr=m1%27u&ddnsdomainkeyname=m1%27u&desturl=m1%27u&dirr=m1%27u&discipline=m1%27u&dm=m1%27u&document=m1%27u&far=m1%27u&fee=m1%27u&fmc=m1%27u&foreign=m1%27u&hg=m1%27u&hor=m1%27u&iDisplayStart=m1%27u&inajax=m1%27u&information_group_name=m1%27u&itemcount=m1%27u&k5=m1%27u&keytype=m1%27u&lap=m1%27u&lec=m1%27u&lin=m1%27u&matchname=m1%27u&mzz=m1%27u&noajax=m1%27u&npassword=m1%27u&pagestyle=m1%27u&periodo=m1%27u&port1=m1%27u&rank=m1%27u&remoteip=m1%27u&replace=m1%27u&results_format=m1%27u&returnaction=m1%27u&rsp=m1%27u&scalepoints=m1%27u&selected_language=m1%27u&server=m1%27u&source=m1%27u&sqi=m1%27u&startdisplayingat=m1%27u&submitok=m1%27u&szo=m1%27u&templates_group_name=m1%27u&testdata=m1%27u&textfield=m1%27u&trc=m1%27u&try=m1%27u&videopress=m1%27u&vq=m1%27u&yb=m1%27u&zak=m1%27u
+    - https://studies.aljazeera.net/en/rss.xml
+    via_news_fallback: false
+    status: ok
+    diagnostics:
+    - 首页 https://studies.aljazeera.net/en → HTTP 200
+    - 首页声明了 3 个候选
+    - http://studies.aljazeera.net/en/rss.xml?1j=m1%27u&1o=m1%27u&8x=m1%27u&9c=m1%27u&CAVV=m1%27u&CV2Result=m1%27u&adlr=m1%27u&albumname=m1%27u&allow_group=m1%27u&audiobitrates=m1%27u&browser=m1%27u&cardtype=m1%27u&comments=m1%27u&css_value=m1%27u&ctr=m1%27u&ddnsdomainkeyname=m1%27u&desturl=m1%27u&dirr=m1%27u&discipline=m1%27u&dm=m1%27u&document=m1%27u&far=m1%27u&fee=m1%27u&fmc=m1%27u&foreign=m1%27u&hg=m1%27u&hor=m1%27u&iDisplayStart=m1%27u&inajax=m1%27u&information_group_name=m1%27u&itemcount=m1%27u&k5=m1%27u&keytype=m1%27u&lap=m1%27u&lec=m1%27u&lin=m1%27u&matchname=m1%27u&mzz=m1%27u&noajax=m1%27u&npassword=m1%27u&pagestyle=m1%27u&periodo=m1%27u&port1=m1%27u&rank=m1%27u&remoteip=m1%27u&replace=m1%27u&results_format=m1%27u&returnaction=m1%27u&rsp=m1%27u&scalepoints=m1%27u&selected_language=m1%27u&server=m1%27u&source=m1%27u&sqi=m1%27u&startdisplayingat=m1%27u&submitok=m1%27u&szo=m1%27u&templates_group_name=m1%27u&testdata=m1%27u&textfield=m1%27u&trc=m1%27u&try=m1%27u&videopress=m1%27u&vq=m1%27u&yb=m1%27u&zak=m1%27u
+      → 可用,30 条
+    - https://studies.aljazeera.net/en/rss.xml → 可用,30 条
+    note: ''
+  Lowy Institute:
+    name: Lowy Institute
+    homepage: https://www.lowyinstitute.org
+    region: 澳大利亚
+    default_domain: geopolitics
+    feeds:
+    - https://www.lowyinstitute.org/feed
+    - https://www.lowyinstitute.org/feed/
+    - https://www.lowyinstitute.org/rss
+    - https://www.lowyinstitute.org/rss/
+    via_news_fallback: false
+    status: ok
+    diagnostics:
+    - 首页 https://www.lowyinstitute.org/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 4 个
+    - https://www.lowyinstitute.org/feed → 可用,50 条
+    - https://www.lowyinstitute.org/feed/ → 可用,50 条
+    - https://www.lowyinstitute.org/rss → 可用,50 条
+    - https://www.lowyinstitute.org/rss/ → 可用,50 条
+    note: ''
+  King Faisal Center (KFCRIS):
+    name: King Faisal Center (KFCRIS)
+    homepage: https://kfcris.com
+    region: 中东
+    default_domain: geopolitics
+    feeds:
+    - https://news.google.com/rss/search?q=site:kfcris.com&hl=zh-CN&gl=CN&ceid=CN:zh-Hans
+    via_news_fallback: true
+    status: ok_via_news
+    diagnostics:
+    - https://kfcris.com/feed → HTTP 200,0 条
+    - 首页 https://kfcris.com/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:kfcris.com&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,7 条
     note: ''
   ERIA:
     name: ERIA
@@ -955,15 +1771,14 @@ feeds:
     region: 东盟
     default_domain: dev_trade
     feeds: []
+    via_news_fallback: false
     status: no_feed_found
-    note: ''
-  SDPI:
-    name: SDPI
-    homepage: https://sdpi.org
-    region: 巴基斯坦
-    default_domain: dev_trade
-    feeds: []
-    status: no_feed_found
+    diagnostics:
+    - https://www.eria.org/feed/ → HTTP 404,0 条
+    - 首页 https://www.eria.org/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:eria.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → HTTP 200,0 条
     note: ''
   SETA:
     name: SETA
@@ -971,15 +1786,56 @@ feeds:
     region: 土耳其
     default_domain: geopolitics
     feeds: []
+    via_news_fallback: false
     status: no_feed_found
+    diagnostics:
+    - https://www.setav.org/feed/ → HTTP 404,0 条
+    - 首页 https://www.setav.org/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:setav.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → HTTP 200,0 条
     note: ''
-  Grattan Institute:
-    name: Grattan Institute
-    homepage: https://grattan.edu.au
-    region: 澳大利亚
-    default_domain: labor_social
+  Gulf Research Center:
+    name: Gulf Research Center
+    homepage: https://www.grc.net
+    region: 中东
+    default_domain: geopolitics
     feeds: []
+    via_news_fallback: false
     status: no_feed_found
+    diagnostics:
+    - https://www.grc.net/feed → HTTP 302,0 条
+    - 首页 https://www.grc.net/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:grc.net&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → HTTP 200,0 条
+    note: ''
+  TEPAV:
+    name: TEPAV
+    homepage: https://www.tepav.org.tr
+    region: 土耳其
+    default_domain: macro_finance
+    feeds: []
+    via_news_fallback: false
+    status: no_feed_found
+    diagnostics:
+    - https://www.tepav.org.tr/rss.xml → HTTP 307,0 条
+    - 首页 https://www.tepav.org.tr/tr → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:tepav.org.tr&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → HTTP 200,0 条
+    note: ''
+  Taub Center:
+    name: Taub Center
+    homepage: https://www.taubcenter.org.il
+    region: 以色列
+    default_domain: labor_social
+    feeds:
+    - https://www.taubcenter.org.il/feed/
+    via_news_fallback: false
+    status: ok
+    diagnostics:
+    - https://www.taubcenter.org.il/feed/ → 可用,4 条
     note: ''
   C.D. Howe Institute:
     name: C.D. Howe Institute
@@ -988,23 +1844,42 @@ feeds:
     default_domain: macro_finance
     feeds:
     - https://cdhowe.org/feed/
+    via_news_fallback: false
     status: ok
+    diagnostics:
+    - 首页 https://cdhowe.org/ → HTTP 200
+    - 首页声明了 2 个候选
+    - https://cdhowe.org/feed/ → 可用,12 条
+    - https://cdhowe.org/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fcdhowe.org%2F&format=xml → HTTP 200,0 条
+    note: ''
+  IRPP:
+    name: IRPP
+    homepage: https://irpp.org
+    region: 加拿大
+    default_domain: governance
+    feeds:
+    - https://irpp.org/feed/
+    via_news_fallback: false
+    status: ok
+    diagnostics:
+    - https://irpp.org/feed/ → 可用,10 条
     note: ''
   CIGI:
     name: CIGI
     homepage: https://www.cigionline.org
     region: 加拿大
     default_domain: governance
-    feeds: []
-    status: no_feed_found
-    note: ''
-  TEPAV:
-    name: TEPAV
-    homepage: https://www.tepav.org.tr
-    region: 土耳其
-    default_domain: macro_finance
-    feeds: []
-    status: no_feed_found
+    feeds:
+    - https://news.google.com/rss/search?q=site:cigionline.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans
+    via_news_fallback: true
+    status: ok_via_news
+    diagnostics:
+    - https://www.cigionline.org/rss/ → HTTP 403,0 条
+    - https://www.cigionline.org/feed/ → HTTP 403,0 条
+    - 首页 https://www.cigionline.org/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:cigionline.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,4 条
     note: ''
   Fraser Institute:
     name: Fraser Institute
@@ -1012,63 +1887,88 @@ feeds:
     region: 加拿大
     default_domain: governance
     feeds: []
+    via_news_fallback: false
     status: no_feed_found
-    note: ''
-  IRPP:
-    name: IRPP
-    homepage: https://irpp.org
-    region: 加拿大
-    default_domain: governance
-    feeds: []
-    status: no_feed_found
-    note: ''
-  Taub Center:
-    name: Taub Center
-    homepage: https://www.taubcenter.org.il
-    region: 以色列
-    default_domain: labor_social
-    feeds: []
-    status: no_feed_found
-    note: ''
-  CIPPEC:
-    name: CIPPEC
-    homepage: https://www.cippec.org
-    region: 阿根廷
-    default_domain: governance
-    feeds: []
-    status: no_feed_found
+    diagnostics:
+    - https://www.fraserinstitute.org/rss.xml → HTTP 403,0 条
+    - 首页 https://www.fraserinstitute.org/ → HTTP 403
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:fraserinstitute.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → HTTP 200,0 条
     note: ''
   CEBRI:
     name: CEBRI
     homepage: https://cebri.org
     region: 巴西
     default_domain: geopolitics
-    feeds: []
-    status: no_feed_found
-    note: ''
-  アジア経済研究所 (IDE-JETRO):
-    name: アジア経済研究所 (IDE-JETRO)
-    homepage: https://www.ide.go.jp
-    region: 日本
-    default_domain: dev_trade
-    feeds: []
-    status: no_feed_found
+    feeds:
+    - https://news.google.com/rss/search?q=site:cebri.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans
+    via_news_fallback: true
+    status: ok_via_news
+    diagnostics:
+    - https://cebri.org/feed/ → HTTP 404,0 条
+    - 首页 https://cebri.org/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:cebri.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,1 条
     note: ''
   IPEA:
     name: IPEA
     homepage: https://www.ipea.gov.br
     region: 巴西
     default_domain: macro_finance
-    feeds: []
-    status: no_feed_found
+    feeds:
+    - https://news.google.com/rss/search?q=site:ipea.gov.br&hl=zh-CN&gl=CN&ceid=CN:zh-Hans
+    via_news_fallback: true
+    status: ok_via_news
+    diagnostics:
+    - https://www.ipea.gov.br/portal/feed → HTTP 404,0 条
+    - 首页 https://www.ipea.gov.br/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:ipea.gov.br&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,2 条
     note: ''
-  CARI:
-    name: CARI
-    homepage: https://www.cari.org.ar
+  CIPPEC:
+    name: CIPPEC
+    homepage: https://www.cippec.org
     region: 阿根廷
-    default_domain: geopolitics
-    feeds: []
-    status: no_feed_found
+    default_domain: governance
+    feeds:
+    - https://www.cippec.org/feed/
+    via_news_fallback: false
+    status: ok
+    diagnostics:
+    - https://www.cippec.org/feed/ → 可用,10 条
+    note: ''
+  NZIER:
+    name: NZIER
+    homepage: https://www.nzier.org.nz
+    region: 新西兰
+    default_domain: macro_finance
+    feeds:
+    - https://www.nzier.org.nz/news/rss.xml
+    via_news_fallback: false
+    status: ok
+    diagnostics:
+    - https://www.nzier.org.nz/feed → HTTP 404,0 条
+    - 首页 https://www.nzier.org.nz/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 1 个
+    - https://www.nzier.org.nz/news/rss.xml → 可用,10 条
+    note: ''
+  Fundação Getulio Vargas (FGV):
+    name: Fundação Getulio Vargas (FGV)
+    homepage: https://portal.fgv.br
+    region: 巴西
+    default_domain: macro_finance
+    feeds:
+    - https://news.google.com/rss/search?q=site:portal.fgv.br&hl=zh-CN&gl=CN&ceid=CN:zh-Hans
+    via_news_fallback: true
+    status: ok_via_news
+    diagnostics:
+    - https://portal.fgv.br/rss.xml → HTTP ?,0 条
+    - 首页 https://portal.fgv.br → 请求失败 SSLError
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:portal.fgv.br&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,6 条
     note: ''
   Israel Democracy Institute:
     name: Israel Democracy Institute
@@ -1076,37 +1976,133 @@ feeds:
     region: 以色列
     default_domain: governance
     feeds: []
+    via_news_fallback: false
     status: no_feed_found
+    diagnostics:
+    - https://en.idi.org.il/feed/ → HTTP 404,0 条
+    - 首页 https://en.idi.org.il/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:en.idi.org.il&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → HTTP 200,0 条
     note: ''
-  Fundação Getulio Vargas (FGV):
-    name: Fundação Getulio Vargas (FGV)
-    homepage: https://portal.fgv.br
-    region: 巴西
-    default_domain: macro_finance
-    feeds: []
-    status: no_feed_found
+  CARI:
+    name: CARI
+    homepage: https://www.cari.org.ar
+    region: 阿根廷
+    default_domain: geopolitics
+    feeds:
+    - https://news.google.com/rss/search?q=site:cari.org.ar&hl=zh-CN&gl=CN&ceid=CN:zh-Hans
+    via_news_fallback: true
+    status: ok_via_news
+    diagnostics:
+    - https://www.cari.org.ar/feed/ → HTTP 404,0 条
+    - 首页 https://cari.org.ar/views/home/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:cari.org.ar&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,1 条
     note: ''
-  NZIER:
-    name: NZIER
-    homepage: https://www.nzier.org.nz
-    region: 新西兰
-    default_domain: macro_finance
-    feeds: []
-    status: no_feed_found
+  ICRIER:
+    name: ICRIER
+    homepage: https://icrier.org
+    region: 印度
+    default_domain: dev_trade
+    feeds:
+    - https://icrier.org/feed
+    - https://icrier.org/feed/
+    - https://icrier.org/rss
+    - https://icrier.org/rss/
+    - https://icrier.org/?feed=rss2
+    via_news_fallback: false
+    status: ok
+    diagnostics:
+    - 首页 https://icrier.org/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 5 个
+    - https://icrier.org/feed → 可用,10 条
+    - https://icrier.org/feed/ → 可用,10 条
+    - https://icrier.org/rss → 可用,10 条
+    - https://icrier.org/rss/ → 可用,10 条
+    - https://icrier.org/?feed=rss2 → 可用,10 条
     note: ''
   대외경제정책연구원 (KIEP):
     name: 대외경제정책연구원 (KIEP)
     homepage: https://www.kiep.go.kr
     region: 韩国
     default_domain: dev_trade
-    feeds: []
-    status: no_feed_found
+    feeds:
+    - https://news.google.com/rss/search?q=site:kiep.go.kr&hl=zh-CN&gl=CN&ceid=CN:zh-Hans
+    via_news_fallback: true
+    status: ok_via_news
+    diagnostics:
+    - https://www.kiep.go.kr/rss.do → HTTP 404,0 条
+    - 首页 https://www.kiep.go.kr/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:kiep.go.kr&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,17 条
     note: ''
-  Gulf Research Center:
-    name: Gulf Research Center
-    homepage: https://www.grc.net
-    region: 中东
-    default_domain: geopolitics
+  CSEP:
+    name: CSEP
+    homepage: https://csep.org
+    region: 印度
+    default_domain: macro_finance
+    feeds:
+    - https://csep.org/rss.xml
+    via_news_fallback: false
+    status: ok
+    diagnostics:
+    - https://csep.org/en/feed/ → HTTP ?,0 条
+    - https://csep.org/en/rss → HTTP ?,0 条
+    - https://csep.org/news/feed → HTTP ?,0 条
+    - https://csep.org/news/rss → HTTP ?,0 条
+    - https://csep.org/news/feed/ → HTTP ?,0 条
+    - https://csep.org/publications/feed → HTTP ?,0 条
+    - https://csep.org/publications/rss → HTTP ?,0 条
+    - https://csep.org/research/feed → HTTP ?,0 条
+    - https://csep.org/blog/feed → HTTP ?,0 条
+    - https://csep.org/blog/feed/ → HTTP ?,0 条
+    - https://csep.org/?feed=rss2 → HTTP ?,0 条
+    - https://csep.org/es/feed/ → HTTP ?,0 条
+    note: ''
+  東京財団政策研究所:
+    name: 東京財団政策研究所
+    homepage: https://www.tkfd.or.jp
+    region: 日本
+    default_domain: governance
     feeds: []
+    via_news_fallback: false
     status: no_feed_found
+    diagnostics:
+    - https://www.tkfd.or.jp/rss.xml → HTTP 404,0 条
+    - 首页 https://www.tkfd.or.jp/ → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:tkfd.or.jp&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → HTTP 200,0 条
+    note: ''
+  Grattan Institute:
+    name: Grattan Institute
+    homepage: https://grattan.edu.au
+    region: 澳大利亚
+    default_domain: labor_social
+    feeds: []
+    via_news_fallback: false
+    status: no_feed_found
+    diagnostics:
+    - https://grattan.edu.au/feed/ → 解析异常 TimeoutError
+    - 首页 https://grattan.edu.au → 请求失败 ReadTimeout
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:grattan.edu.au&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → HTTP 200,0 条
+    note: ''
+  ЦСР (CSR):
+    name: ЦСР (CSR)
+    homepage: https://www.csr.ru
+    region: 俄罗斯
+    default_domain: macro_finance
+    feeds: []
+    via_news_fallback: false
+    status: no_feed_found
+    diagnostics:
+    - https://www.csr.ru/rss/ → HTTP ?,0 条
+    - 首页 https://www.csr.ru → 请求失败 ConnectTimeout
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:csr.ru&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → HTTP 200,0 条
     note: ''
