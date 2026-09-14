@@ -30,7 +30,10 @@ from bs4 import BeautifulSoup
 
 from site_builder import build_site
 from translate import Translator
-from keypoints import KeyPointer
+try:                       # 可选模块:没有 keypoints.py 也能正常抓取和翻译
+    from keypoints import KeyPointer
+except ImportError:
+    KeyPointer = None
 
 ROOT = Path(__file__).resolve().parent
 OUT = ROOT / "reports"
@@ -372,7 +375,9 @@ def cmd_fetch(args) -> None:
             if len(pending) > len(fresh):
                 print(f"发现 {len(pending) - len(fresh)} 条历史条目还没有中文,一并补翻。")
             tr.apply(pending, titles=not args.keep_original_titles)
-    if args.keypoints != "off":
+    if args.keypoints != "off" and KeyPointer is None:
+        print("提示:没有找到 keypoints.py,跳过要点提炼(不影响抓取和翻译)。")
+    elif args.keypoints != "off":
         kp = KeyPointer(mode=args.keypoints, model=args.model)
         if kp.mode == "on":
             need = [it for it in archive if not it.get("points_zh")]
@@ -436,6 +441,8 @@ def cmd_translate(args) -> None:
 
 
 def cmd_keypoints(args) -> None:
+    if KeyPointer is None:
+        sys.exit("缺少 keypoints.py,无法提炼要点。把该文件上传到仓库后再试。")
     """给库里还没有要点的条目补提炼,然后重建网页。"""
     topics = load_yaml(ROOT / "topics.yaml")["domains"]
     archive = load_archive()

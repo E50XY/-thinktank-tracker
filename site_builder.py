@@ -87,6 +87,10 @@ nav .reset{margin-top:12px;color:var(--link);border:0;padding:0}
 .who{font-size:13px;color:var(--muted);margin:0 0 6px}
 .who .inst{color:var(--ink);font-weight:600}
 .sum{margin:0;font-size:14px;color:#3a3e44;max-width:72ch}
+.pts{margin:8px 0 0;padding:0;list-style:none;max-width:72ch}
+.pts li{position:relative;padding-left:15px;margin:3px 0;font-size:13.5px;color:#40454b}
+.pts li::before{content:"";position:absolute;left:2px;top:9px;width:4px;height:4px;
+  border-radius:50%;background:var(--c,#bbb)}
 .empty{padding:60px 0;color:var(--muted);font-size:15px}
 .empty b{display:block;color:var(--ink);font-size:17px;font-family:var(--serif);
   font-weight:400;margin-bottom:6px}
@@ -143,7 +147,8 @@ function pass(it){
   }
   if(fQuery){
     const hay=(it.title+" "+(it.title_zh||"")+" "+it.summary+" "+
-               (it.summary_zh||"")+" "+it.institution).toLowerCase();
+               (it.summary_zh||"")+" "+((it.points_zh||[]).join(" "))+" "+
+               it.institution).toLowerCase();
     if(!fQuery.split(/\\s+/).every(w=>hay.includes(w))) return false;
   }
   return true;
@@ -168,6 +173,8 @@ function render(){
         ${zhTitle(it)!==it.title?`<p class="orig">${esc(it.title)}</p>`:''}
         <p class="who"><span class="inst">${esc(it.institution)}</span>${it.region?'，'+esc(it.region):''}　${esc(DLABELS[it.domain]||'')}</p>
         <p class="sum">${esc(zhSum(it))||'源站未提供摘要，点标题看原文。'}</p>
+        ${(it.points_zh&&it.points_zh.length)?
+          `<ul class="pts">${it.points_zh.map(p=>`<li>${esc(p)}</li>`).join('')}</ul>`:''}
       </div>
     </article>`).join('') :
     `<div class="empty"><b>这个范围内没有条目</b>放宽时间范围，或清除筛选再看一次。</div>`;
