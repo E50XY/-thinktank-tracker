@@ -1,0 +1,62 @@
+[
+  {
+    "institution": "Council on Foreign Relations (CFR)",
+    "region": "美国",
+    "default_domain": "geopolitics",
+    "title": "George Washington’s Farewell Address",
+    "link": "https://www.cfr.org/articles/george-washingtons-farewell-address",
+    "summary": "The parting remarks of America’s first president were more about shaping who would succeed him in office than about advance a fundamental foreign policy principle to guide all future generations.",
+    "published_utc": "2026-09-19T12:30:00+00:00",
+    "has_clock_time": true,
+    "feed": "https://www.cfr.org/feed",
+    "fp": "37badd3adaced3da",
+    "first_seen": "2026-09-19T12:55:35.514864+00:00",
+    "domain": "health",
+    "points_zh": []
+  },
+  {
+    "institution": "Council on Foreign Relations (CFR)",
+    "region": "美国",
+    "default_domain": "geopolitics",
+    "title": "George Washington’s Farewell Address",
+    "link": "https://www.cfr.org/articles/george-washingtons-farewell-address",
+    "summary": "The parting remarks of America’s first president were more about shaping who would succeed him in office than about advance a fundamental foreign policy principle to guide all future generations.",
+    "published_utc": "2026-09-19T12:30:00+00:00",
+    "has_clock_time": true,
+    "feed": "https://www.cfr.org/feed/",
+    "fp": "37badd3adaced3da",
+    "first_seen": "2026-09-19T12:55:35.514864+00:00",
+    "domain": "health",
+    "points_zh": []
+  },
+  {
+    "institution": "Atlantic Council",
+    "region": "美国",
+    "default_domain": "geopolitics",
+    "title": "Charai for the Jerusalem Strategic Tribune: The Muslim Brotherhood: Follow the Money",
+    "link": "https://www.atlanticcouncil.org/insight-impact/in-the-news/charai-for-the-jerusalem-strategic-tribune-the-muslim-brotherhood-follow-the-money/",
+    "summary": "The post Charai for the Jerusalem Strategic Tribune: The Muslim Brotherhood: Follow the Money appeared first on Atlantic Council .",
+    "published_utc": "2026-09-19T11:31:36+00:00",
+    "has_clock_time": true,
+    "feed": "https://www.atlanticcouncil.org/feed/",
+    "fp": "3ac5cc02a93d259b",
+    "first_seen": "2026-09-19T12:55:35.514864+00:00",
+    "domain": "geopolitics",
+    "points_zh": []
+  },
+  {
+    "institution": "IMF – Research Department",
+    "region": "国际组织",
+    "default_domain": "macro_finance",
+    "title": "话题 - International Monetary Fund | IMF",
+    "link": "https://news.google.com/rss/articles/CBMieEFVX3lxTE1EanZuNGNDV1hNdUVsSm1VSmZBME9RRHlRMmgtZktKT3Q4SUpCUklYTU1IOWkweXJNTXM3Y1dpTmtNb21Ic0ZDcVpGQWNBZjlLRjc1U1E4V2w0VUlHelZzdW43aVdWVEt0SXI2TWdQRlgwVEJSZTUtNQ?oc=5",
+    "summary": "话题 International Monetary Fund | IMF",
+    "published_utc": "2026-09-19T03:51:12+00:00",
+    "has_clock_time": true,
+    "feed": "https://news.google.com/rss/search?q=site:imf.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans",
+    "fp": "75ff68f45a8c1384",
+    "first_seen": "2026-09-19T12:55:35.514864+00:00",
+    "domain": "macro_finance",
+    "points_zh": []
+  }
+]
