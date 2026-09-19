@@ -1,0 +1,62 @@
+[
+  {
+    "institution": "Adam Smith Institute",
+    "region": "英国",
+    "default_domain": "governance",
+    "title": "We appear to be getting the trades unions on board",
+    "link": "https://www.adamsmith.org/blog/we-appear-to-be-getting-the-trades-unions-on-board",
+    "summary": "From Sharon Graham at Unite : If the tax threshold of around £12,500 hadn't been frozen for the past few years it would have moved up to over £16,000. People at the lower end are paying eye-watering amounts of tax and it needs to change. We have long insisted that the personal allowance is far too low. Indeed, between …",
+    "published_utc": "2026-09-19T05:30:06+00:00",
+    "has_clock_time": true,
+    "feed": "https://www.adamsmith.org/blog?format=rss",
+    "fp": "7554e6352c1e51cc",
+    "first_seen": "2026-09-19T08:36:39.835501+00:00",
+    "domain": "macro_finance",
+    "points_zh": []
+  },
+  {
+    "institution": "IMF – Research Department",
+    "region": "国际组织",
+    "default_domain": "macro_finance",
+    "title": "话题 - imf.org",
+    "link": "https://news.google.com/rss/articles/CBMieEFVX3lxTE1EanZuNGNDV1hNdUVsSm1VSmZBME9RRHlRMmgtZktKT3Q4SUpCUklYTU1IOWkweXJNTXM3Y1dpTmtNb21Ic0ZDcVpGQWNBZjlLRjc1U1E4V2w0VUlHelZzdW43aVdWVEt0SXI2TWdQRlgwVEJSZTUtNQ?oc=5",
+    "summary": "话题 imf.org",
+    "published_utc": "2026-09-19T03:51:12+00:00",
+    "has_clock_time": true,
+    "feed": "https://news.google.com/rss/search?q=site:imf.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans",
+    "fp": "4f6ae68db68225e5",
+    "first_seen": "2026-09-19T08:36:39.835501+00:00",
+    "domain": "macro_finance",
+    "points_zh": []
+  },
+  {
+    "institution": "SWP",
+    "region": "德国",
+    "default_domain": "geopolitics",
+    "title": "Wie gehen andere Demokratien mit rechten Parteien um?",
+    "link": "https://www.ardsounds.de/episode/urn:ard:episode:54ce7466af1ade85/",
+    "summary": "",
+    "published_utc": "2026-09-18T16:08:49+00:00",
+    "has_clock_time": true,
+    "feed": "https://www.swp-berlin.org/rss.xml",
+    "fp": "d02b2b25ef74bba1",
+    "first_seen": "2026-09-19T08:36:39.835501+00:00",
+    "domain": "governance",
+    "points_zh": []
+  },
+  {
+    "institution": "SWP",
+    "region": "德国",
+    "default_domain": "geopolitics",
+    "title": "Wie gehen andere Demokratien mit rechten Parteien um?",
+    "link": "https://www.ardsounds.de/episode/urn:ard:episode:54ce7466af1ade85/",
+    "summary": "",
+    "published_utc": "2026-09-18T16:08:49+00:00",
+    "has_clock_time": true,
+    "feed": "https://www.swp-berlin.org/en/rss.xml",
+    "fp": "d02b2b25ef74bba1",
+    "first_seen": "2026-09-19T08:36:39.835501+00:00",
+    "domain": "governance",
+    "points_zh": []
+  }
+]
