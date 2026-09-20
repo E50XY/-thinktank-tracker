@@ -1,0 +1,32 @@
+[
+  {
+    "institution": "Adam Smith Institute",
+    "region": "英国",
+    "default_domain": "governance",
+    "title": "Some statements just make us gurgle like a drain",
+    "link": "https://www.adamsmith.org/blog/some-statements-just-make-us-gurgle-like-a-drain",
+    "summary": "From The Guardian : Europe’s dilemma over AI was rendered in stark terms this week. The head of the continent’s central bank, Christine Lagarde, said Europeans have two options: shun the technology and lose out on growth; or embrace it and become dependent on tools developed by the US and China. The great debate over A…",
+    "published_utc": "2026-09-20T05:30:14+00:00",
+    "has_clock_time": true,
+    "feed": "https://www.adamsmith.org/blog?format=rss",
+    "fp": "c852361bd61b2f04",
+    "first_seen": "2026-09-20T05:47:50.082137+00:00",
+    "domain": "sci_tech",
+    "points_zh": []
+  },
+  {
+    "institution": "American Enterprise Institute (AEI)",
+    "region": "美国",
+    "default_domain": "governance",
+    "title": "追寻历史 - American Enterprise Institute - AEI",
+    "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOUW9UdDNrM0Q1akpla1JCUi0wNXExZFdVb2t5Q01YeHdCb0YyTEh3WUtsZV92bGd0VkttX3I5V3lmSnN5djJCZzJNVlFjWmNrY2RNRmVnc1pxaFpHWXdHZkFZWndqbjIxd3RnTFhDcHN5V1FYRHNGR1pmV2p4dWFzZHdtcnBkbVdsaXR0SzM4Nk9JbzhBQmNaNGZLbVpUVG9YTWttQkd3YWhxc1Q1NGc?oc=5",
+    "summary": "追寻历史 American Enterprise Institute - AEI",
+    "published_utc": "2026-09-20T02:08:48+00:00",
+    "has_clock_time": true,
+    "feed": "https://news.google.com/rss/search?q=site:aei.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans",
+    "fp": "f320d185102b517b",
+    "first_seen": "2026-09-20T05:47:50.082137+00:00",
+    "domain": "governance",
+    "points_zh": []
+  }
+]
