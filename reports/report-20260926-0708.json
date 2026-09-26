@@ -1,0 +1,32 @@
+[
+  {
+    "institution": "Adam Smith Institute",
+    "region": "英国",
+    "default_domain": "governance",
+    "title": "Allow us to just interpret Willy Hutton and Andy Haldane for you here",
+    "link": "https://www.adamsmith.org/blog/allow-us-to-just-interpret-willy-hutton-and-andy-haldane-for-you-here",
+    "summary": "On the subject of what to do with the utilities we get : Having done so, what alternative governance structures strike a better balance than the extremes of nationalisation or privatisation? Aligning the incentives of utilities with those of the public could be done most easily and effectively by turning them into publ…",
+    "published_utc": "2026-09-26T05:30:51+00:00",
+    "has_clock_time": true,
+    "feed": "https://www.adamsmith.org/blog?format=rss",
+    "fp": "792b9d7dd064d244",
+    "first_seen": "2026-09-26T07:08:24.733455+00:00",
+    "domain": "governance",
+    "points_zh": []
+  },
+  {
+    "institution": "IMF – Research Department",
+    "region": "国际组织",
+    "default_domain": "macro_finance",
+    "title": "向IMF提问 - International Monetary Fund | IMF",
+    "link": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBWVlRTUTlFd3Q1SkFTalZHRl9FYkJveHdKOUNqY1pMdUR0ellucmFoYVJITEM2SnB4aVhqVHlsNE1WRUR3VnNJOVEyaXNNRUg2TDI1akRSQ0JPU19o?oc=5",
+    "summary": "向IMF提问 International Monetary Fund | IMF",
+    "published_utc": "2026-09-25T13:47:52+00:00",
+    "has_clock_time": true,
+    "feed": "https://news.google.com/rss/search?q=site:imf.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans",
+    "fp": "f5305b79579676b8",
+    "first_seen": "2026-09-26T07:08:24.733455+00:00",
+    "domain": "macro_finance",
+    "points_zh": []
+  }
+]
