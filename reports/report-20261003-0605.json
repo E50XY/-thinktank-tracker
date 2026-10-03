@@ -1,0 +1,62 @@
+[
+  {
+    "institution": "Hoover Institution",
+    "region": "美国",
+    "default_domain": "governance",
+    "title": "East Asia at Hoover: Collections of War, Revolution, & Peace",
+    "link": "https://cms.hoover.org/library-archives/histories/east-asia-at-hoover",
+    "summary": "",
+    "published_utc": null,
+    "has_clock_time": false,
+    "feed": "https://www.hoover.org/feed",
+    "fp": "3f4770812c8effa1",
+    "first_seen": "2026-10-03T06:05:33.392821+00:00",
+    "domain": "geopolitics",
+    "points_zh": []
+  },
+  {
+    "institution": "Hoover Institution",
+    "region": "美国",
+    "default_domain": "governance",
+    "title": "East Asia at Hoover: Collections of War, Revolution, & Peace",
+    "link": "https://cms.hoover.org/library-archives/histories/east-asia-at-hoover",
+    "summary": "",
+    "published_utc": null,
+    "has_clock_time": false,
+    "feed": "https://www.hoover.org/rss.xml",
+    "fp": "3f4770812c8effa1",
+    "first_seen": "2026-10-03T06:05:33.392821+00:00",
+    "domain": "geopolitics",
+    "points_zh": []
+  },
+  {
+    "institution": "Hoover Institution",
+    "region": "美国",
+    "default_domain": "governance",
+    "title": "East Asia at Hoover: Collections of War, Revolution, & Peace",
+    "link": "https://cms.hoover.org/library-archives/histories/east-asia-at-hoover",
+    "summary": "",
+    "published_utc": null,
+    "has_clock_time": false,
+    "feed": "https://www.hoover.org/feed/",
+    "fp": "3f4770812c8effa1",
+    "first_seen": "2026-10-03T06:05:33.392821+00:00",
+    "domain": "geopolitics",
+    "points_zh": []
+  },
+  {
+    "institution": "Adam Smith Institute",
+    "region": "英国",
+    "default_domain": "governance",
+    "title": "55% if over the peak of the Laffer Curve for income tax",
+    "link": "https://www.adamsmith.org/blog/55-if-over-the-peak-of-the-laffer-curve-for-income-tax",
+    "summary": "Taking money away from someone is taking money away from someone. Therefore the taper - the amount by which Universal Credit is reduced - is the same as income tax plus NI on wages. Thus : For every £1 I earned, my Universal Credit was reduced by 55p. …. One week I sat across a Formica table from my job coach and sobbe…",
+    "published_utc": "2026-10-03T05:30:13+00:00",
+    "has_clock_time": true,
+    "feed": "https://www.adamsmith.org/blog?format=rss",
+    "fp": "7a0aab880af0012c",
+    "first_seen": "2026-10-03T06:05:33.392821+00:00",
+    "domain": "macro_finance",
+    "points_zh": []
+  }
+]
