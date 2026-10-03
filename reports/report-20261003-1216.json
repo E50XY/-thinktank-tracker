@@ -1,0 +1,32 @@
+[
+  {
+    "institution": "Adam Smith Institute",
+    "region": "英国",
+    "default_domain": "governance",
+    "title": "55% is over the peak of the Laffer Curve for income tax",
+    "link": "https://www.adamsmith.org/blog/55-if-over-the-peak-of-the-laffer-curve-for-income-tax",
+    "summary": "Taking money away from someone is taking money away from someone. Therefore the taper - the amount by which Universal Credit is reduced - is the same as income tax plus NI on wages. Thus : For every £1 I earned, my Universal Credit was reduced by 55p. …. One week I sat across a Formica table from my job coach and sobbe…",
+    "published_utc": "2026-10-03T05:30:13+00:00",
+    "has_clock_time": true,
+    "feed": "https://www.adamsmith.org/blog?format=rss",
+    "fp": "8a38bea67b2a83e3",
+    "first_seen": "2026-10-03T12:16:07.464647+00:00",
+    "domain": "macro_finance",
+    "points_zh": []
+  },
+  {
+    "institution": "IMF – Research Department",
+    "region": "国际组织",
+    "default_domain": "macro_finance",
+    "title": "话题 - imf.org",
+    "link": "https://news.google.com/rss/articles/CBMieEFVX3lxTE1JSnZIZzN6NXo3YkNZay1UVXU4djVMUU16M3AtRV81RG1RUUJCTWtHTU1rMzdmVU5wU3l0cndScVV6Rm0yV1Q0ODhkcld1dVlGTFByRzEzblBkc3ZPU0J6bTV5elVYNmJpVWt6d2FfZHdmYjRaMU85TQ?oc=5",
+    "summary": "话题 imf.org",
+    "published_utc": "2026-10-02T21:55:37+00:00",
+    "has_clock_time": true,
+    "feed": "https://news.google.com/rss/search?q=site:imf.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans",
+    "fp": "ad81b1311f762bc7",
+    "first_seen": "2026-10-03T12:16:07.464647+00:00",
+    "domain": "macro_finance",
+    "points_zh": []
+  }
+]
