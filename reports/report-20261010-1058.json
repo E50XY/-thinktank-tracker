@@ -1,0 +1,32 @@
+[
+  {
+    "institution": "Adam Smith Institute",
+    "region": "英国",
+    "default_domain": "governance",
+    "title": "A lovely example of the costs of bureaucracy",
+    "link": "https://www.adamsmith.org/blog/a-lovely-example-of-the-costs-of-bureaucracy",
+    "summary": "Of course this isn’t what Phineas thinks he is telling us but it is true all the same : The new strategy could be especially useful in helping support more ambitious housebuilding on tricky small sites. In London a “small site” is defined as a piece of land that is under 2,500 sq metres, about the size of nine tennis c…",
+    "published_utc": "2026-10-10T05:30:26+00:00",
+    "has_clock_time": true,
+    "feed": "https://www.adamsmith.org/blog?format=rss",
+    "fp": "d0ecc17a442f1053",
+    "first_seen": "2026-10-10T10:58:54.110521+00:00",
+    "domain": "governance",
+    "points_zh": []
+  },
+  {
+    "institution": "King Faisal Center (KFCRIS)",
+    "region": "中东",
+    "default_domain": "geopolitics",
+    "title": "King Faisal Center for Research and Islamic Studies - مركز الملك فيصل للبحوث والدراسات الإسلامية",
+    "link": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE9naExLdXoyUXNkWllQaWFDdkczOEdEZ3NhRDg2R1hpX3pOYUhkUmI1MFN1QlZycE4tSmF5N0NDX0lPeUJGeHJmbFJOdGZFbzR6WUh0c0ZqdWg?oc=5",
+    "summary": "King Faisal Center for Research and Islamic Studies مركز الملك فيصل للبحوث والدراسات الإسلامية",
+    "published_utc": "2026-10-09T20:22:03+00:00",
+    "has_clock_time": true,
+    "feed": "https://news.google.com/rss/search?q=site:kfcris.com&hl=zh-CN&gl=CN&ceid=CN:zh-Hans",
+    "fp": "d6e5ffb6b72fb15b",
+    "first_seen": "2026-10-10T10:58:54.110521+00:00",
+    "domain": "sci_tech",
+    "points_zh": []
+  }
+]
