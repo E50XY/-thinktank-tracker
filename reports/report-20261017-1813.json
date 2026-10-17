@@ -1,0 +1,32 @@
+[
+  {
+    "institution": "Council on Foreign Relations (CFR)",
+    "region": "美国",
+    "default_domain": "geopolitics",
+    "title": "John F. Kennedy Solicits Dwight D. Eisenhower’s Advice—The Cuban Missile Crisis, Day Two",
+    "link": "https://www.cfr.org/articles/john-f-kennedy-solicits-dwight-d-eisenhowers-advice-the-cuban-missile-crisis-day-two",
+    "summary": "President John F. Kennedy works to project a sense of normalcy as his predecessor urges a miliary response.",
+    "published_utc": "2026-10-17T16:50:19+00:00",
+    "has_clock_time": true,
+    "feed": "https://www.cfr.org/feed",
+    "fp": "3eb118427d674e87",
+    "first_seen": "2026-10-17T18:13:35.260431+00:00",
+    "domain": "geopolitics",
+    "points_zh": []
+  },
+  {
+    "institution": "Council on Foreign Relations (CFR)",
+    "region": "美国",
+    "default_domain": "geopolitics",
+    "title": "John F. Kennedy Solicits Dwight D. Eisenhower’s Advice—The Cuban Missile Crisis, Day Two",
+    "link": "https://www.cfr.org/articles/john-f-kennedy-solicits-dwight-d-eisenhowers-advice-the-cuban-missile-crisis-day-two",
+    "summary": "President John F. Kennedy works to project a sense of normalcy as his predecessor urges a miliary response.",
+    "published_utc": "2026-10-17T16:50:19+00:00",
+    "has_clock_time": true,
+    "feed": "https://www.cfr.org/feed/",
+    "fp": "3eb118427d674e87",
+    "first_seen": "2026-10-17T18:13:35.260431+00:00",
+    "domain": "geopolitics",
+    "points_zh": []
+  }
+]
