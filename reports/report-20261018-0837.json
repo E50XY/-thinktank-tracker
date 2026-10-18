@@ -1,0 +1,47 @@
+[
+  {
+    "institution": "Adam Smith Institute",
+    "region": "英国",
+    "default_domain": "governance",
+    "title": "This is just normal politics",
+    "link": "https://www.adamsmith.org/blog/this-is-just-normal-politics",
+    "summary": "This is nothing unusual, been happening for generations : Andy Burnham’s government has been accused of waging a £500m “class war” on councils. Conservatives and Liberal Democrats say ministers are deliberately cutting funding from affluent rural councils to bankroll urban Labour Party strongholds. An analysis by The T…",
+    "published_utc": "2026-10-18T05:30:22+00:00",
+    "has_clock_time": true,
+    "feed": "https://www.adamsmith.org/blog?format=rss",
+    "fp": "2cd8259225e6ee29",
+    "first_seen": "2026-10-18T08:37:24.565545+00:00",
+    "domain": "labor_social",
+    "points_zh": []
+  },
+  {
+    "institution": "World Economic Forum (WEF)",
+    "region": "国际组织",
+    "default_domain": "macro_finance",
+    "title": "疾病X：世界如何阻止下一场大流行病| World Economic Forum - World Economic Forum",
+    "link": "https://news.google.com/rss/articles/CBMihgFBVV95cUxPT1pCY3hkZ1dZMmZwN1RSSUxacHM5bm1mZjdDLU9MZ3d5SEpDSS1yZEdwclQ4dVJPYVhvZllibzJiTGQ4TWdLY2RxYVRtMDBNNGwwN2lrZzRJVmU1UHdwOUNSdGY3N05LMF9yVHpIaWVsTW1fR1ZYWFU4dFAwM2pDMHFjMXBKdw?oc=5",
+    "summary": "疾病X：世界如何阻止下一场大流行病| World Economic Forum World Economic Forum",
+    "published_utc": "2026-10-18T02:53:42+00:00",
+    "has_clock_time": true,
+    "feed": "https://news.google.com/rss/search?q=site:weforum.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans",
+    "fp": "b943740c80ecea2f",
+    "first_seen": "2026-10-18T08:37:24.565545+00:00",
+    "domain": "macro_finance",
+    "points_zh": []
+  },
+  {
+    "institution": "ADB Institute (ADBI)",
+    "region": "国际组织",
+    "default_domain": "dev_trade",
+    "title": "多边开发银行行长们在马尼拉加强联合行动，以扩大融资规模并提升影响力 - Asian Development Bank",
+    "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOcUFKM2R2QXBUNWdLaENrVHNWcDhlSF9Ga3pFT2h2Nm5pQ3pkVWV4Umw0VGtvbXJIc3NZcjBDNlZ2UVpUcUk4VEtZcGh5dEpTcHBtRXotLWZjdUlVMWV3cmFRNXFnOFBQTGwta1VNTWNsQ2MybmZkclJRYWR1SWxseS1ra25MS0JQVDEzY2R1UnJSZVJlS0ZfMjVWeUVQb3BLY1czMTdpd0pod01vei1J?oc=5",
+    "summary": "多边开发银行行长们在马尼拉加强联合行动，以扩大融资规模并提升影响力 Asian Development Bank",
+    "published_utc": "2026-10-17T12:33:01+00:00",
+    "has_clock_time": true,
+    "feed": "https://news.google.com/rss/search?q=site:adb.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans",
+    "fp": "3beccf73525f10b7",
+    "first_seen": "2026-10-18T08:37:24.565545+00:00",
+    "domain": "dev_trade",
+    "points_zh": []
+  }
+]
