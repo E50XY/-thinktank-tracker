@@ -66,7 +66,7 @@ feeds:
     via_news_fallback: false
     status: ok
     diagnostics:
-    - https://www.who.int/rss-feeds/news-english.xml → 可用,25 条
+    - https://www.who.int/rss-feeds/news-english.xml → 可用,148 条
     - https://www.who.int/feeds/entity/mediacentre/news/en/rss.xml → HTTP 404,0 条
     note: ''
   IFPRI:
@@ -142,7 +142,7 @@ feeds:
     - https://www.iea.org/rss/all → HTTP 403,0 条
     - 首页 https://www.iea.org/ → HTTP 403
     - 常见路径命中 0 个
-    - https://news.google.com/rss/search?q=site:iea.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,5 条
+    - https://news.google.com/rss/search?q=site:iea.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,4 条
     note: ''
   UNEP:
     name: UNEP
@@ -150,11 +150,15 @@ feeds:
     region: 国际组织
     default_domain: energy_climate
     feeds:
-    - https://www.unep.org/rss.xml
-    via_news_fallback: false
-    status: ok
+    - https://news.google.com/rss/search?q=site:unep.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans
+    via_news_fallback: true
+    status: ok_via_news
     diagnostics:
-    - https://www.unep.org/rss.xml → 可用,10 条
+    - https://www.unep.org/rss.xml → HTTP 404,0 条
+    - 首页 https://www.unep.org/en → HTTP 200
+    - 首页声明了 0 个候选
+    - 常见路径命中 0 个
+    - https://news.google.com/rss/search?q=site:unep.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,100 条
     note: ''
   WTO – ERSD:
     name: WTO – ERSD
@@ -169,7 +173,7 @@ feeds:
     - 首页 https://www.wto.org/ → HTTP 200
     - 首页声明了 0 个候选
     - 常见路径命中 0 个
-    - https://news.google.com/rss/search?q=site:wto.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,12 条
+    - https://news.google.com/rss/search?q=site:wto.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,13 条
     note: ''
   Center for Global Development (CGD):
     name: Center for Global Development (CGD)
@@ -185,7 +189,7 @@ feeds:
     - https://www.cgdev.org/feed → HTTP 403,0 条
     - 首页 https://www.cgdev.org/ → HTTP 403
     - 常见路径命中 0 个
-    - https://news.google.com/rss/search?q=site:cgdev.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,1 条
+    - https://news.google.com/rss/search?q=site:cgdev.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,2 条
     note: ''
   Climate Policy Initiative (CPI):
     name: Climate Policy Initiative (CPI)
@@ -258,9 +262,9 @@ feeds:
     via_news_fallback: true
     status: ok_via_news
     diagnostics:
-    - https://www.imf.org/en/Publications/RSS?language=eng → HTTP 403,0 条
+    - https://www.imf.org/en/Publications/RSS?language=eng → HTTP 404,0 条
     - https://www.imf.org/external/rss/feeds.aspx?category=Publications → HTTP 302,0 条
-    - 首页 https://www.imf.org/en/Publications/Research → HTTP 403
+    - 首页 https://www.imf.org/en/Publications/Research → HTTP 404
     - 常见路径命中 0 个
     - https://news.google.com/rss/search?q=site:imf.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,100 条
     note: ''
@@ -273,7 +277,7 @@ feeds:
     via_news_fallback: false
     status: no_feed_found
     diagnostics:
-    - https://www.transparency.org/en/rss → HTTP 404,0 条
+    - https://www.transparency.org/en/rss → HTTP 403,0 条
     - 首页 https://www.transparency.org/ → HTTP 403
     - 常见路径命中 0 个
     - https://news.google.com/rss/search?q=site:transparency.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → HTTP 200,0 条
@@ -288,10 +292,10 @@ feeds:
     via_news_fallback: true
     status: ok_via_news
     diagnostics:
-    - https://www.irena.org/rss → HTTP 403,0 条
+    - https://www.irena.org/rss → HTTP 302,0 条
     - 首页 https://www.irena.org/ → HTTP 403
     - 常见路径命中 0 个
-    - https://news.google.com/rss/search?q=site:irena.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,34 条
+    - https://news.google.com/rss/search?q=site:irena.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,51 条
     note: ''
   European Commission – JRC:
     name: European Commission – JRC
@@ -333,12 +337,11 @@ feeds:
     status: ok_via_news
     diagnostics:
     - https://www.iisd.org/rss.xml → HTTP 200,0 条
-    - https://www.iisd.org/feed → HTTP 404,0 条
+    - https://www.iisd.org/feed → HTTP 403,0 条
     - 首页 https://www.iisd.org/ → HTTP 200
     - 首页声明了 0 个候选
-    - 常见路径命中 2 个
-    - https://www.iisd.org/fr/rss.xml → HTTP 200,0 条
-    - https://news.google.com/rss/search?q=site:iisd.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,14 条
+    - 常见路径命中 1 个
+    - https://news.google.com/rss/search?q=site:iisd.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,15 条
     note: ''
   World Inequality Lab:
     name: World Inequality Lab
@@ -400,7 +403,7 @@ feeds:
     via_news_fallback: true
     status: ok_via_news
     diagnostics:
-    - https://www.ilo.org/rss.xml → HTTP 404,0 条
+    - https://www.ilo.org/rss.xml → HTTP 301,0 条
     - https://www.ilo.org/global/about-the-ilo/newsroom/news/lang--en/nextRow--0/rss.xml → HTTP 404,0 条
     - 首页 https://www.ilo.org/ → HTTP 200
     - 首页声明了 0 个候选
@@ -466,7 +469,7 @@ feeds:
     - 首页 https://www.bis.org/ → HTTP 200
     - 首页声明了 0 个候选
     - 常见路径命中 3 个
-    - https://www.bis.org/rss.xml → 可用,3 条
+    - https://www.bis.org/rss.xml → 可用,6 条
     - https://www.bis.org/de/rss.xml → 可用,1 条
     - https://www.bis.org/fr/rss.xml → HTTP 200,0 条
     note: ''
@@ -481,8 +484,8 @@ feeds:
     via_news_fallback: false
     status: ok
     diagnostics:
-    - https://www.nber.org/rss/new.xml → 可用,29 条
-    - https://back.nber.org/rss/new.xml → 可用,29 条
+    - https://www.nber.org/rss/new.xml → 可用,22 条
+    - https://back.nber.org/rss/new.xml → 可用,22 条
     note: ''
   Pew Research Center:
     name: Pew Research Center
@@ -491,15 +494,14 @@ feeds:
     default_domain: inequality_data
     feeds:
     - https://www.pewresearch.org/feed/
-    - https://www.pewresearch.org/comments/feed/
     via_news_fallback: false
     status: ok
     diagnostics:
     - 首页 https://www.pewresearch.org/ → HTTP 200
     - 首页声明了 3 个候选
     - https://www.pewresearch.org/feed/ → 可用,100 条
-    - https://www.pewresearch.org/comments/feed/ → 可用,100 条
-    - https://www.pewresearch.org/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.pewresearch.org%2F&format=xml → HTTP 200,0 条
+    - https://www.pewresearch.org/comments/feed/ → HTTP 403,0 条
+    - https://www.pewresearch.org/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.pewresearch.org%2F&format=xml → HTTP 403,0 条
     note: ''
   Trilateral Commission:
     name: Trilateral Commission
@@ -618,7 +620,7 @@ feeds:
     - https://www.aei.org/feed/ → HTTP 403,0 条
     - 首页 https://www.aei.org/ → HTTP 403
     - 常见路径命中 0 个
-    - https://news.google.com/rss/search?q=site:aei.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,6 条
+    - https://news.google.com/rss/search?q=site:aei.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,8 条
     note: ''
   Heritage Foundation:
     name: Heritage Foundation
@@ -630,8 +632,7 @@ feeds:
     via_news_fallback: false
     status: ok
     diagnostics:
-    - 首页 https://www.heritage.org/ → HTTP 200
-    - 首页声明了 0 个候选
+    - 首页 https://www.heritage.org/ → HTTP 403
     - 常见路径命中 1 个
     - https://www.heritage.org/rss → 可用,20 条
     note: ''
@@ -760,7 +761,7 @@ feeds:
     - 首页 https://www.chathamhouse.org/ → HTTP 200
     - 首页声明了 0 个候选
     - 常见路径命中 0 个
-    - https://news.google.com/rss/search?q=site:chathamhouse.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,4 条
+    - https://news.google.com/rss/search?q=site:chathamhouse.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,3 条
     note: ''
   Resolution Foundation:
     name: Resolution Foundation
@@ -944,16 +945,13 @@ feeds:
     homepage: https://www.ifo.de
     region: 德国
     default_domain: macro_finance
-    feeds: []
+    feeds:
+    - https://www.ifo.de/rss.xml
     via_news_fallback: false
-    status: no_feed_found
+    status: ok
     diagnostics:
-    - https://www.ifo.de/rss.xml → HTTP 200,0 条
+    - https://www.ifo.de/rss.xml → 可用,50 条
     - https://www.ifo.de/rss/news → HTTP 200,0 条
-    - 首页 https://www.ifo.de/ifo-startseite → HTTP 200
-    - 首页声明了 0 个候选
-    - 常见路径命中 0 个
-    - https://news.google.com/rss/search?q=site:ifo.de&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → HTTP 200,0 条
     note: ''
   Center for American Progress (CAP):
     name: Center for American Progress (CAP)
@@ -971,7 +969,7 @@ feeds:
     - https://www.americanprogress.org/comments/feed/ → HTTP 301,0 条
     - https://www.americanprogress.org/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.americanprogress.org%2F&format=xml&lang=en → HTTP 200,0 条
     - 常见路径命中 0 个
-    - https://news.google.com/rss/search?q=site:americanprogress.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,1 条
+    - https://news.google.com/rss/search?q=site:americanprogress.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,2 条
     note: ''
   Milken Institute:
     name: Milken Institute
@@ -1019,7 +1017,7 @@ feeds:
     - https://www.bruegel.org/feed → HTTP 403,0 条
     - 首页 https://www.bruegel.org/ → HTTP 403
     - 常见路径命中 0 个
-    - https://news.google.com/rss/search?q=site:bruegel.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,15 条
+    - https://news.google.com/rss/search?q=site:bruegel.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,17 条
     note: ''
   ZEW:
     name: ZEW
@@ -1058,17 +1056,16 @@ feeds:
     homepage: https://www.diw.de
     region: 德国
     default_domain: macro_finance
-    feeds:
-    - https://news.google.com/rss/search?q=site:diw.de&hl=zh-CN&gl=CN&ceid=CN:zh-Hans
-    via_news_fallback: true
-    status: ok_via_news
+    feeds: []
+    via_news_fallback: false
+    status: no_feed_found
     diagnostics:
     - https://www.diw.de/rss.xml → HTTP 404,0 条
     - https://www.diw.de/de/diw_01.c.402075.de/rss.xml → HTTP 200,0 条
     - 首页 https://www.diw.de/ → HTTP 200
     - 首页声明了 0 个候选
     - 常见路径命中 0 个
-    - https://news.google.com/rss/search?q=site:diw.de&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,1 条
+    - https://news.google.com/rss/search?q=site:diw.de&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → HTTP 200,0 条
     note: ''
   Institut Montaigne:
     name: Institut Montaigne
@@ -1082,7 +1079,7 @@ feeds:
     diagnostics:
     - 首页 https://www.institutmontaigne.org/ → HTTP 403
     - 常见路径命中 0 个
-    - https://news.google.com/rss/search?q=site:institutmontaigne.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,3 条
+    - https://news.google.com/rss/search?q=site:institutmontaigne.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,4 条
     note: ''
   IfW Kiel:
     name: IfW Kiel
@@ -1284,7 +1281,7 @@ feeds:
     - 首页 https://odi.org/en/ → HTTP 200
     - 首页声明了 0 个候选
     - 常见路径命中 0 个
-    - https://news.google.com/rss/search?q=site:odi.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,1 条
+    - https://news.google.com/rss/search?q=site:odi.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,2 条
     note: ''
   CPB Netherlands:
     name: CPB Netherlands
@@ -1306,32 +1303,30 @@ feeds:
     homepage: https://www.imemo.ru
     region: 俄罗斯
     default_domain: geopolitics
-    feeds: []
-    via_news_fallback: false
-    status: no_feed_found
+    feeds:
+    - https://news.google.com/rss/search?q=site:imemo.ru&hl=zh-CN&gl=CN&ceid=CN:zh-Hans
+    via_news_fallback: true
+    status: ok_via_news
     diagnostics:
     - https://www.imemo.ru/rss → HTTP 200,0 条
     - 首页 https://www.imemo.ru/ → HTTP 200
     - 首页声明了 0 个候选
     - 常见路径命中 0 个
-    - https://news.google.com/rss/search?q=site:imemo.ru&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → HTTP 200,0 条
+    - https://news.google.com/rss/search?q=site:imemo.ru&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,1 条
     note: ''
   IAI:
     name: IAI
     homepage: https://www.iai.it
     region: 意大利
     default_domain: geopolitics
-    feeds: []
+    feeds:
+    - https://www.iai.it/en/rss.xml
+    - https://www.iai.it/it/rss.xml
     via_news_fallback: false
-    status: no_feed_found
+    status: ok
     diagnostics:
-    - https://www.iai.it/en/rss.xml → HTTP 301,0 条
-    - https://www.iai.it/it/rss.xml → HTTP 301,0 条
-    - 首页 https://www.iai.it/it → HTTP 200
-    - 首页声明了 0 个候选
-    - 常见路径命中 2 个
-    - https://www.iai.it/rss.xml → HTTP 301,0 条
-    - https://news.google.com/rss/search?q=site:iai.it&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → HTTP 200,0 条
+    - https://www.iai.it/en/rss.xml → 可用,1 条
+    - https://www.iai.it/it/rss.xml → 可用,1 条
     note: ''
   IHEID (Graduate Institute Geneva):
     name: IHEID (Graduate Institute Geneva)
@@ -1422,11 +1417,11 @@ feeds:
     - 首页 https://valdaiclub.com/ → HTTP 200
     - 首页声明了 0 个候选
     - 常见路径命中 5 个
-    - https://valdaiclub.com/feed → 可用,11 条
-    - https://valdaiclub.com/feed/ → 可用,11 条
-    - https://valdaiclub.com/rss.xml → 可用,11 条
-    - https://valdaiclub.com/feed.xml → 可用,11 条
-    - https://valdaiclub.com/atom.xml → 可用,11 条
+    - https://valdaiclub.com/feed → 可用,13 条
+    - https://valdaiclub.com/feed/ → 可用,13 条
+    - https://valdaiclub.com/rss.xml → 可用,13 条
+    - https://valdaiclub.com/feed.xml → 可用,13 条
+    - https://valdaiclub.com/atom.xml → 可用,13 条
     note: ''
   三菱総合研究所 (MRI):
     name: 三菱総合研究所 (MRI)
@@ -1447,14 +1442,15 @@ feeds:
     homepage: https://cigs.canon
     region: 日本
     default_domain: macro_finance
-    feeds: []
-    via_news_fallback: false
-    status: no_feed_found
+    feeds:
+    - https://news.google.com/rss/search?q=site:cigs.canon&hl=zh-CN&gl=CN&ceid=CN:zh-Hans
+    via_news_fallback: true
+    status: ok_via_news
     diagnostics:
     - 首页 https://cigs.canon/ → HTTP 200
     - 首页声明了 0 个候选
     - 常见路径命中 0 个
-    - https://news.google.com/rss/search?q=site:cigs.canon&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → HTTP 200,0 条
+    - https://news.google.com/rss/search?q=site:cigs.canon&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,1 条
     note: ''
   日本経済研究センター (JCER):
     name: 日本経済研究センター (JCER)
@@ -1486,7 +1482,7 @@ feeds:
     - https://www.asaninst.org/feed/ → HTTP 403,0 条
     - 首页 https://www.asaninst.org/ → HTTP 403
     - 常见路径命中 0 个
-    - https://news.google.com/rss/search?q=site:asaninst.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,5 条
+    - https://news.google.com/rss/search?q=site:asaninst.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,1 条
     note: ''
   総合研究開発機構 (NIRA):
     name: 総合研究開発機構 (NIRA)
@@ -1533,7 +1529,7 @@ feeds:
     - 首页 https://www.orfonline.org/ → HTTP 200
     - 首页声明了 0 个候选
     - 常见路径命中 0 个
-    - https://news.google.com/rss/search?q=site:orfonline.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,7 条
+    - https://news.google.com/rss/search?q=site:orfonline.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,8 条
     note: ''
   NCAER:
     name: NCAER
@@ -1570,16 +1566,15 @@ feeds:
     homepage: https://www.kdi.re.kr
     region: 韩国
     default_domain: macro_finance
-    feeds:
-    - https://news.google.com/rss/search?q=site:kdi.re.kr&hl=zh-CN&gl=CN&ceid=CN:zh-Hans
-    via_news_fallback: true
-    status: ok_via_news
+    feeds: []
+    via_news_fallback: false
+    status: no_feed_found
     diagnostics:
     - https://www.kdi.re.kr/rss/rss.jsp → HTTP 200,0 条
     - 首页 https://www.kdi.re.kr/ → HTTP 200
     - 首页声明了 0 个候选
     - 常见路径命中 0 个
-    - https://news.google.com/rss/search?q=site:kdi.re.kr&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,1 条
+    - https://news.google.com/rss/search?q=site:kdi.re.kr&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → HTTP 200,0 条
     note: ''
   野村総合研究所 (NRI):
     name: 野村総合研究所 (NRI)
@@ -1595,7 +1590,7 @@ feeds:
     - 首页 https://www.nri.com/ → HTTP 200
     - 首页声明了 0 个候选
     - 常见路径命中 0 个
-    - https://news.google.com/rss/search?q=site:nri.com&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,28 条
+    - https://news.google.com/rss/search?q=site:nri.com&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,29 条
     note: ''
   Takshashila Institution:
     name: Takshashila Institution
@@ -1631,16 +1626,15 @@ feeds:
     homepage: https://sdpi.org
     region: 巴基斯坦
     default_domain: dev_trade
-    feeds:
-    - https://news.google.com/rss/search?q=site:sdpi.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans
-    via_news_fallback: true
-    status: ok_via_news
+    feeds: []
+    via_news_fallback: false
+    status: no_feed_found
     diagnostics:
     - https://sdpi.org/feed → HTTP 200,0 条
     - 首页 https://sdpi.org/ → HTTP 200
     - 首页声明了 0 个候选
     - 常见路径命中 0 个
-    - https://news.google.com/rss/search?q=site:sdpi.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,1 条
+    - https://news.google.com/rss/search?q=site:sdpi.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → HTTP 200,0 条
     note: ''
   TDRI:
     name: TDRI
@@ -1702,11 +1696,10 @@ feeds:
     via_news_fallback: true
     status: ok_via_news
     diagnostics:
-    - https://www.ide.go.jp/Japanese/rss.xml → HTTP 404,0 条
-    - 首页 https://www.ide.go.jp/ → HTTP 200
-    - 首页声明了 0 个候选
+    - https://www.ide.go.jp/Japanese/rss.xml → HTTP 503,0 条
+    - 首页 https://www.ide.go.jp/ → HTTP 503
     - 常见路径命中 0 个
-    - https://news.google.com/rss/search?q=site:ide.go.jp&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,34 条
+    - https://news.google.com/rss/search?q=site:ide.go.jp&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,36 条
     note: ''
   مركز الجزيرة للدراسات (AJ Centre for Studies):
     name: مركز الجزيرة للدراسات (AJ Centre for Studies)
@@ -1757,7 +1750,7 @@ feeds:
     - 首页 https://kfcris.com/ → HTTP 200
     - 首页声明了 0 个候选
     - 常见路径命中 0 个
-    - https://news.google.com/rss/search?q=site:kfcris.com&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,10 条
+    - https://news.google.com/rss/search?q=site:kfcris.com&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,14 条
     note: ''
   ERIA:
     name: ERIA
@@ -1918,7 +1911,7 @@ feeds:
     - 首页 https://www.ipea.gov.br/ → HTTP 200
     - 首页声明了 0 个候选
     - 常见路径命中 0 个
-    - https://news.google.com/rss/search?q=site:ipea.gov.br&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,4 条
+    - https://news.google.com/rss/search?q=site:ipea.gov.br&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,3 条
     note: ''
   CIPPEC:
     name: CIPPEC
@@ -2027,10 +2020,9 @@ feeds:
     status: ok_via_news
     diagnostics:
     - https://www.kiep.go.kr/rss.do → HTTP 404,0 条
-    - 首页 https://www.kiep.go.kr/ → HTTP 200
-    - 首页声明了 0 个候选
+    - 首页 https://www.kiep.go.kr → 请求失败 ReadTimeout
     - 常见路径命中 0 个
-    - https://news.google.com/rss/search?q=site:kiep.go.kr&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,17 条
+    - https://news.google.com/rss/search?q=site:kiep.go.kr&hl=zh-CN&gl=CN&ceid=CN:zh-Hans → 可用,23 条
     note: ''
   CSEP:
     name: CSEP
