@@ -1,0 +1,32 @@
+[
+  {
+    "institution": "Council on Foreign Relations (CFR)",
+    "region": "美国",
+    "default_domain": "geopolitics",
+    "title": "“Eyeball to Eyeball”—Cuban Missile Crisis, Day Nine",
+    "link": "https://www.cfr.org/articles/eyeball-to-eyeball-cuban-missile-crisis-day-nine",
+    "summary": "President John F. Kennedy’s hopes rise and then fall that the naval quarantine of Cuba will quickly end the missile crisis.",
+    "published_utc": "2026-10-24T15:27:44+00:00",
+    "has_clock_time": true,
+    "feed": "https://www.cfr.org/feed",
+    "fp": "1ef6031c7c24df83",
+    "first_seen": "2026-10-24T17:54:05.170989+00:00",
+    "domain": "geopolitics",
+    "points_zh": []
+  },
+  {
+    "institution": "Council on Foreign Relations (CFR)",
+    "region": "美国",
+    "default_domain": "geopolitics",
+    "title": "“Eyeball to Eyeball”—Cuban Missile Crisis, Day Nine",
+    "link": "https://www.cfr.org/articles/eyeball-to-eyeball-cuban-missile-crisis-day-nine",
+    "summary": "President John F. Kennedy’s hopes rise and then fall that the naval quarantine of Cuba will quickly end the missile crisis.",
+    "published_utc": "2026-10-24T15:27:44+00:00",
+    "has_clock_time": true,
+    "feed": "https://www.cfr.org/feed/",
+    "fp": "1ef6031c7c24df83",
+    "first_seen": "2026-10-24T17:54:05.170989+00:00",
+    "domain": "geopolitics",
+    "points_zh": []
+  }
+]
