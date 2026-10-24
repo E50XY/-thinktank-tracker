@@ -1,0 +1,32 @@
+[
+  {
+    "institution": "Adam Smith Institute",
+    "region": "英国",
+    "default_domain": "governance",
+    "title": "Renewables are just so wondrously cheap, aren’t they?",
+    "link": "https://www.adamsmith.org/blog/renewables-are-just-so-wondrously-cheap-arent-they",
+    "summary": "Great Britain is expected to pay some of the highest energy costs in Europe this winter as its reliance on imports to ensure a steady supply is forecast to deepen. Energy system operators have said the country will have enough gas and electricity to meet demand over the coldest months – in part because of paying higher…",
+    "published_utc": "2026-10-24T05:30:12+00:00",
+    "has_clock_time": true,
+    "feed": "https://www.adamsmith.org/blog?format=rss",
+    "fp": "b96e86046d8f4051",
+    "first_seen": "2026-10-24T10:25:53.868981+00:00",
+    "domain": "energy_climate",
+    "points_zh": []
+  },
+  {
+    "institution": "UNEP",
+    "region": "国际组织",
+    "default_domain": "energy_climate",
+    "title": "UNEP Annual Report - UNEP - UN Environment Programme",
+    "link": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBTdWUwRXVNUllkaWM3VVlEYnFvSHFQUVZ3TkRvMFpGQzViS1cwQWp6QlNxbFBnLXdwdUFGUDFEUzh4R3Vwa1BybjNqTmVkbkVEOFNHMDZJUlhTT3p6MkU0R3UzeW5jZGo1eEhwOUtKOXktTTBnMGoya2RPWQ?oc=5",
+    "summary": "UNEP Annual Report UNEP - UN Environment Programme",
+    "published_utc": "2026-10-24T05:07:15+00:00",
+    "has_clock_time": true,
+    "feed": "https://news.google.com/rss/search?q=site:unep.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans",
+    "fp": "3e4070dfac331a4c",
+    "first_seen": "2026-10-24T10:25:53.868981+00:00",
+    "domain": "energy_climate",
+    "points_zh": []
+  }
+]
