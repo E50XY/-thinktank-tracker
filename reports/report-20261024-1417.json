@@ -1,0 +1,32 @@
+[
+  {
+    "institution": "C.D. Howe Institute",
+    "region": "加拿大",
+    "default_domain": "macro_finance",
+    "title": "Canada’s Crazy Quilt of Mining Taxation Needs Restitching",
+    "link": "https://cdhowe.org/publication/canadas-crazy-quilt-of-mining-taxation-needs-restitching/",
+    "summary": "From: Jack Mintz To: Productivity observers Date: October 26, 2026 Re: Canada’s Crazy Quilt of Mining Taxation Needs Restitching Productivity doesn’t just depend on our tax competitiveness and how much capital investment we have. It also depends on that investment going to the most profitable uses possible. Canada’s mi…",
+    "published_utc": "2026-10-24T12:30:35+00:00",
+    "has_clock_time": true,
+    "feed": "https://cdhowe.org/feed/",
+    "fp": "59ae43bc0a3a507f",
+    "first_seen": "2026-10-24T14:17:44.726013+00:00",
+    "domain": "macro_finance",
+    "points_zh": []
+  },
+  {
+    "institution": "Adam Smith Institute",
+    "region": "英国",
+    "default_domain": "governance",
+    "title": "Britain invented nuclear power. Why did it forget how to build it?",
+    "link": "https://www.adamsmith.org/blog/britain-invented-nuclear-power-why-did-it-forget-how-to-build-it",
+    "summary": "On 17 October 1956, Queen Elizabeth II opened Calder Hall , the world's first grid-scale nuclear power station. It was a moment described as “epoch-making” and watched with awe by other superpowers. Over the next fifteen years Britain built 26 Magnox reactors , most of them approved within months. Today it struggles to…",
+    "published_utc": "2026-10-24T11:00:28+00:00",
+    "has_clock_time": true,
+    "feed": "https://www.adamsmith.org/blog?format=rss",
+    "fp": "671fd35471478014",
+    "first_seen": "2026-10-24T14:17:44.726013+00:00",
+    "domain": "energy_climate",
+    "points_zh": []
+  }
+]
