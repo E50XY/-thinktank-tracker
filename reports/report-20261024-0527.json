@@ -1,0 +1,32 @@
+[
+  {
+    "institution": "World Bank – DEC",
+    "region": "国际组织",
+    "default_domain": "dev_trade",
+    "title": "通往就业与增长的新路径 - World Bank Group",
+    "link": "https://news.google.com/rss/articles/CBMiREFVX3lxTE5jQkROM0JLTXZ0aHc5akpIQWJHbzNxYl9ULXIzSmhsRGJsY0hsZ05McHdNNzJlT3E2YUpjbldKRWlkSHVj?oc=5",
+    "summary": "通往就业与增长的新路径 World Bank Group",
+    "published_utc": "2026-10-23T13:42:19+00:00",
+    "has_clock_time": true,
+    "feed": "https://news.google.com/rss/search?q=site:worldbank.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans",
+    "fp": "b7e86364457745d4",
+    "first_seen": "2026-10-24T05:27:15.041187+00:00",
+    "domain": "dev_trade",
+    "points_zh": []
+  },
+  {
+    "institution": "World Economic Forum (WEF)",
+    "region": "国际组织",
+    "default_domain": "macro_finance",
+    "title": "这位创始人转型后攀登乞力马扎罗山，学到耐心的关键一课 | World Economic Forum - World Economic Forum",
+    "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPWC1KUUthUGlLd1RCWkl1bVJaU3FzWmlSbUxZcG9YRVMzRHRDVUVzcGVWNmhTWWFWbkR5RUFnN0ROanRlWEJoRFROYmpoXzBjeEJjMWVtdVFFN25rcFZkWi12ZVZ2c1NqclBsMHBwdDN4aHJ3VDdoS0tSOUdIaHFYeUhHMFZORnF0T2ZoSXF5dDNvT2NPelA4QU5mVE5BTXN6c0hSN29CT0k?oc=5",
+    "summary": "这位创始人转型后攀登乞力马扎罗山，学到耐心的关键一课 | World Economic Forum World Economic Forum",
+    "published_utc": "2026-10-23T12:10:01+00:00",
+    "has_clock_time": true,
+    "feed": "https://news.google.com/rss/search?q=site:weforum.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans",
+    "fp": "35ceea2e170c67ca",
+    "first_seen": "2026-10-24T05:27:15.041187+00:00",
+    "domain": "macro_finance",
+    "points_zh": []
+  }
+]
