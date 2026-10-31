@@ -1,0 +1,17 @@
+[
+  {
+    "institution": "UNEP",
+    "region": "国际组织",
+    "default_domain": "energy_climate",
+    "title": "新闻稿 - UNEP - UN Environment Programme",
+    "link": "https://news.google.com/rss/articles/CBMiYkFVX3lxTFBIYWVIbllBdGdHQXpPWkhvU3daY3ZHamlYRGZlcV94QXRpbUdQVmRnZDVFRExkSmJyMXdRNXJJdFVmLUJtNVA3OWVLeDdYRFo5V003WGdJV1pKa2ZZQXdMdTh3?oc=5",
+    "summary": "新闻稿 UNEP - UN Environment Programme",
+    "published_utc": "2026-10-31T14:23:51+00:00",
+    "has_clock_time": true,
+    "feed": "https://news.google.com/rss/search?q=site:unep.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans",
+    "fp": "11bd96c40bc7f79a",
+    "first_seen": "2026-10-31T18:15:44.496257+00:00",
+    "domain": "energy_climate",
+    "points_zh": []
+  }
+]
