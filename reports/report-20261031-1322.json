@@ -1,0 +1,32 @@
+[
+  {
+    "institution": "Adam Smith Institute",
+    "region": "英国",
+    "default_domain": "governance",
+    "title": "Why Adam Smith denounced slavery",
+    "link": "https://www.adamsmith.org/blog/why-adam-smith-denounced-slavery",
+    "summary": "Adam Smith was clear about the evils of slavery. In both The Theory of Moral Sentiments and The Wealth of Nations , he exposed the injustice of the institution and the commercial interests that helped sustain it. In The Theory of Moral Sentiments , Smith invites us to consider how an impartial spectator, free from pers…",
+    "published_utc": "2026-10-31T12:02:11+00:00",
+    "has_clock_time": true,
+    "feed": "https://www.adamsmith.org/blog?format=rss",
+    "fp": "c465899302d84ce0",
+    "first_seen": "2026-10-31T13:22:35.227277+00:00",
+    "domain": "sci_tech",
+    "points_zh": []
+  },
+  {
+    "institution": "FAO",
+    "region": "国际组织",
+    "default_domain": "agri_food",
+    "title": "FAO Legal Database - Food and Agriculture Organization",
+    "link": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNYzIxbC0yZWxjLUpmRUlqTUF5Q29pTUY1NmhPTjYtMi1WMFlqdmJlLUFqZERCYkF6ckVSNzVaaTlTeEllblh4dTM3Y0k1R1pfbEdoQ1Bvc0lzSzFXVEtjM2VYS1ZuWU5aNDNiaDQ0ajQwalNxUFVHV3I1a0p4cU8yRVlMcVN2Mk5tbFBVb0Z4bmEzeFUtMm9IcmRsV25GUm1UclM1RGhhUndJSm5yT1JfWVdhVkFZdXFu?oc=5",
+    "summary": "FAO Legal Database Food and Agriculture Organization",
+    "published_utc": "2026-10-30T19:25:57+00:00",
+    "has_clock_time": true,
+    "feed": "https://news.google.com/rss/search?q=site:fao.org&hl=zh-CN&gl=CN&ceid=CN:zh-Hans",
+    "fp": "8b4b352824962c19",
+    "first_seen": "2026-10-31T13:22:35.227277+00:00",
+    "domain": "agri_food",
+    "points_zh": []
+  }
+]
